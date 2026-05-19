@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoopForge AI — Otomatisasi AI Ulasan | Khusus Pemilik Kafe & Restoran</title>
+<meta name="description" content="AI membuat draf balasan ulasan untuk kafe dan restoran Anda. Tinjau sebelum memposting. Tidak ada posting otomatis. Diagnosis gratis 10 menit.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LoopForge AI — AI Otomatis Ulasan | Kafe & Restoran">
+<meta property="og:description" content="AI membuat draf balasan ulasan untuk kafe dan restoran Anda. Tinjau sebelum memposting. Tidak ada posting otomatis. Diagnosis gratis 10 menit.">
+<meta property="og:url" content="https://loopforge-2v1-51v.pages.dev/id">
+<meta property="og:image" content="https://loopforge-2v1-51v.pages.dev/og-id.png">
+<link rel="canonical" href="https://loopforge-2v1-51v.pages.dev/id">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+:root{--font:'Plus Jakarta Sans','Segoe UI',sans-serif;}
+
+:root{--bg:#080c10;--bg2:#0d1117;--bg3:#0f1420;--card:#111820;--card2:#141c26;--accent:#00E5A0;--accent-d:#00b87a;--accent2:#0066FF;--accent3:#FFB300;--text:#f2f4f7;--muted:#8896a8;--muted2:#4a5568;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--r:12px;--r-lg:18px;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;overflow-x:hidden;}a{color:inherit;text-decoration:none;}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;z-index:200;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 4rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(8,12,16,0.94);backdrop-filter:blur(18px);z-index:100;}
+.logo{font-weight:900;font-size:1.2rem;letter-spacing:-0.04em;}.logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}.nav-links a{font-size:0.88rem;color:var(--muted);transition:color .2s;}.nav-links a:hover{color:var(--text);}
+.lang-row{display:flex;gap:0.4rem;}.lb{padding:0.28rem 0.7rem;border-radius:100px;font-size:0.75rem;font-weight:700;border:1px solid var(--border2);color:var(--muted);cursor:pointer;background:none;transition:.2s;font-family:var(--font);}.lb.active{background:var(--accent);color:#000;border-color:var(--accent);}
+.nav-cta{background:var(--accent);color:#000;padding:0.52rem 1.2rem;border-radius:7px;font-weight:800;font-size:0.86rem;transition:.2s;white-space:nowrap;}.nav-cta:hover{background:var(--accent-d);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}.hamburger.open span:nth-child(2){opacity:0;}.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(8,12,16,0.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}.mobile-menu.open{display:flex;}.mobile-menu a{color:var(--text);font-size:1.4rem;font-weight:900;}.mobile-menu a.accent{color:var(--accent);}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.ticker{background:var(--accent);color:#000;padding:0.55rem 0;overflow:hidden;white-space:nowrap;font-weight:800;font-size:0.8rem;}.ticker-inner{display:inline-block;animation:ticker 32s linear infinite;}@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.hero-wrap{background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(0,229,160,0.12) 0%,transparent 70%),var(--bg);}
+.hero{max-width:900px;margin:0 auto;padding:7rem 2rem 5rem;text-align:center;}
+.badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(0,229,160,0.1);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:0.4rem 1.1rem;border-radius:100px;font-size:0.76rem;margin-bottom:2rem;font-weight:700;}
+.hero h1{font-size:clamp(2rem,5vw,3.6rem);font-weight:900;line-height:1.18;margin-bottom:1.5rem;}.hero h1 em{color:var(--accent);font-style:normal;}
+.hero-sub{font-size:1rem;color:var(--muted);max-width:560px;margin:0 auto 2rem;line-height:1.8;}
+.diff-box{background:linear-gradient(135deg,rgba(0,229,160,0.06),rgba(0,102,255,0.04));border:1px solid rgba(0,229,160,0.22);border-radius:var(--r-lg);padding:1.4rem 2rem;margin:0 auto 2.2rem;max-width:680px;font-size:0.95rem;line-height:1.8;}.diff-box strong{color:var(--accent);}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:var(--accent);color:#000;padding:0.95rem 2.2rem;border-radius:8px;font-weight:800;font-size:1rem;display:inline-flex;align-items:center;gap:0.4rem;transition:.2s;}.btn-primary:hover{background:var(--accent-d);transform:translateY(-2px);}
+.btn-ghost{border:1px solid var(--border2);color:var(--text);padding:0.95rem 2.2rem;border-radius:8px;font-size:1rem;transition:.2s;}.btn-ghost:hover{border-color:rgba(255,255,255,0.28);background:rgba(255,255,255,0.04);}
+.safe-box{background:rgba(0,229,160,0.05);border:1px solid rgba(0,229,160,0.18);border-radius:var(--r-lg);padding:1.6rem 2rem;max-width:720px;margin:0 auto;text-align:center;}
+.safe-box h3{font-size:0.9rem;font-weight:800;color:var(--accent);margin-bottom:0.5rem;}.safe-box p{font-size:0.9rem;color:var(--muted);line-height:1.8;}.safe-box strong{color:var(--text);}
+.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 2rem;}
+.stats-inner{max-width:800px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.stat-num{font-size:2.2rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:0.4rem;}.stat-label{font-size:0.8rem;color:var(--muted);}
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.7rem;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:0.5rem;font-weight:700;}
+.section-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;line-height:1.2;margin-bottom:0.8rem;}.section-sub{font-size:0.95rem;color:var(--muted);margin-bottom:2.5rem;}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.pain-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.8rem 1.5rem;transition:.2s;}.pain-card:hover{border-color:rgba(0,229,160,0.25);transform:translateY(-3px);}
+.pain-num{font-size:1.8rem;font-weight:900;color:var(--accent);margin-bottom:0.5rem;}.pain-card h3{font-size:0.9rem;font-weight:700;margin-bottom:0.4rem;}.pain-card p{font-size:0.84rem;color:var(--muted);line-height:1.7;}
+.flow-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 2rem;}.flow-inner{max-width:1100px;margin:0 auto;}
+.ba-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1.5rem;margin-top:2.5rem;}
+.ba-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;}
+.ba-header{padding:1rem 1.5rem;background:var(--bg3);border-bottom:1px solid var(--border);font-weight:700;font-size:0.9rem;}
+.ba-body{padding:1.4rem;}.ba-lbl{font-size:0.72rem;color:var(--muted);margin-bottom:0.4rem;font-weight:600;}
+.original{background:rgba(255,255,255,0.04);padding:1rem;border-radius:8px;margin-bottom:1rem;font-size:0.88rem;color:var(--muted);line-height:1.7;}
+.ai-out{background:rgba(0,229,160,0.07);padding:1rem;border-radius:8px;border-left:3px solid var(--accent);font-size:0.88rem;line-height:1.7;}
+.flow-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.8rem;}
+.flow-step{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.2rem;text-align:center;transition:.2s;}.flow-step:hover{border-color:rgba(0,229,160,0.3);}
+.step-num{width:34px;height:34px;border-radius:50%;background:rgba(0,229,160,0.12);color:var(--accent);font-weight:900;font-size:0.82rem;display:flex;align-items:center;justify-content:center;margin:0 auto 0.7rem;}
+.flow-step h3{font-size:0.85rem;font-weight:700;margin-bottom:0.3rem;}.flow-step p{font-size:0.78rem;color:var(--muted);line-height:1.55;}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:3rem;}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:2rem;position:relative;transition:.2s;}.price-card:hover{transform:translateY(-4px);}
+.price-card.featured{border-color:var(--accent);}.price-card.hot{border-color:var(--accent3);}
+.feat-badge,.hot-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:0.7rem;font-weight:900;padding:0.28rem 1rem;border-radius:100px;white-space:nowrap;}
+.feat-badge{background:var(--accent);color:#000;}.hot-badge{background:var(--accent3);color:#000;}
+.price-card h3{font-size:0.85rem;font-weight:700;color:var(--muted);margin-bottom:0.6rem;}
+.price-tag{font-size:1.9rem;font-weight:900;letter-spacing:-0.03em;margin-bottom:1rem;}.price-tag span{font-size:0.82rem;font-weight:500;color:var(--muted);}
+.price-card ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem;}
+.price-card ul li{font-size:0.84rem;padding-left:1.3rem;position:relative;}.price-card ul li::before{content:'✓';color:var(--accent);position:absolute;left:0;font-weight:900;}
+.price-btn{display:block;text-align:center;padding:0.75rem;border-radius:8px;font-weight:700;font-size:0.88rem;border:1px solid var(--border2);color:var(--text);transition:.2s;cursor:pointer;background:transparent;font-family:var(--font);}
+.price-btn.accent{background:var(--accent);color:#000;border-color:var(--accent);}.price-btn.gold{background:var(--accent3);color:#000;border-color:var(--accent3);}
+.micro{font-size:0.74rem;color:var(--muted);text-align:center;margin-top:0.5rem;}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.proof-card{background:var(--card2);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.8rem;transition:.2s;}.proof-card:hover{border-color:rgba(0,229,160,0.2);}
+.stars{color:var(--accent3);margin-bottom:0.9rem;}.proof-card blockquote{font-size:0.88rem;color:var(--text);line-height:1.75;margin-bottom:1rem;}.proof-author{font-size:0.76rem;color:var(--muted);font-weight:600;}
+.faq-section{background:var(--bg2);border-top:1px solid var(--border);padding:5rem 2rem;}.faq-inner{max-width:720px;margin:0 auto;}
+.faq-list{margin-top:2rem;display:flex;flex-direction:column;gap:0.8rem;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.faq-q{width:100%;text-align:left;padding:1.2rem 1.5rem;background:none;border:none;color:var(--text);font-size:0.93rem;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--font);}.faq-q:hover{color:var(--accent);}
+.faq-icon{font-size:1.3rem;color:var(--muted);transition:transform .3s;}.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 1.5rem 1.2rem;}.faq-item.open .faq-a{display:block;}.faq-a p{font-size:0.88rem;color:var(--muted);line-height:1.75;}
+.cta-section{padding:6rem 2rem;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(0,229,160,0.08) 0%,transparent 70%),var(--bg);}
+.cta-section h2{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:900;line-height:1.2;margin-bottom:1rem;}
+.cta-section>p{color:var(--muted);max-width:560px;margin:0 auto 2.2rem;font-size:0.95rem;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-wa{background:#25D366;color:#fff;padding:0.95rem 2rem;border-radius:8px;font-weight:800;font-size:0.95rem;display:inline-flex;align-items:center;gap:0.4rem;transition:.2s;}.btn-wa:hover{background:#1eb856;transform:translateY(-1px);}
+.contact-form{max-width:560px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:2.5rem;}
+.form-title{font-size:1rem;font-weight:800;margin-bottom:1.6rem;text-align:center;color:var(--accent);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}.form-group{margin-bottom:1.3rem;}
+.form-group label{display:block;font-size:0.83rem;color:var(--muted);margin-bottom:0.45rem;font-weight:700;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.88rem 1rem;color:var(--text);font-size:1rem;font-family:var(--font);transition:border-color .2s;min-height:44px;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);}
+.form-group textarea{min-height:110px;resize:vertical;}
+.form-agree{margin:1.3rem 0 0.8rem;}.form-agree label{display:flex;align-items:flex-start;gap:0.6rem;cursor:pointer;font-size:0.84rem;line-height:1.55;margin-bottom:0.5rem;}
+.form-agree input[type="checkbox"]{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;min-width:16px;}.form-agree a{color:var(--accent);text-decoration:underline;}
+.form-submit{width:100%;background:var(--accent);color:#000;border:none;border-radius:8px;padding:1.1rem;font-weight:900;font-size:1rem;cursor:pointer;transition:.2s;margin-top:0.8rem;font-family:var(--font);}.form-submit:hover{background:var(--accent-d);}.form-submit:disabled{opacity:0.55;cursor:not-allowed;}
+.form-error{display:none;background:rgba(255,80,80,0.12);color:#ff8080;border:1px solid rgba(255,80,80,0.25);border-radius:8px;padding:0.9rem;margin-top:0.8rem;text-align:center;font-size:0.88rem;}
+.form-success{display:none;text-align:center;padding:2.5rem 1rem;}.form-success .icon{font-size:3.5rem;margin-bottom:1rem;}.form-privacy{font-size:0.75rem;color:var(--muted);text-align:center;margin-top:1rem;line-height:1.5;}
+.float-cta{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--accent);color:#000;border:none;border-radius:100px;padding:0.85rem 1.5rem;font-weight:900;font-size:0.88rem;cursor:pointer;box-shadow:0 4px 20px rgba(0,229,160,0.35);transition:transform .2s,opacity .3s;opacity:0;pointer-events:none;z-index:90;font-family:var(--font);}.float-cta.visible{opacity:1;pointer-events:auto;}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2rem 2rem;}.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1fr 2fr;gap:3rem;margin-bottom:2.5rem;}
+.footer-logo{font-size:1.2rem;font-weight:900;letter-spacing:-0.04em;margin-bottom:0.5rem;}.footer-logo span{color:var(--accent);}
+.footer-brand p{font-size:0.84rem;color:var(--muted);line-height:1.7;}
+.footer-links{display:flex;flex-wrap:wrap;gap:0.8rem 2rem;}.footer-links a{font-size:0.84rem;color:var(--muted);transition:color .2s;}.footer-links a:hover{color:var(--text);}
+.footer-biz{font-size:0.77rem;color:var(--muted2);line-height:1.9;padding-top:2rem;border-top:1px solid var(--border);}
+.footer-bottom{font-size:0.75rem;color:var(--muted2);margin-top:1rem;}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;align-items:center;justify-content:center;padding:1.5rem;}.modal-bg.open{display:flex;}
+.modal-box{background:var(--card);border:1px solid var(--border2);border-radius:var(--r-lg);padding:2.5rem;max-width:500px;width:100%;position:relative;max-height:90vh;overflow-y:auto;}
+.modal-close-btn{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;}
+.modal-box h3{font-size:1rem;font-weight:800;margin-bottom:1.3rem;}.modal-box p{font-size:0.87rem;color:var(--muted);margin-bottom:0.7rem;line-height:1.65;}.modal-box strong{color:var(--text);}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(0.25,0.1,0.25,1),transform .6s cubic-bezier(0.25,0.1,0.25,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+@media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.hamburger{display:flex;}.hero{padding:5.5rem 1.5rem 3rem;}.stats-inner{grid-template-columns:repeat(2,1fr);}.ba-grid{grid-template-columns:1fr;}.flow-steps{grid-template-columns:1fr;}.price-grid{grid-template-columns:1fr;}.proof-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr;}}
+
+</style>
+</head>
+<body>
+<div id="progress-bar"></div>
+<nav>
+  <a href="/id" class="logo">Loop<span>Forge</span> AI</a>
+  <div class="nav-links"><a href="#how">Cara Kerja</a><a href="#price">Harga</a><a href="#proof">Ulasan</a><a href="#faq">FAQ</a></div>
+  <div style="display:flex;align-items:center;gap:0.7rem;">
+    <div class="lang-row"><a href="/" class="lb">KR</a><a href="/en" class="lb">EN</a><a href="/ja" class="lb">JA</a><a href="/vi" class="lb">VI</a><a href="/th" class="lb">TH</a><a href="/id" class="lb active">ID</a></div>
+    <a href="#contact" class="nav-cta">Diagnosis Gratis</a>
+  </div>
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="#how" onclick="closeMenu()">Cara Kerja</a>
+<a href="#price" onclick="closeMenu()">Harga</a>
+<a href="#proof" onclick="closeMenu()">Ulasan</a>
+<a href="#faq" onclick="closeMenu()">FAQ</a>
+<a href="#contact" onclick="closeMenu()" class="accent">Diagnosis Gratis</a>
+
+</div>
+<div class="ticker"><div class="ticker-inner">⚡ Khusus Pemilik Kafe & Restoran — AI Otomatis Ulasan &nbsp;·&nbsp; Tidak Posting Otomatis · Draf Aman &nbsp;·&nbsp; Setup n8n Rp 5.500.000 &nbsp;·&nbsp; Terbatas 3 Toko Pertama &nbsp;·&nbsp; ⚡ Khusus Pemilik Kafe & Restoran — AI Otomatis Ulasan &nbsp;·&nbsp; Tidak Posting Otomatis · Draf Aman &nbsp;·&nbsp; Setup n8n Rp 5.500.000 &nbsp;·&nbsp; Terbatas 3 Toko Pertama &nbsp;·&nbsp;</div></div>
+<main>
+<div class="hero-wrap">
+  <section class="hero">
+    <div class="badge">🎯 Khusus Pemilik Toko &nbsp;·&nbsp; 🤖 Draf AI · Desain Aman</div>
+    <h1>Haruskah Anda menulis balasan ulasan<br><em>sampai larut malam?</em></h1>
+    <p class="hero-sub">AI membuat draf balasan ulasan untuk kafe & restoran Anda.<br>Balasan · Respons ulasan negatif · Draf blog — Anda hanya perlu meninjau & memposting.</p>
+    <div class="diff-box">Google Maps AI hanya memberikan <strong>saran balasan.</strong><br><strong>LoopForge</strong> memberikan balasan + respons keluhan + draf blog + laporan kata kunci + <strong>aset otomasi n8n.</strong></div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Dapatkan Diagnosis Gratis →</a>
+      <a href="#how" class="btn-ghost">Lihat Cara Kerjanya</a>
+    </div>
+    <div class="safe-box">
+      <h3>✅ Aman Berdasarkan Desain — Anda Meninjau Sebelum Memposting</h3>
+      <p><strong>AI tidak pernah memposting secara otomatis.</strong><br>Setiap draf ditinjau, diedit, dan diposting secara manual oleh Anda.<br>Respons ulasan negatif harus selalu diperiksa oleh manusia terlebih dahulu.</p>
+    </div>
+  </section>
+</div>
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="reveal"><div class="stat-num">47+</div><div class="stat-label">Free Diagnoses</div></div>
+    <div class="reveal"><div class="stat-num">380+</div><div class="stat-label">AI Drafts</div></div>
+    <div class="reveal"><div class="stat-num">8 min</div><div class="stat-label">Saved / Review</div></div>
+    <div class="reveal"><div class="stat-num">24H</div><div class="stat-label">Report Delivery</div></div>
+  </div>
+</div>
+<section class="section reveal" id="pain">
+  <div class="section-label">Realita Pemilik Toko Setiap Hari</div>
+  <h2 class="section-title">Berjam-jam hilang untuk manajemen ulasan.<br>Setiap. Hari. Tunggal.</h2>
+  <p class="section-sub">Waktu yang Anda habiskan untuk ulasan adalah biaya tersembunyi terbesar Anda.</p>
+  <div class="pain-grid"><div class="pain-card reveal"><div class="pain-num">1-2 jam</div><h3>Manajemen ulasan harian</h3><p>Menulis balasan + menangani keluhan + menulis blog. Ratusan jam per tahun.</p></div><div class="pain-card reveal"><div class="pain-num">60%+</div><h3>Ulasan negatif diabaikan</h3><p>Sebagian besar ulasan negatif tidak dijawab — terlihat oleh setiap calon pelanggan.</p></div><div class="pain-card reveal"><div class="pain-num">Rp 0</div><h3>Pemasaran gratis</h3><p>Ulasan pelanggan menjadi draf posting blog. Tidak perlu biaya iklan.</p></div><div class="pain-card reveal"><div class="pain-num">1×</div><h3>Setup sekali → Pakai selamanya</h3><p>Alur kerja otomasi n8 adalah aset permanen setelah di-setup.</p></div></div>
+</section>
+<div class="flow-section" id="how">
+  <div class="flow-inner">
+    <div class="section-label">Cara Kerjanya</div>
+    <h2 class="section-title">Satu ulasan menjadi<br>5 aset bisnis</h2>
+    <p class="section-sub">Tempel → AI analisis → Buat draf → Anda tinjau → Otomasi berjalan</p>
+    <div class="ba-grid">
+      <div class="ba-card reveal">
+        <div class="ba-header">📝 Contoh Respons Ulasan Negatif</div>
+        <div class="ba-body">
+          <div class="ba-lbl">Original</div>
+          <div class="original">"Stafnya agak tidak ramah. Makanan enak tapi pelayanannya perlu ditingkatkan..."</div>
+          <div class="ba-lbl">AI Draft</div>
+          <div class="ai-out">Terima kasih atas masukan Anda yang berharga. Kami mohon maaf atas ketidaknyamanan ini dan akan segera berupaya untuk meningkatkannya. Semoga bisa melayani Anda lagi!</div>
+        </div>
+      </div>
+      <div class="ba-card reveal">
+        <div class="ba-header">📝 Contoh Balasan Ulasan Positif</div>
+        <div class="ba-body">
+          <div class="ba-lbl">Original</div>
+          <div class="original">"Kopinya enak banget! Suasananya juga nyaman dan pasti akan kembali lagi!"</div>
+          <div class="ba-lbl">AI Draft</div>
+          <div class="ai-out">Terima kasih banyak atas ulasan yang luar biasa! ☕<br>Senang sekali Anda menikmati kopi dan suasana kami. Kami tidak sabar menyambut Anda kembali segera!</div>
+        </div>
+      </div>
+    </div>
+    <div class="flow-steps"><div class="flow-step reveal"><div class="step-num">01</div><h3>Input Ulasan</h3><p>Tempel ulasan Google Maps Anda</p></div><div class="flow-step reveal"><div class="step-num">02</div><h3>AI Analisis</h3><p>Analisis sentimen + kata kunci</p></div><div class="flow-step reveal"><div class="step-num">03</div><h3>Buat Draf</h3><p>Balasan · Keluhan · Blog</p></div><div class="flow-step reveal"><div class="step-num">04</div><h3>Anda Tinjau</h3><p>Periksa → Edit → Posting</p></div><div class="flow-step reveal"><div class="step-num">05</div><h3>Otomasi</h3><p>n8n + Sheets + Notifikasi</p></div></div>
+  </div>
+</div>
+<section class="section" id="price">
+  <div class="section-label">Harga</div>
+  <h2 class="section-title">Mulai gratis.<br>Berkembang seiring pertumbuhan Anda.</h2>
+  <p class="section-sub">Diagnosis gratis → Laporan → Setup → Dukungan operasional</p>
+  <div class="price-grid"><div class="price-card reveal"><h3>Diagnosis Gratis</h3><div class="price-tag">Rp 0</div><ul><li>Analisis 3-10 sampel ulasan</li><li>Laporan peluang otomasi</li><li>Estimasi penghematan waktu</li><li>Konsultasi 10 menit</li></ul><a href="#contact" class="price-btn">Daftar Gratis Sekarang</a><p class="micro">Tidak ada pembayaran · Laporan dalam 24j</p></div><div class="price-card hot reveal"><div class="hot-badge">🔥 Langkah Pertama Terbaik</div><h3>Paket Laporan Ulasan</h3><div class="price-tag">Rp 2.200.000</div><ul><li>AI analisis 30 ulasan</li><li>30 draf balasan + keluhan + blog</li><li>Laporan sentimen & kata kunci</li><li>Proposal otomasi</li></ul><a href="#contact" class="price-btn gold">Pesan Paket Laporan</a><p class="micro">Titik masuk termudah</p></div><div class="price-card featured reveal"><div class="feat-badge">⭐ Terbatas 3 Toko</div><h3>Setup Otomasi</h3><div class="price-tag">Rp 5.500.000</div><ul><li>AI analisis 50 ulasan</li><li>Draf balasan + respons keluhan</li><li>5 draf artikel blog</li><li>Setup alur kerja n8n</li><li>Integrasi Google Sheets</li><li>Integrasi notifikasi</li></ul><a href="#contact" class="price-btn accent">Daftar Setup</a><p class="micro">Setup sekali → Aset permanen</p></div><div class="price-card reveal"><h3>Standar + Bulanan</h3><div class="price-tag">Rp 11.000.000</div><ul><li>Termasuk semua Paket Setup</li><li>Pemrosesan ulasan tak terbatas</li><li>Dasbor Notion</li><li>Laporan insight bulanan</li><li>Peningkatan berkelanjutan</li></ul><a href="#contact" class="price-btn">Hubungi Kami</a><p class="micro">Pertumbuhan stabil MRR</p></div></div>
+</section>
+<section class="section" id="proof">
+  <div class="section-label">Ulasan Pemilik Toko</div>
+  <h2 class="section-title">Yang pemilik toko katakan<br>setelah menggunakan LoopForge</h2>
+  <div class="proof-grid"><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Saya biasa begadang setiap malam menulis balasan ulasan. Sekarang draf AI sudah siap dan saya hanya perlu meninjau lalu posting dalam hitungan detik. Pengubah permainan total!"</blockquote><div class="proof-author">— Pemilik Kafe, Jakarta · Diagnosis Gratis</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Saya takut ulasan negatif jadi sering diabaikan. Draf respons AI sangat natural dan bisa langsung diposting. Kecepatan respons meningkat drastis."</blockquote><div class="proof-author">— Pemilik Restoran, Surabaya · Paket Laporan</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Menulis artikel blog biasanya butuh satu jam. Sekarang saya tinggal sedikit merevisi draf AI dari ulasan pelanggan dan selesai. Hemat waktu luar biasa."</blockquote><div class="proof-author">— Pemilik Kafe, Bali · Paket Setup</div></div></div>
+  <p style="font-size:0.75rem;color:var(--muted2);margin-top:1.5rem;text-align:center;">AI-generated content is for review purposes only and is never auto-posted.</p>
+</section>
+<div class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Ada pertanyaan?</h2>
+    <div class="faq-list"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Apakah AI memposting balasan secara otomatis?<span class="faq-icon">+</span></button><div class="faq-a"><p>Sama sekali tidak. Semua balasan AI hanya draf. Anda meninjau, mengedit, dan memposting secara manual setiap saat. Tidak ada posting otomatis berdasarkan desain.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Platform apa yang didukung?<span class="faq-icon">+</span></button><div class="faq-a"><p>Saat ini dioptimalkan untuk Google Maps. Dukungan TripAdvisor dan platform lainnya sedang ditambahkan.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Apakah data pelanggan aman?<span class="faq-icon">+</span></button><div class="faq-a"><p>Semua data dikirim melalui enkripsi HTTPS. Sampel ulasan hanya digunakan untuk tujuan diagnosis dan tidak pernah dibagikan kepada pihak ketiga.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Apakah diagnosis gratis benar-benar gratis?<span class="faq-icon">+</span></button><div class="faq-a"><p>Ya, 100% gratis. Kirimkan 3-10 sampel ulasan dan kami akan mengirimkan laporan dalam 24 jam. Tidak perlu kartu kredit.</p></div></div></div>
+  </div>
+</div>
+<section class="cta-section" id="contact">
+  <h2>Kirimkan 3 ulasan kepada kami.<br>Dapatkan laporan sampel yang dipersonalisasi.</h2>
+  <p>Diagnosis gratis 10 menit. Kami mengidentifikasi peluang otomasi dan memperkirakan penghematan waktu.<br>Putuskan pembayaran setelah melihat laporan Anda. Tidak ada tekanan.</p>
+  <div class="cta-btns">
+    <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 WhatsApp Langsung</a>
+    <a href="#contact-form" class="btn-ghost">📋 Daftar Diagnosis Gratis</a>
+  </div>
+  <div class="contact-form" id="contact-form">
+    <p class="form-title">📋 Daftar Diagnosis Gratis</p>
+    <div id="formWrap">
+      <div class="form-row">
+        <div class="form-group"><label for="f-name">Nama Toko *</label><input type="text" id="f-name" placeholder="Contoh: Kafe Bintang" required></div>
+        <div class="form-group"><label for="f-type">Jenis Bisnis *</label><select id="f-type" required><option value="">Pilih...</option><option value="Kafe">Kafe</option><option value="Restoran">Restoran</option><option value="Toko Roti">Toko Roti / Dessert</option><option value="Lainnya">Lainnya</option></select></div>
+      </div>
+      <div class="form-group"><label for="f-contact">Kontak (Email atau WhatsApp) *</label><input type="text" id="f-contact" placeholder="Contoh: nama@email.com" required></div>
+      <div class="form-group"><label for="f-review">Sampel Ulasan (disarankan 3+)</label><textarea id="f-review" placeholder="Tempel ulasan Google Maps Anda di sini..."></textarea></div>
+      <input type="text" id="hp-website" name="website" style="display:none;" autocomplete="off" tabindex="-1">
+      <div class="form-agree">
+        <label><input type="checkbox" id="privacyAgree" required><span>[Wajib] Saya setuju dengan pengumpulan dan penggunaan informasi pribadi. <button type="button" onclick="openPrivacy()" style="background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:inherit;font-family:inherit;">Privacy</button></span></label>
+        <label><input type="checkbox" id="reviewAgree"><span>[Opsional] Saya setuju untuk menganalisis sampel ulasan saya menggunakan AI untuk tujuan diagnosis.</span></label>
+      </div>
+      <div class="form-group"><div class="cf-turnstile" data-sitekey="0x4AAAAAADReGXn-318jsskf" data-theme="dark"></div></div>
+      <button class="form-submit" onclick="submitForm('id')" id="submitBtn" type="button">Dapatkan Diagnosis Gratis →</button>
+      <div class="form-error" id="formError" role="alert"></div>
+      <p class="form-privacy">Informasi yang dikumpulkan hanya digunakan untuk tujuan diagnosis dan tidak pernah dibagikan kepada pihak ketiga.</p>
+    </div>
+    <div class="form-success" id="formSuccess" style="display:none;">
+      <div class="icon">✅</div><h4>Pendaftaran berhasil!</h4><p>Kami akan menghubungi Anda melalui WhatsApp atau informasi kontak yang diberikan dalam 24 jam. Terima kasih!</p>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="footer-logo">Loop<span>Forge</span> AI</div><p>Mengubah pekerjaan berulang menjadi<br>aset otomasi permanen.</p></div>
+      <div class="footer-links">
+        <a href="#how">Cara Kerja</a><a href="#price">Harga</a><a href="#proof">Ulasan</a><a href="#faq">FAQ</a>
+        <a href="#contact">Diagnosis Gratis</a>
+        <a href="/">🇰🇷 한국어</a><a href="/en">🇺🇸 English</a><a href="/ja">🇯🇵 日本語</a>
+        <button onclick="openPrivacy()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.84rem;font-family:inherit;">Privacy</button>
+      </div>
+    </div>
+    <div class="footer-biz">© 2026 LoopForge AI. Hak cipta dilindungi. Konten yang dibuat AI hanya untuk ditinjau dan tidak diposting secara otomatis.</div>
+  </div>
+</footer>
+<button class="float-cta" id="floatCta" onclick="window.location.href='#contact'">Diagnosis Gratis →</button>
+<div id="privacyModal" class="modal-bg" onclick="if(event.target===this)closePrivacy()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close-btn" onclick="closePrivacy()">✕</button>
+    <h3>Kebijakan Privasi</h3>
+    <p><strong>Data yang dikumpulkan:</strong> Nama toko, jenis, kontak, sampel ulasan (opsional)</p><p><strong>Tujuan:</strong> Memberikan layanan diagnosis gratis</p><p><strong>Durasi:</strong> Dihapus dalam 6 bulan setelah diagnosis</p><p><strong>Pihak ketiga:</strong> Tidak pernah dibagikan</p>
+    <button onclick="closePrivacy()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.8rem 2rem;font-weight:800;margin-top:1.5rem;cursor:pointer;font-family:var(--font);">OK</button>
+  </div>
+</div>
+<script>
+window.ERR_REQUIRED="Nama toko, jenis bisnis, dan kontak wajib diisi.";
+window.ERR_PRIVACY="Persetujuan kebijakan privasi diperlukan.";
+window.ERR_FAIL="Pengiriman gagal. Silakan hubungi kami melalui WhatsApp.";
+window.BTN_SENDING="Mengirim...";
+window.BTN_SUBMIT="Dapatkan Diagnosis Gratis →";
+
+window.addEventListener('scroll',function(){var s=document.documentElement.scrollTop||document.body.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(h>0?(s/h)*100:0)+'%';var f=document.getElementById('floatCta');s>500?f.classList.add('visible'):f.classList.remove('visible');},{passive:true});
+var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+function toggleMenu(){var m=document.getElementById('mobileMenu'),b=document.getElementById('hamburgerBtn'),o=m.classList.toggle('open');b.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburgerBtn').classList.remove('open');document.body.style.overflow='';}
+function toggleFaq(btn){var item=btn.closest('.faq-item'),o=item.classList.toggle('open');btn.setAttribute('aria-expanded',o);}
+function openPrivacy(){document.getElementById('privacyModal').classList.add('open');document.body.style.overflow='hidden';}
+function closePrivacy(){document.getElementById('privacyModal').classList.remove('open');document.body.style.overflow='';}
+function submitForm(lang){
+  var name=document.getElementById('f-name').value.trim(),type=document.getElementById('f-type').value,contact=document.getElementById('f-contact').value.trim(),review=document.getElementById('f-review').value.trim(),privacy=document.getElementById('privacyAgree').checked,hp=document.getElementById('hp-website').value.trim();
+  var errEl=document.getElementById('formError'),btn=document.getElementById('submitBtn');
+  errEl.style.display='none';
+  if(!name||!type||!contact){errEl.textContent=window.ERR_REQUIRED;errEl.style.display='block';return;}
+  if(!privacy){errEl.textContent=window.ERR_PRIVACY;errEl.style.display='block';return;}
+  if(hp!==''){document.getElementById('formWrap').style.display='none';document.getElementById('formSuccess').style.display='block';return;}
+  btn.textContent=window.BTN_SENDING;btn.disabled=true;
+  fetch('https://loopforge-contact-proxy.wnsrua01.workers.dev',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'contact_form_'+lang,business_name:name,business_type:type,contact:contact,review_sample:review,privacy_agree:privacy,source:'loopforge-v6-'+lang,submitted_at:new Date().toISOString()})})
+  .then(function(r){return r.json();}).then(function(d){if(d.success){document.getElementById('formWrap').style.display='none';document.getElementById('formSuccess').style.display='block';}else throw new Error();})
+  .catch(function(){errEl.textContent=window.ERR_FAIL;errEl.style.display='block';btn.textContent=window.BTN_SUBMIT;btn.disabled=false;});
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu();closePrivacy();}});
+
+</script>
+</body>
+</html>

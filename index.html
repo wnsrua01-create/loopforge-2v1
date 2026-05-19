@@ -3,1274 +3,1064 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoopForge AI ??카페·?�식??리뷰 AI ?�동??| ?�장???�문</title>
-<meta name="description" content="카페·?�식???�장?�을 ?�한 ?�이�?리뷰 AI ?�동?? ?��?·부??리뷰 ?�?�·블로그 초안??AI가 만들?�드립니?? AI 초안 ?�동 게시 ?�음. 10�?무료 진단.">
-<meta name="keywords" content="?�이�?리뷰 ?�동?? 리뷰 ?��? AI, 카페 ?�식???�동?? 부??리뷰 ?�?? 블로�??�보 ?�동?? ?�상공인 AI">
+<title>LoopForge AI — 카페·음식점 사장님 전문 네이버 리뷰 AI 자동화</title>
+<meta name="description" content="카페·음식점 사장님을 위한 네이버 리뷰 답글·부정 리뷰 대응·블로그 홍보 초안 자동화. AI는 자동 게시하지 않고 검토용 초안만 만듭니다.">
+<meta name="keywords" content="카페 리뷰 자동화, 음식점 리뷰 답글 AI, 네이버 리뷰 자동화, 소상공인 자동화, 부정 리뷰 대응, 블로그 홍보 자동화">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LoopForge AI ??카페·?�식??리뷰 AI ?�동??>
-<meta property="og:description" content="카페·?�식???�장???�용. 리뷰 관�??�간??AI�??�축. AI 초안 ?�공, ?�동 게시 ?�음. 10�?무료 진단.">
+<meta property="og:title" content="LoopForge AI — 카페·음식점 리뷰 관리 AI 자동화">
+<meta property="og:description" content="카페·음식점 사장님 전문. 리뷰 답글·CS·블로그 초안을 AI가 만들고, 사장님이 검토 후 사용합니다.">
 <meta property="og:url" content="https://loopforge-2v1.pages.dev">
 <meta property="og:image" content="https://loopforge-2v1.pages.dev/og-image.png">
 <meta property="og:site_name" content="LoopForge AI">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LoopForge AI ??카페·?�식??리뷰 AI ?�동??>
-<meta name="twitter:description" content="카페·?�식???�장???�용. AI 초안 ?�동 게시 ?�음. 10�?무료 진단.">
+<meta name="twitter:title" content="LoopForge AI — 카페·음식점 리뷰 관리 AI 자동화">
+<meta name="twitter:description" content="카페·음식점 사장님 전문. AI 답글은 자동 게시되지 않는 안전한 초안입니다.">
 <link rel="canonical" href="https://loopforge-2v1.pages.dev">
-
-<!-- Cloudflare Turnstile (CSP??_headers ?�일?�서�??�용) -->
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-<!-- FAQ JSON-LD Schema ??Google 리치 ?�니??-->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"AI ?��????�동?�로 게시?�나??","acceptedAnswer":{"@type":"Answer","text":"?�니?? 모든 AI ?�성 ?��??� ?�장?�이 직접 검?�·수????게시?�는 초안?�니?? ?�동 게시???��? ?�습?�다."}},
-    {"@type":"Question","name":"카페·?�식?�에 최적?�되???�나??","acceptedAnswer":{"@type":"Answer","text":"?? 카페·?�식???�장?�을 최우???�깃으�??�롬?�트�?최적?�했?�니??"}},
-    {"@type":"Question","name":"무료 진단?� ?�말 무료?��???","acceptedAnswer":{"@type":"Answer","text":"?? ?�전 무료?�니?? 리뷰 ?�플 3~10개�? 보내주시�?24?�간 ??리포?��? ?�립?�다."}},
-    {"@type":"Question","name":"개인?�보???�전?��???","acceptedAnswer":{"@type":"Answer","text":"리뷰 ?�성???�보??분석 목적?�로�??�용?�며 HTTPS�??�호???�송?�니?? ???�에�??�공?��? ?�습?�다."}}
-  ]
-}
-</script>
-
 <style>
-/* ============================
-   DESIGN TOKENS
-   ============================ */
 :root {
-  --bg:       #080c10;
-  --bg2:      #0d1117;
-  --bg3:      #0f1420;
-  --card:     #111820;
-  --card2:    #141c26;
-  --accent:   #00E5A0;
-  --accent-d: #00b87a;
-  --accent2:  #0066FF;
-  --accent3:  #FFB300;
-  --text:     #f2f4f7;
-  --muted:    #8896a8;
-  --muted2:   #4a5568;
-  --border:   rgba(255,255,255,0.07);
-  --border2:  rgba(255,255,255,0.13);
-  --glow:     rgba(0,229,160,0.15);
-  --font:     -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-  --r:        12px;
-  --r-lg:     18px;
-  --shadow:   0 4px 24px rgba(0,0,0,0.4);
+  --bg:#0a0a0a; --bg2:#111; --bg3:#0f0f0f; --bg4:#0d0d0d;
+  --accent:#00E5A0; --accent-dark:#00b87a; --accent2:#0066FF;
+  --text:#f0f0f0; --muted:#888; --muted2:#555;
+  --card:#161616; --card2:#1a1a1a;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','Apple SD Gothic Neo','Noto Sans KR',sans-serif;
+  --radius:12px; --radius-lg:16px;
 }
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.7;overflow-x:hidden;}
+img{max-width:100%;height:auto;}
+a{color:inherit;}
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
-body { background:var(--bg); color:var(--text); font-family:var(--font); line-height:1.7; overflow-x:hidden; }
-a { color:inherit; text-decoration:none; }
-img { max-width:100%; height:auto; }
+/* ── NAV ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.1rem 4rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);z-index:100;}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:-0.03em;text-decoration:none;color:var(--text);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:2rem;}
+.nav-links a{font-size:0.9rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--accent);color:#000;padding:0.5rem 1.4rem;border-radius:6px;font-weight:700;font-size:0.88rem;text-decoration:none;transition:background .2s,transform .15s;white-space:nowrap;}
+.nav-cta:hover{background:var(--accent-dark);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
 
-/* Skip Link (?�근?? */
-.skip-link { position:absolute; top:-40px; left:1rem; background:var(--accent); color:#000; padding:0.5rem 1rem; border-radius:4px; font-weight:700; z-index:9999; transition:top .2s; }
-.skip-link:focus { top:1rem; }
+/* 모바일 메뉴 */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:var(--text);font-size:1.6rem;font-weight:800;text-decoration:none;transition:color .2s;}
+.mobile-menu a:hover,.mobile-menu a.accent{color:var(--accent);}
+.mobile-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:1px solid var(--border);color:var(--text);width:40px;height:40px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;}
 
-/* ?�크�?진행 ?�시�?*/
-#progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg, var(--accent), var(--accent2)); width:0%; z-index:200; transition:width .1s; }
+/* TICKER */
+.ticker{background:var(--accent);color:#000;padding:0.6rem 0;overflow:hidden;white-space:nowrap;font-weight:700;font-size:0.82rem;letter-spacing:0.04em;}
+.ticker-inner{display:inline-block;animation:ticker 30s linear infinite;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-/* ============================
-   NAV
-   ============================ */
-nav {
-  display:flex; justify-content:space-between; align-items:center;
-  padding:1rem 4rem;
-  border-bottom:1px solid var(--border);
-  position:sticky; top:0;
-  background:rgba(8,12,16,0.94);
-  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
-  z-index:100;
-}
-.logo { font-weight:900; font-size:1.2rem; letter-spacing:-0.04em; }
-.logo span { color:var(--accent); }
-.nav-links { display:flex; align-items:center; gap:2rem; }
-.nav-links a { font-size:0.88rem; color:var(--muted); transition:color .2s; }
-.nav-links a:hover { color:var(--text); }
-.nav-cta {
-  background:var(--accent); color:#000;
-  padding:0.52rem 1.3rem; border-radius:7px;
-  font-weight:800; font-size:0.86rem;
-  transition:background .2s, transform .15s;
-  white-space:nowrap;
-}
-.nav-cta:hover { background:var(--accent-d); transform:translateY(-1px); }
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
-.hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:.3s; }
-.hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-.hamburger.open span:nth-child(2) { opacity:0; }
-.hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+/* HERO */
+.hero{max-width:960px;margin:0 auto;padding:7rem 2rem 4rem;text-align:center;}
+.badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(0,229,160,0.1);color:var(--accent);border:1px solid rgba(0,229,160,0.25);padding:0.4rem 1.1rem;border-radius:100px;font-size:0.78rem;letter-spacing:0.06em;margin-bottom:1.8rem;}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:900;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-0.02em;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--accent);color:#000;padding:0.9rem 2.2rem;border-radius:8px;font-weight:700;font-size:1rem;text-decoration:none;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:0.4rem;}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);}
+.btn-ghost{border:1px solid var(--border2);color:var(--text);padding:0.9rem 2.2rem;border-radius:8px;font-size:1rem;text-decoration:none;transition:.2s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);}
+.hero-stats{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;margin-top:3rem;padding-top:2.5rem;border-top:1px solid var(--border);}
+.stat{text-align:center;}
+.stat-num{font-size:1.8rem;font-weight:800;color:var(--accent);display:block;letter-spacing:-0.03em;}
+.stat-label{font-size:0.78rem;color:var(--muted);margin-top:2px;}
 
-/* 모바??메뉴 */
-.mobile-menu {
-  display:none; position:fixed; inset:0;
-  background:rgba(8,12,16,0.98); z-index:200;
-  flex-direction:column; align-items:center; justify-content:center; gap:2.5rem;
-}
-.mobile-menu.open { display:flex; }
-.mobile-menu a { color:var(--text); font-size:1.6rem; font-weight:900; transition:color .2s; }
-.mobile-menu a:hover, .mobile-menu a.accent { color:var(--accent); }
-.mobile-close { position:absolute; top:1.5rem; right:1.5rem; background:none; border:1px solid var(--border); color:var(--text); width:40px; height:40px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+/* 초보자 안내 배너 */
+.beginner-banner{background:linear-gradient(135deg,rgba(0,229,160,0.08),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.2);border-radius:var(--radius-lg);padding:2rem 2.5rem;max-width:900px;margin:0 auto 0;text-align:center;}
+.beginner-banner h3{font-size:1rem;font-weight:700;color:var(--accent);margin-bottom:0.6rem;}
+.beginner-banner p{font-size:0.9rem;color:var(--muted);line-height:1.75;}
+.beginner-banner strong{color:var(--text);}
 
-/* ============================
-   TICKER
-   ============================ */
-.ticker { background:var(--accent); color:#000; padding:0.55rem 0; overflow:hidden; white-space:nowrap; font-weight:800; font-size:0.8rem; letter-spacing:0.05em; }
-.ticker-inner { display:inline-block; animation:ticker 28s linear infinite; }
-@keyframes ticker { 0% { transform:translateX(0) } 100% { transform:translateX(-50%) } }
+/* SECTION 공통 */
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.72rem;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase;margin-bottom:0.6rem;font-weight:600;}
+.section-title{font-size:clamp(1.9rem,3vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:0.8rem;letter-spacing:-0.02em;}
+.section-sub{font-size:1rem;color:var(--muted);}
 
-/* ============================
-   HERO
-   ============================ */
-.hero-wrap {
-  position:relative;
-  background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,229,160,0.12) 0%, transparent 70%),
-              radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0,102,255,0.08) 0%, transparent 60%),
-              var(--bg);
-  overflow:hidden;
-}
-.hero-wrap::before {
-  content:'';
-  position:absolute; inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300E5A0' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events:none;
-}
-.hero { max-width:900px; margin:0 auto; padding:7rem 2rem 5rem; text-align:center; position:relative; }
-.badge {
-  display:inline-flex; align-items:center; gap:0.4rem;
-  background:rgba(0,229,160,0.1); color:var(--accent);
-  border:1px solid rgba(0,229,160,0.25);
-  padding:0.4rem 1.1rem; border-radius:100px;
-  font-size:0.76rem; letter-spacing:0.07em;
-  margin-bottom:2rem; font-weight:700;
-}
-.hero h1 {
-  font-size:clamp(2.6rem,5.5vw,4.2rem);
-  font-weight:900; line-height:1.08;
-  margin-bottom:1.5rem; letter-spacing:-0.025em;
-}
-.hero h1 em { color:var(--accent); font-style:normal; }
-.hero-sub { font-size:1.08rem; color:var(--muted); max-width:560px; margin:0 auto 2rem; line-height:1.75; }
+/* 초보자 설명 박스 */
+.explain-box{background:var(--card2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.2rem 1.5rem;margin-top:1rem;margin-bottom:0;}
+.explain-box .explain-label{font-size:0.72rem;color:var(--accent);font-weight:700;letter-spacing:0.08em;margin-bottom:0.3rem;}
+.explain-box p{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+.explain-box strong{color:var(--text);}
 
-/* 차별??박스 */
-.diff-box {
-  background:linear-gradient(135deg, rgba(0,229,160,0.06), rgba(0,102,255,0.04));
-  border:1px solid rgba(0,229,160,0.22);
-  border-radius:var(--r-lg);
-  padding:1.4rem 2rem;
-  margin:0 auto 2.2rem;
-  max-width:680px;
-  font-size:0.97rem; line-height:1.7;
-}
-.diff-box strong { color:var(--accent); }
+/* 전문가 조언 박스 */
+.expert-box{background:rgba(0,102,255,0.05);border:1px solid rgba(0,102,255,0.2);border-radius:var(--radius);padding:1.2rem 1.5rem;margin-top:1rem;}
+.expert-box .expert-label{font-size:0.72rem;color:#6699ff;font-weight:700;letter-spacing:0.08em;margin-bottom:0.3rem;}
+.expert-box p{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+.expert-box strong{color:var(--text);}
 
-/* Hero 버튼 */
-.hero-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
-.btn-primary {
-  background:var(--accent); color:#000;
-  padding:0.95rem 2.4rem; border-radius:8px;
-  font-weight:800; font-size:1rem;
-  display:inline-flex; align-items:center; gap:0.4rem;
-  transition:background .2s, transform .15s, box-shadow .2s;
-  box-shadow:0 0 0 rgba(0,229,160,0);
-}
-.btn-primary:hover { background:var(--accent-d); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,229,160,0.25); }
-.btn-ghost {
-  border:1px solid var(--border2); color:var(--text);
-  padding:0.95rem 2.4rem; border-radius:8px; font-size:1rem;
-  transition:.2s;
-}
-.btn-ghost:hover { border-color:rgba(255,255,255,0.28); background:rgba(255,255,255,0.04); }
+/* CRO 신뢰/전환 컴포넌트 */
+.safety-box{background:linear-gradient(135deg,rgba(0,229,160,0.10),rgba(0,102,255,0.08));border:1px solid rgba(0,229,160,0.28);border-radius:var(--radius-lg);padding:1.3rem 1.5rem;max-width:900px;margin:1.5rem auto 0;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,0.18);}
+.safety-box .safety-label{display:inline-flex;align-items:center;gap:.35rem;color:var(--accent);font-weight:800;font-size:.82rem;letter-spacing:.04em;margin-bottom:.45rem;}
+.safety-box p{font-size:.92rem;color:var(--text);line-height:1.75;}
+.safety-box strong{color:var(--accent);}
+.sample-box{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.8rem;margin-top:2rem;}
+.sample-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap;}
+.sample-head h3{font-size:1.15rem;font-weight:800;}
+.sample-head span{display:inline-block;background:rgba(0,229,160,.1);color:var(--accent);border:1px solid rgba(0,229,160,.22);border-radius:100px;padding:.25rem .8rem;font-size:.72rem;font-weight:700;}
+.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.sample-card{background:rgba(255,255,255,.035);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;}
+.sample-card.before{border-color:rgba(255,255,255,.10);}
+.sample-card.after{border-color:rgba(0,229,160,.28);background:rgba(0,229,160,.045);}
+.sample-label{font-size:.74rem;color:var(--muted);letter-spacing:.08em;font-weight:800;margin-bottom:.55rem;text-transform:uppercase;}
+.sample-card.after .sample-label{color:var(--accent);}
+.sample-card p{font-size:.9rem;color:var(--text);line-height:1.75;}
+.roi-box{background:linear-gradient(135deg,rgba(0,229,160,.08),rgba(255,255,255,.025));border:1px solid rgba(0,229,160,.24);border-radius:var(--radius-lg);padding:1.4rem 1.6rem;margin-top:2rem;}
+.roi-box .roi-label{font-size:.75rem;color:var(--accent);font-weight:800;letter-spacing:.1em;margin-bottom:.45rem;}
+.roi-box p{font-size:.95rem;color:var(--text);line-height:1.75;}
+.roi-box strong{color:var(--accent);}
+.consent-box{display:flex;flex-direction:column;gap:.7rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:8px;padding:.9rem 1rem;margin:.3rem 0 1rem;}
+.consent-label{display:flex;gap:.55rem;align-items:flex-start;font-size:.78rem;color:var(--muted);line-height:1.55;cursor:pointer;}
+.consent-label input{width:auto;margin-top:.2rem;accent-color:var(--accent);}
+.consent-label strong{color:var(--text);}
+.hp-field{display:none!important;visibility:hidden!important;position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;}
 
-/* ?�전 박스 */
-.safe-box {
-  background:rgba(0,229,160,0.05);
-  border:1px solid rgba(0,229,160,0.18);
-  border-radius:var(--r-lg); padding:1.6rem 2rem;
-  max-width:720px; margin:0 auto; text-align:center;
-}
-.safe-box h3 { font-size:0.9rem; font-weight:800; color:var(--accent); margin-bottom:0.5rem; }
-.safe-box p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
-.safe-box strong { color:var(--text); }
+/* PAIN */
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.2rem;margin-top:3rem;}
+.pain-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;transition:border-color .2s,transform .2s;}
+.pain-card:hover{border-color:rgba(0,229,160,0.3);transform:translateY(-2px);}
+.pain-num{font-size:2.6rem;font-weight:800;color:var(--accent);margin-bottom:0.4rem;letter-spacing:-0.04em;}
+.pain-card h3{font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;}
+.pain-card p{font-size:0.88rem;color:var(--muted);line-height:1.65;}
 
-/* ============================
-   STATS 카운??
-   ============================ */
-.stats-bar {
-  background:var(--bg2);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:2.5rem 2rem;
-}
-.stats-inner { max-width:800px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; text-align:center; }
-.stat-item { }
-.stat-num { font-size:2.4rem; font-weight:900; color:var(--accent); letter-spacing:-0.03em; line-height:1; margin-bottom:0.4rem; }
-.stat-label { font-size:0.82rem; color:var(--muted); }
+/* LoopForge란 무엇인가 */
+.brand-section{background:var(--bg2);padding:5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.brand-inner{max-width:960px;margin:0 auto;}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
+.brand-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;}
+.brand-card-icon{font-size:2rem;margin-bottom:1rem;}
+.brand-card h3{font-size:1.1rem;font-weight:800;margin-bottom:0.6rem;}
+.brand-card h3 span{color:var(--accent);}
+.brand-card p{font-size:0.9rem;color:var(--muted);line-height:1.75;}
+.brand-card .tag{display:inline-block;background:rgba(0,229,160,0.1);color:var(--accent);font-size:0.72rem;padding:0.2rem 0.7rem;border-radius:100px;margin-top:0.8rem;font-weight:600;}
 
-/* ============================
-   SECTION 공통
-   ============================ */
-.section { padding:5.5rem 2rem; max-width:1100px; margin:0 auto; }
-.section-label { font-size:0.7rem; letter-spacing:0.16em; color:var(--accent); text-transform:uppercase; margin-bottom:0.5rem; font-weight:700; }
-.section-title { font-size:clamp(1.9rem,3vw,2.7rem); font-weight:900; line-height:1.12; margin-bottom:0.8rem; letter-spacing:-0.02em; }
-.section-sub { font-size:1rem; color:var(--muted); margin-bottom:2.5rem; }
+/* 서비스 라인업 */
+.lineup-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.lineup-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;transition:.2s;}
+.lineup-card:hover{border-color:rgba(0,229,160,0.3);}
+.lineup-card.active{border-color:var(--accent);}
+.lineup-name{font-size:0.95rem;font-weight:800;margin-bottom:0.3rem;}
+.lineup-name span{color:var(--accent);}
+.lineup-target{font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem;}
+.lineup-desc{font-size:0.85rem;color:var(--muted);line-height:1.65;}
+.lineup-status{display:inline-block;font-size:0.72rem;font-weight:700;padding:0.2rem 0.7rem;border-radius:100px;margin-top:0.8rem;}
+.status-live{background:rgba(0,229,160,0.15);color:var(--accent);}
+.status-next{background:rgba(0,102,255,0.15);color:#6699ff;}
+.status-plan{background:rgba(255,255,255,0.08);color:var(--muted);}
 
-/* ============================
-   PAIN
-   ============================ */
-.pain-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1.2rem; margin-top:2.5rem; }
-.pain-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:var(--r-lg); padding:1.8rem 1.5rem;
-  transition:border-color .2s, transform .2s;
-}
-.pain-card:hover { border-color:rgba(0,229,160,0.25); transform:translateY(-3px); }
-.pain-num { font-size:2rem; font-weight:900; color:var(--accent); margin-bottom:0.5rem; letter-spacing:-0.03em; }
-.pain-card h3 { font-size:0.9rem; font-weight:700; margin-bottom:0.4rem; }
-.pain-card p { font-size:0.84rem; color:var(--muted); line-height:1.6; }
+/* FLOW */
+.flow-section{background:var(--bg2);padding:5rem 2rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.flow-inner{max-width:860px;margin:0 auto;}
+.flow-steps{display:flex;flex-direction:column;margin-top:3rem;}
+.flow-step{display:grid;grid-template-columns:64px 1fr;gap:1.5rem;position:relative;}
+.flow-step:not(:last-child)::after{content:'';position:absolute;left:31px;top:56px;bottom:-12px;width:2px;background:linear-gradient(to bottom,rgba(0,229,160,0.4),transparent);}
+.step-num{width:64px;height:64px;border-radius:50%;background:rgba(0,229,160,0.08);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:1rem;flex-shrink:0;}
+.step-body{padding:0.9rem 0 1rem;}
+.step-body h3{font-size:1.05rem;font-weight:700;margin-bottom:0.4rem;}
+.step-body p{font-size:0.9rem;color:var(--muted);}
+.step-tag{display:inline-block;background:rgba(0,229,160,0.1);color:var(--accent);font-size:0.72rem;padding:0.2rem 0.7rem;border-radius:100px;margin-top:0.5rem;font-weight:600;}
+.step-extras{margin-top:0.8rem;padding-bottom:2rem;}
 
-/* ============================
-   HOW IT WORKS
-   ============================ */
-.flow-section { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5.5rem 2rem; }
-.flow-inner { max-width:1100px; margin:0 auto; }
+/* PRICE */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:3rem;}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;position:relative;transition:.2s;}
+.price-card.featured{border-color:var(--accent);background:linear-gradient(135deg,rgba(0,229,160,0.04),var(--card));}
+.featured-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#000;font-size:0.72rem;font-weight:800;padding:0.3rem 1.1rem;border-radius:100px;white-space:nowrap;}
+.price-tag{font-size:2.2rem;font-weight:800;margin:1rem 0 0.4rem;letter-spacing:-0.03em;}
+.price-tag span{font-size:0.9rem;font-weight:400;color:var(--muted);}
+.price-card h3{font-size:0.9rem;font-weight:600;color:var(--muted);}
+.price-card ul{list-style:none;margin:1.2rem 0 1.5rem;display:flex;flex-direction:column;gap:0.55rem;}
+.price-card ul li{font-size:0.88rem;padding-left:1.3rem;position:relative;color:var(--text);}
+.price-card ul li::before{content:'✓';color:var(--accent);position:absolute;left:0;font-weight:800;}
+.price-btn{display:block;text-align:center;padding:0.75rem;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;border:1px solid var(--border2);color:var(--text);transition:.2s;}
+.price-btn:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04);}
+.price-btn.accent{background:var(--accent);color:#000;border-color:var(--accent);}
+.price-btn.accent:hover{background:var(--accent-dark);}
 
-/* Before/After */
-.ba-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(440px,1fr)); gap:1.5rem; margin-top:2.5rem; }
-.ba-card { background:var(--card2); border:1px solid var(--border); border-radius:var(--r-lg); overflow:hidden; }
-.ba-header { padding:1rem 1.5rem; background:var(--bg3); border-bottom:1px solid var(--border); font-weight:700; font-size:0.92rem; display:flex; align-items:center; gap:0.5rem; }
-.ba-body { padding:1.4rem; }
-.ba-lbl { font-size:0.72rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-bottom:0.4rem; font-weight:600; }
-.original { background:rgba(255,255,255,0.04); padding:1rem; border-radius:8px; margin-bottom:1rem; font-size:0.88rem; color:var(--muted); line-height:1.65; }
-.ai-out { background:rgba(0,229,160,0.07); padding:1rem; border-radius:8px; border-left:3px solid var(--accent); font-size:0.88rem; line-height:1.65; }
+/* 전문가 조언 섹션 */
+.expert-section{background:var(--bg4);padding:5rem 2rem;border-top:1px solid var(--border);}
+.expert-inner{max-width:900px;margin:0 auto;}
+.expert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.expert-card{background:var(--card);border:1px solid rgba(0,102,255,0.2);border-radius:var(--radius);padding:1.8rem;}
+.expert-avatar{width:44px;height:44px;border-radius:50%;background:rgba(0,102,255,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1rem;}
+.expert-card h4{font-size:0.95rem;font-weight:700;margin-bottom:0.3rem;}
+.expert-card .role{font-size:0.78rem;color:#6699ff;margin-bottom:0.8rem;}
+.expert-card blockquote{font-size:0.88rem;color:var(--muted);line-height:1.7;font-style:italic;}
+.expert-card blockquote strong{color:var(--text);font-style:normal;}
 
-/* 5?�계 ?�로??*/
-.flow-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:1rem; margin-top:2.8rem; }
-.flow-step {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:var(--r); padding:1.4rem 1.2rem;
-  position:relative; text-align:center;
-  transition:border-color .2s;
-}
-.flow-step:hover { border-color:rgba(0,229,160,0.3); }
-.step-num {
-  width:36px; height:36px; border-radius:50%;
-  background:rgba(0,229,160,0.12); color:var(--accent);
-  font-weight:900; font-size:0.85rem;
-  display:flex; align-items:center; justify-content:center;
-  margin:0 auto 0.8rem;
-}
-.flow-step h3 { font-size:0.88rem; font-weight:700; margin-bottom:0.4rem; }
-.flow-step p { font-size:0.8rem; color:var(--muted); line-height:1.55; }
+/* PROOF */
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;margin-top:2.5rem;}
+.proof-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem;transition:.2s;}
+.proof-card:hover{border-color:var(--border2);}
+.stars{color:var(--accent);font-size:0.95rem;letter-spacing:0.08em;margin-bottom:0.8rem;}
+.proof-card blockquote{font-size:0.92rem;line-height:1.75;margin-bottom:1rem;color:var(--text);}
+.proof-author{font-size:0.8rem;color:var(--muted);}
+.proof-notice{text-align:center;font-size:0.78rem;color:var(--muted2);margin-top:1.5rem;padding:0.9rem 1.2rem;border:1px dashed var(--border);border-radius:8px;line-height:1.6;}
 
-/* ============================
-   ROI 계산�?
-   ============================ */
-.roi-section { padding:5rem 2rem; background:var(--bg3); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
-.roi-inner { max-width:700px; margin:0 auto; text-align:center; }
-.roi-box {
-  background:var(--card2); border:1px solid var(--border2);
-  border-radius:var(--r-lg); padding:2.5rem 2rem; margin-top:2rem;
-}
-.roi-slider-label { font-size:0.88rem; color:var(--muted); margin-bottom:0.8rem; }
-input[type="range"] {
-  width:100%; height:6px; border-radius:3px;
-  background:var(--border2); outline:none;
-  -webkit-appearance:none; cursor:pointer;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:22px; height:22px;
-  border-radius:50%; background:var(--accent); cursor:pointer;
-}
-.roi-result { margin-top:2rem; display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; }
-.roi-metric { background:var(--bg2); border:1px solid var(--border); border-radius:var(--r); padding:1.2rem; }
-.roi-val { font-size:1.8rem; font-weight:900; color:var(--accent); letter-spacing:-0.02em; }
-.roi-key { font-size:0.78rem; color:var(--muted); margin-top:0.3rem; }
+/* FAQ */
+.faq-section{background:var(--bg3);padding:5rem 2rem;border-top:1px solid var(--border);}
+.faq-inner{max-width:720px;margin:0 auto;}
+.faq-list{margin-top:2.5rem;display:flex;flex-direction:column;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;background:none;border:none;color:var(--text);text-align:left;padding:1.2rem 0;font-size:1rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:var(--font);transition:color .2s;}
+.faq-q:hover{color:var(--accent);}
+.faq-icon{color:var(--accent);font-size:1.2rem;flex-shrink:0;transition:transform .3s;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-a p{font-size:0.9rem;color:var(--muted);padding-bottom:1.2rem;line-height:1.7;}
 
-/* ============================
-   PRICE
-   ============================ */
-.price-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:1.2rem; margin-top:3rem; }
-.price-card {
-  background:var(--card); border:1px solid var(--border);
-  border-radius:var(--r-lg); padding:2rem; position:relative;
-  transition:transform .2s, border-color .2s;
-}
-.price-card:hover { transform:translateY(-4px); }
-.price-card.featured { border-color:var(--accent); background:linear-gradient(145deg, rgba(0,229,160,0.05), var(--card)); }
-.price-card.hot { border-color:var(--accent3); background:linear-gradient(145deg, rgba(255,179,0,0.05), var(--card)); }
-.feat-badge, .hot-badge {
-  position:absolute; top:-13px; left:50%; transform:translateX(-50%);
-  font-size:0.7rem; font-weight:900; padding:0.28rem 1rem;
-  border-radius:100px; white-space:nowrap;
-}
-.feat-badge { background:var(--accent); color:#000; }
-.hot-badge { background:var(--accent3); color:#000; }
-.price-card h3 { font-size:0.85rem; font-weight:700; color:var(--muted); margin-bottom:0.6rem; }
-.price-tag { font-size:2.1rem; font-weight:900; letter-spacing:-0.03em; margin-bottom:1rem; }
-.price-tag span { font-size:0.85rem; font-weight:500; color:var(--muted); }
-.price-card ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1.5rem; }
-.price-card ul li { font-size:0.86rem; padding-left:1.3rem; position:relative; }
-.price-card ul li::before { content:'??; color:var(--accent); position:absolute; left:0; font-weight:900; }
-.price-btn {
-  display:block; text-align:center;
-  padding:0.78rem; border-radius:8px;
-  font-weight:700; font-size:0.88rem;
-  border:1px solid var(--border2); color:var(--text);
-  transition:.2s; cursor:pointer; background:transparent;
-}
-.price-btn:hover { border-color:rgba(255,255,255,0.28); background:rgba(255,255,255,0.04); }
-.price-btn.accent { background:var(--accent); color:#000; border-color:var(--accent); }
-.price-btn.accent:hover { background:var(--accent-d); }
-.price-btn.gold { background:var(--accent3); color:#000; border-color:var(--accent3); }
+/* CTA */
+.cta-section{text-align:center;padding:6rem 2rem;background:radial-gradient(ellipse at 50% 0%,rgba(0,229,160,0.07),transparent 60%);}
+.cta-section h2{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:900;margin-bottom:1rem;letter-spacing:-0.02em;}
+.cta-section>p{color:var(--muted);margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;}
+.btn-kakao{background:#FEE500;color:#3c1e1e;padding:0.9rem 2rem;border-radius:8px;font-weight:800;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:.2s;}
+.btn-kakao:hover{background:#f5dc00;transform:translateY(-2px);}
 
-/* 마이?�로카피 */
-.micro { font-size:0.75rem; color:var(--muted); text-align:center; margin-top:0.6rem; }
+/* 폼 */
+.contact-form{max-width:520px;margin:0 auto;background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:2.2rem;text-align:left;}
+.form-title{font-size:1.1rem;font-weight:700;margin-bottom:1.6rem;text-align:center;}
+.form-title span{color:var(--accent);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{margin-bottom:1rem;}
+.form-group label{display:block;font-size:0.82rem;color:var(--muted);margin-bottom:0.4rem;font-weight:500;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-family:var(--font);font-size:0.93rem;outline:none;transition:.2s;-webkit-appearance:none;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted2);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);background:rgba(0,229,160,0.03);}
+.form-group select{cursor:pointer;}
+.form-group select option{background:#1e1e1e;color:var(--text);}
+.form-group textarea{resize:vertical;min-height:90px;}
+.form-submit{width:100%;background:var(--accent);color:#000;border:none;border-radius:8px;padding:1rem;font-weight:800;font-size:1rem;cursor:pointer;font-family:var(--font);transition:.2s;margin-top:0.3rem;}
+.form-submit:hover{background:var(--accent-dark);}
+.form-submit:disabled{opacity:.6;cursor:not-allowed;}
+.form-privacy{font-size:0.76rem;color:var(--muted2);text-align:center;margin-top:0.8rem;line-height:1.6;}
+.form-privacy a{color:var(--muted);text-decoration:underline;cursor:pointer;}
+.form-success{display:none;text-align:center;padding:2rem 1rem;}
+.form-success h4{color:var(--accent);font-size:1.3rem;margin-bottom:0.6rem;}
+.form-success p{color:var(--muted);font-size:0.95rem;line-height:1.7;}
+.form-error{display:none;background:rgba(226,75,74,0.1);border:1px solid rgba(226,75,74,0.3);border-radius:8px;padding:0.9rem 1rem;font-size:0.88rem;color:#f09595;margin-top:0.8rem;text-align:center;line-height:1.6;}
+.form-error a{color:#f09595;font-weight:700;}
 
-/* ============================
-   SOCIAL PROOF
-   ============================ */
-.proof-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.2rem; margin-top:2.5rem; }
-.proof-card {
-  background:var(--card2); border:1px solid var(--border);
-  border-radius:var(--r-lg); padding:1.8rem;
-  transition:border-color .2s;
-}
-.proof-card:hover { border-color:rgba(0,229,160,0.2); }
-.stars { color:var(--accent3); font-size:0.9rem; margin-bottom:0.9rem; letter-spacing:0.1em; }
-.proof-card blockquote { font-size:0.9rem; color:var(--text); line-height:1.7; margin-bottom:1rem; font-style:normal; }
-.proof-author { font-size:0.78rem; color:var(--muted); font-weight:600; }
-.proof-notice { font-size:0.76rem; color:var(--muted2); margin-top:1.5rem; text-align:center; }
+/* 개인정보 모달 */
+.privacy-modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;align-items:center;justify-content:center;padding:1.5rem;}
+.privacy-modal-backdrop.open{display:flex;}
+.privacy-modal{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-lg);max-width:580px;width:100%;max-height:80vh;overflow-y:auto;padding:2rem;position:relative;}
+.privacy-modal h3{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;color:var(--text);}
+.privacy-modal h4{font-size:0.9rem;font-weight:700;margin:1.2rem 0 0.4rem;color:var(--text);}
+.privacy-modal p,.privacy-modal li{font-size:0.84rem;color:var(--muted);line-height:1.8;}
+.privacy-modal ul{padding-left:1.2rem;margin-bottom:0.5rem;}
+.privacy-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:.2s;}
+.privacy-modal-close:hover{background:rgba(255,255,255,0.08);color:var(--text);}
 
-/* ============================
-   FAQ
-   ============================ */
-.faq-section { background:var(--bg2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
-.faq-inner { max-width:720px; margin:0 auto; }
-.faq-list { margin-top:2.2rem; display:flex; flex-direction:column; gap:0.8rem; }
-.faq-item { background:var(--card); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; }
-.faq-q {
-  width:100%; text-align:left;
-  padding:1.2rem 1.5rem; background:none; border:none;
-  color:var(--text); font-size:0.95rem; font-weight:700;
-  cursor:pointer; display:flex; justify-content:space-between; align-items:center;
-  transition:color .2s;
-}
-.faq-q:hover { color:var(--accent); }
-.faq-icon { font-size:1.3rem; font-weight:400; color:var(--muted); transition:transform .3s; }
-.faq-item.open .faq-icon { transform:rotate(45deg); }
-.faq-a { display:none; padding:0 1.5rem 1.2rem; }
-.faq-item.open .faq-a { display:block; }
-.faq-a p { font-size:0.9rem; color:var(--muted); line-height:1.7; }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;color:var(--muted);}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;margin-bottom:2rem;}
+.footer-brand .footer-logo{font-size:1.1rem;font-weight:800;margin-bottom:0.4rem;color:var(--text);}
+.footer-brand .footer-logo span{color:var(--accent);}
+.footer-brand p{font-size:0.82rem;color:var(--muted);max-width:280px;line-height:1.6;}
+.footer-links{display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-start;}
+.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s;font-size:0.85rem;}
+.footer-links a:hover{color:var(--text);}
+.footer-biz{border-top:1px solid var(--border);padding-top:1.5rem;line-height:2;font-size:0.8rem;}
+.footer-biz strong{color:rgba(255,255,255,0.6);}
+.footer-biz a{color:var(--accent);text-decoration:none;}
+.footer-bottom{margin-top:1rem;font-size:0.76rem;color:var(--muted2);}
 
-/* ============================
-   CTA + FORM
-   ============================ */
-.cta-section {
-  padding:6rem 2rem;
-  text-align:center;
-  background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,229,160,0.08) 0%, transparent 70%), var(--bg);
-}
-.cta-section h2 { font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:900; line-height:1.15; margin-bottom:1rem; letter-spacing:-0.02em; }
-.cta-section > p { color:var(--muted); max-width:560px; margin:0 auto 2.2rem; }
-.cta-btns { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
-.btn-kakao {
-  background:#FEE500; color:#000;
-  padding:0.95rem 2rem; border-radius:8px;
-  font-weight:800; font-size:0.95rem;
-  display:inline-flex; align-items:center; gap:0.4rem;
-  transition:.2s;
-}
-.btn-kakao:hover { background:#f0d800; transform:translateY(-1px); }
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
 
-/* FORM */
-.contact-form {
-  max-width:560px; margin:0 auto;
-  background:var(--card); border:1px solid var(--border);
-  border-radius:var(--r-lg); padding:2.5rem;
+/* 반응형 */
+@media(max-width:900px){
+  nav{padding:1rem 2rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  footer{padding:2rem 1.5rem;}
+  .footer-top{flex-direction:column;}
+  .brand-grid{grid-template-columns:1fr;}
 }
-.form-title { font-size:1rem; font-weight:800; margin-bottom:1.6rem; text-align:center; color:var(--accent); }
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
-.form-group { margin-bottom:1.3rem; }
-.form-group label { display:block; font-size:0.83rem; color:var(--muted); margin-bottom:0.45rem; font-weight:700; }
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width:100%; background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:8px; padding:0.88rem 1rem;
-  color:var(--text); font-size:1rem; /* 16px+ ??iOS �?방�? */
-  font-family:var(--font);
-  transition:border-color .2s;
-  min-height:44px; /* ?�치 ?��?*/
+@media(max-width:640px){
+  nav{padding:1rem 1.2rem;}
+  .hero{padding:5rem 1.2rem 3rem;}
+  .hero-stats{gap:1.5rem;}
+  .cta-btns,.hero-btns{flex-direction:column;align-items:center;}
+  .btn-primary,.btn-kakao,.btn-ghost{width:100%;max-width:320px;justify-content:center;}
+  .form-row{grid-template-columns:1fr;}
+  .sample-grid{grid-template-columns:1fr;}
+  .section{padding:3.5rem 1.2rem;}
 }
-.form-group select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238896a8' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 1rem center; padding-right:2.5rem; }
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(0,229,160,0.12); }
-.form-group textarea { min-height:110px; resize:vertical; }
-.form-agree { margin:1.3rem 0 0.8rem; }
-.form-agree label { display:flex; align-items:flex-start; gap:0.6rem; cursor:pointer; font-size:0.86rem; line-height:1.55; margin-bottom:0.5rem; }
-.form-agree input[type="checkbox"] { margin-top:3px; accent-color:var(--accent); width:16px; height:16px; min-width:16px; }
-.form-agree a { color:var(--accent); text-decoration:underline; }
-.form-submit {
-  width:100%; background:var(--accent); color:#000;
-  border:none; border-radius:8px; padding:1.1rem;
-  font-weight:900; font-size:1rem; cursor:pointer;
-  transition:.2s; margin-top:0.8rem; min-height:48px;
-  font-family:var(--font);
-}
-.form-submit:hover { background:var(--accent-d); }
-.form-submit:disabled { opacity:0.55; cursor:not-allowed; }
-.form-error { display:none; background:rgba(255,80,80,0.12); color:#ff8080; border:1px solid rgba(255,80,80,0.25); border-radius:8px; padding:0.9rem; margin-top:0.8rem; text-align:center; font-size:0.9rem; }
-.form-success { display:none; text-align:center; padding:2.5rem 1rem; }
-.form-success .icon { font-size:3.5rem; margin-bottom:1rem; }
-.form-success h4 { font-size:1.2rem; font-weight:800; margin-bottom:0.6rem; }
-.form-privacy { font-size:0.76rem; color:var(--muted); text-align:center; margin-top:1rem; line-height:1.5; }
-
-/* ============================
-   FLOATING CTA
-   ============================ */
-.float-cta {
-  position:fixed; bottom:1.5rem; right:1.5rem;
-  background:var(--accent); color:#000;
-  border:none; border-radius:100px;
-  padding:0.85rem 1.6rem; font-weight:900; font-size:0.9rem;
-  cursor:pointer; box-shadow:0 4px 20px rgba(0,229,160,0.35);
-  transition:transform .2s, opacity .3s;
-  opacity:0; pointer-events:none; z-index:90;
-  font-family:var(--font);
-}
-.float-cta.visible { opacity:1; pointer-events:auto; }
-.float-cta:hover { transform:translateY(-2px); }
-
-/* ============================
-   EXIT INTENT BANNER
-   ============================ */
-.exit-banner {
-  display:none; position:fixed; top:0; left:0; right:0;
-  background:var(--accent); color:#000;
-  padding:0.9rem 2rem; z-index:300;
-  font-weight:800; font-size:0.9rem; text-align:center;
-  gap:1rem; align-items:center; justify-content:center;
-}
-.exit-banner.show { display:flex; }
-.exit-banner a { background:#000; color:var(--accent); padding:0.4rem 1.2rem; border-radius:100px; font-size:0.85rem; }
-.exit-close { position:absolute; right:1rem; background:none; border:none; font-size:1.3rem; cursor:pointer; color:#000; font-weight:900; }
-
-/* ============================
-   FOOTER
-   ============================ */
-footer { background:var(--bg2); border-top:1px solid var(--border); padding:4rem 2rem 2rem; }
-.footer-top { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 2fr; gap:3rem; margin-bottom:3rem; }
-.footer-logo { font-size:1.2rem; font-weight:900; letter-spacing:-0.04em; margin-bottom:0.6rem; }
-.footer-logo span { color:var(--accent); }
-.footer-brand p { font-size:0.85rem; color:var(--muted); line-height:1.7; }
-.footer-links { display:flex; flex-wrap:wrap; gap:0.8rem 2rem; align-items:flex-start; }
-.footer-links a { font-size:0.85rem; color:var(--muted); transition:color .2s; }
-.footer-links a:hover { color:var(--text); }
-.footer-biz { max-width:1100px; margin:0 auto; font-size:0.78rem; color:var(--muted2); line-height:1.9; padding-top:2rem; border-top:1px solid var(--border); }
-.footer-biz a { color:var(--muted); text-decoration:underline; }
-.footer-bottom { max-width:1100px; margin:1.2rem auto 0; font-size:0.76rem; color:var(--muted2); }
-
-/* ============================
-   MODAL
-   ============================ */
-.modal-bg {
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.75); z-index:500;
-  align-items:center; justify-content:center;
-  padding:1.5rem;
-}
-.modal-bg.open { display:flex; }
-.modal-box {
-  background:var(--card); border:1px solid var(--border2);
-  border-radius:var(--r-lg); padding:2.5rem;
-  max-width:500px; width:100%; position:relative;
-  max-height:90vh; overflow-y:auto;
-}
-.modal-close-btn { position:absolute; top:1.2rem; right:1.2rem; background:none; border:none; color:var(--muted); font-size:1.4rem; cursor:pointer; }
-.modal-box h3 { font-size:1.1rem; font-weight:800; margin-bottom:1.4rem; }
-.modal-box p { font-size:0.88rem; color:var(--muted); margin-bottom:0.7rem; line-height:1.65; }
-.modal-box strong { color:var(--text); }
-
-/* ============================
-   REVEAL ANIMATION
-   ============================ */
-.reveal { opacity:0; transform:translateY(28px); transition:opacity .6s cubic-bezier(0.25,0.1,0.25,1), transform .6s cubic-bezier(0.25,0.1,0.25,1); }
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-/* ============================
-   RESPONSIVE
-   ============================ */
-@media (max-width:900px) {
-  .flow-steps { grid-template-columns:repeat(3,1fr); }
-  .footer-top { grid-template-columns:1fr; gap:2rem; }
-}
-@media (max-width:768px) {
-  nav { padding:1rem 1.5rem; }
-  .nav-links { display:none; }
-  .hamburger { display:flex; }
-  .hero { padding:5.5rem 1.5rem 3rem; }
-  .stats-inner { grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-  .ba-grid { grid-template-columns:1fr; }
-  .flow-steps { grid-template-columns:1fr; }
-  .price-grid { grid-template-columns:1fr; }
-  .proof-grid { grid-template-columns:1fr; }
-  .form-row { grid-template-columns:1fr; }
-  .roi-result { grid-template-columns:1fr; }
-  .float-cta { bottom:1rem; right:1rem; padding:0.75rem 1.2rem; font-size:0.85rem; }
-  .diff-box { padding:1.2rem 1.4rem; font-size:0.92rem; }
-}
-@media (max-width:480px) {
-  .hero h1 { font-size:2.2rem; }
-  .cta-section h2 { font-size:1.7rem; }
-}
-
-/* Focus visible (?�근?? */
-:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 </style>
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-NMYD46BR86"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-NMYD46BR86');
-</script>
 </head>
 <body>
 
-<!-- Skip Link (?�근?? -->
-<a href="#main" class="skip-link">본문 바로가�?/a>
-
-<!-- ?�크�?진행�?-->
-<div id="progress-bar" role="progressbar" aria-label="?�이지 ?�크�?진행"></div>
-
-<!-- EXIT INTENT BANNER -->
-<div class="exit-banner" id="exitBanner" role="alert">
-  ?�깐! 무료 진단?� 리뷰 3개만?�로 가?�합?�다 ??
-  <a href="#contact">지�?무료 ?�청?�기</a>
-  <button class="exit-close" onclick="closeExit()" aria-label="?�기">??/button>
+<!-- 모바일 메뉴 -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="내비게이션 메뉴">
+  <button class="mobile-close" onclick="closeMenu()" aria-label="메뉴 닫기">✕</button>
+  <a href="#what" onclick="closeMenu()">서비스 소개</a>
+  <a href="#how" onclick="closeMenu()">작동 방식</a>
+  <a href="#price" onclick="closeMenu()">가격</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="#contact" onclick="closeMenu()">무료 진단</a>
+  <a href="http://pf.kakao.com/_wLasX/chat" class="accent" target="_blank" rel="noopener noreferrer" onclick="closeMenu()">카카오 채널</a>
 </div>
 
 <!-- NAV -->
-<nav aria-label="�??�비게이??>
-  <a href="/" class="logo" aria-label="LoopForge AI ??>Loop<span>Forge</span> AI</a>
-  <div class="nav-links" role="navigation">
-    <a href="#how">?�동 방식</a>
-    <a href="#roi">ROI 계산�?/a>
-    <a href="#price">가�?/a>
-    <a href="#proof">?�기</a>
+<nav role="navigation" aria-label="주 내비게이션">
+  <a href="#" class="logo" aria-label="LoopForge AI 홈">Loop<span>Forge</span> AI</a>
+  <div class="nav-links">
+    <a href="#what">서비스 소개</a>
+    <a href="#how">작동 방식</a>
+    <a href="#price">가격</a>
     <a href="#faq">FAQ</a>
+    <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer">카카오 문의</a>
+    <a href="#contact" class="nav-cta">무료 진단 신청</a>
   </div>
-  <a href="#contact" class="nav-cta">무료 진단 ?�청</a>
-  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="모바??메뉴 ?�기" aria-expanded="false">
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="메뉴 열기/닫기" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu" aria-modal="true" role="dialog" aria-label="모바??메뉴">
-  <button class="mobile-close" onclick="closeMenu()" aria-label="메뉴 ?�기">??/button>
-  <a href="#how" onclick="closeMenu()">?�동 방식</a>
-  <a href="#roi" onclick="closeMenu()">ROI 계산�?/a>
-  <a href="#price" onclick="closeMenu()">가�?/a>
-  <a href="#proof" onclick="closeMenu()">?�기</a>
-  <a href="#faq" onclick="closeMenu()">FAQ</a>
-  <a href="#contact" onclick="closeMenu()" class="accent">무료 진단 ?�청</a>
-  <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener" onclick="closeMenu()">카카??채널</a>
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <span class="ticker-inner">
+    ⚡ 리뷰 답글 자동 생성 &nbsp;·&nbsp; 부정 리뷰 CS 대응 &nbsp;·&nbsp; 네이버 블로그 초안 &nbsp;·&nbsp; 키워드 분석 &nbsp;·&nbsp; 월간 리포트 &nbsp;·&nbsp; 카카오 알림 &nbsp;·&nbsp; n8n 자동화 &nbsp;·&nbsp; Google Sheets 저장 &nbsp;·&nbsp;
+    ⚡ 리뷰 답글 자동 생성 &nbsp;·&nbsp; 부정 리뷰 CS 대응 &nbsp;·&nbsp; 네이버 블로그 초안 &nbsp;·&nbsp; 키워드 분석 &nbsp;·&nbsp; 월간 리포트 &nbsp;·&nbsp; 카카오 알림 &nbsp;·&nbsp; n8n 자동화 &nbsp;·&nbsp; Google Sheets 저장 &nbsp;·&nbsp;
+  </span>
 </div>
 
-<!-- TICKER -->
-<div class="ticker" aria-label="공�?">
-  <div class="ticker-inner" aria-hidden="true">
-    ??카페·?�식???�장???�용 AI 리뷰 ?�동??&nbsp;·&nbsp; AI 초안 ?�공 (?�동 게시 ?�음) &nbsp;·&nbsp; 49�???n8n ?�팅 &nbsp;·&nbsp; 초기 고객 3�??�정 모집 �?&nbsp;·&nbsp;
-    ??카페·?�식???�장???�용 AI 리뷰 ?�동??&nbsp;·&nbsp; AI 초안 ?�공 (?�동 게시 ?�음) &nbsp;·&nbsp; 49�???n8n ?�팅 &nbsp;·&nbsp; 초기 고객 3�??�정 모집 �?&nbsp;·&nbsp;
-  </div>
-</div>
+<main>
 
 <!-- HERO -->
-<main id="main">
-<div class="hero-wrap">
-  <section class="hero">
-    <div class="badge" aria-label="?�비???�징">?�� 카페·?�식???�장???�문 &nbsp;·&nbsp; ?�� AI 초안 ?�공 · ?�상공인 ?�화</div>
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="badge reveal">☕ 카페·음식점 사장님 전문 · 네이버 리뷰 AI 자동화</div>
+  <h1 id="hero-heading" class="reveal">리뷰 답글·부정 리뷰 대응,<br><em>사장님 대신 초안까지</em></h1>
+  <p class="reveal">카페·음식점에서 매일 반복되는 네이버 리뷰 답글, CS 문구, 블로그 홍보글 초안을 AI가 만들어드립니다.<br>자동 게시가 아닌 <strong style="color:var(--text);">사장님 검토 후 복사·붙여넣기</strong> 방식이라 안전합니다.</p>
+  <div class="hero-btns reveal">
+    <a href="#contact" class="btn-primary">10분 무료 진단 받기 →</a>
+    <a href="#what" class="btn-ghost">서비스 이해하기</a>
+  </div>
+  <div class="hero-stats reveal">
+    <div class="stat"><span class="stat-num">카페·음식점</span><span class="stat-label">초기 30일 집중 타깃</span></div>
+    <div class="stat"><span class="stat-num">5가지</span><span class="stat-label">리뷰 1개 → 자동 산출물</span></div>
+    <div class="stat"><span class="stat-num">19만원</span><span class="stat-label">리뷰 리포트팩 시작</span></div>
+    <div class="stat"><span class="stat-num">초안형</span><span class="stat-label">자동 게시 없는 안전 구조</span></div>
+  </div>
+  <div class="safety-box reveal" role="note" aria-label="AI 답글 안전 안내">
+    <div class="safety-label">🛡️ 안전 안내</div>
+    <p><strong>AI 답글은 자동으로 게시되지 않습니다.</strong> 사장님이 직접 검토 후 복사·붙여넣기하는 안전한 <strong>검토용 초안</strong>입니다. 부정 리뷰, 의료·금융·법률성 표현, 과장 문구는 사람 확인을 전제로 운영합니다.</p>
+  </div>
+</section>
 
-    <h1>리뷰 ?��? ?�느??br><em>?�늘????�� ?�근?�나??</em></h1>
-    <p class="hero-sub">
-      카페·?�식???�장?�의 리뷰 관�? AI가 초안??만들?�드립니??<br>
-      ?��?·부??리뷰 ?�?�·블로그 ?�보글까�? ???�장?��? 검?�만 ?�세??
+<!-- 초보자 입문 배너 -->
+<div style="padding:0 2rem 3rem;max-width:960px;margin:0 auto;">
+  <div class="beginner-banner reveal">
+    <h3>🙋 AI·자동화가 처음이신가요? 걱정 마세요!</h3>
+    <p>
+      <strong>LoopForge AI</strong>는 코딩을 전혀 몰라도 사용할 수 있습니다.<br>
+      사장님이 할 일은 딱 하나 — <strong>리뷰를 복사해서 붙여넣기</strong>하는 것뿐입니다.<br>
+      나머지는 AI가 알아서 분석하고, 답글 초안과 블로그 홍보글까지 만들어드립니다.
     </p>
-
-    <div class="diff-box" role="note">
-      ?�이�?AI??<strong>?��? 초안�?/strong> ?�공?�니??<br>
-      <strong>LoopForge</strong>???��? + CS ?�??+ 블로�?초안 + ?�워??리포??+ <strong>n8n ?�동???�산</strong>까�? 만들?�드립니??
-    </div>
-
-    <div class="hero-btns">
-      <a href="#contact" class="btn-primary" aria-label="10�?무료 진단 ?�청?�기">무료 진단 ?�청?�기 ??/a>
-      <a href="#how" class="btn-ghost">?�동 방식 보기</a>
-    </div>
-
-    <div class="safe-box" role="note" aria-label="?�전 ?�내">
-      <h3>???�장?�이 직접 검?????�용?�는 ?�전???�비?�입?�다</h3>
-      <p>
-        <strong>AI ?��??� ?�동?�로 게시?��? ?�습?�다.</strong><br>
-        모든 초안?� ?�장?�이 검?�·수????복사·붙여?�기?�는 방식?�니??<br>
-        부??리뷰 ?�??문구??반드???�람???�인 ???�려주세??
-      </p>
-    </div>
-  </section>
-</div>
-
-<!-- STATS 카운??-->
-<div class="stats-bar" aria-label="?�비??주요 지??>
-  <div class="stats-inner">
-    <div class="stat-item reveal">
-      <div class="stat-num" id="cnt-diag">0</div>
-      <div class="stat-label">?�적 무료 진단 건수</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num" id="cnt-draft">0</div>
-      <div class="stat-label">?�성??AI ?��? 초안</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num" id="cnt-save">0<span style="font-size:1.2rem">�?/span></div>
-      <div class="stat-label">?�균 ?�감 ?�간 (리뷰 1개당)</div>
-    </div>
-    <div class="stat-item reveal">
-      <div class="stat-num">24H</div>
-      <div class="stat-label">진단 리포???�공 ?�간</div>
-    </div>
   </div>
 </div>
 
 <!-- PAIN -->
-<section class="section reveal" id="pain" aria-labelledby="pain-title">
-  <div class="section-label">카페·?�식???�장?�의 ?�실</div>
-  <h2 class="section-title" id="pain-title">매일 반복?�는 리뷰 관�?<br>진짜 지치�? ?�으?��???</h2>
-  <p class="section-sub">리뷰 ?�나???�는 ?�간???�이�???그것??기회비용?�니??</p>
+<section class="section" aria-labelledby="pain-heading">
+  <div class="section-label reveal">고객 현황</div>
+  <h2 id="pain-heading" class="section-title reveal">사장님들이 지금<br>가장 힘들어하는 것</h2>
   <div class="pain-grid">
-    <div class="pain-card reveal">
-      <div class="pain-num">1~2<span style="font-size:1rem">?�간</span></div>
-      <h3>?�루 리뷰 관�??�간</h3>
-      <p>?��? + 부??리뷰 ?�??+ 블로�??�보글. ?�이�??�간 ?�백 ?�간?�니??</p>
+    <div class="pain-card reveal reveal-delay-1">
+      <div class="pain-num">매일</div>
+      <h3>반복되는 리뷰 관리</h3>
+      <p>리뷰 확인 → 답글 작성 → 블로그 홍보글 쓰기까지 반복하면 영업 후에도 업무가 계속됩니다.</p>
     </div>
-    <div class="pain-card reveal">
-      <div class="pain-num">60%+</div>
-      <h3>부??리뷰 방치??/h3>
-      <p>?�간???�어 ?�??못한 리뷰가 ?�재 고객?�게 그�?�??�출?�니??</p>
+    <div class="pain-card reveal reveal-delay-2">
+      <div class="pain-num">긴급</div>
+      <h3>부정 리뷰 대응 지연</h3>
+      <p>바쁜 시간대에 남겨진 불만 리뷰는 대응이 늦어지기 쉽습니다. 무응답은 잠재 고객에게 더 큰 불안으로 보입니다.</p>
     </div>
-    <div class="pain-card reveal">
-      <div class="pain-num">0??/div>
-      <h3>추�? 광고 ?�이 ?�보</h3>
-      <p>고객 리뷰�??�료�?블로�??�보 초안??AI가 만들?�드립니??</p>
+    <div class="pain-card reveal reveal-delay-3">
+      <div class="pain-num">절감</div>
+      <h3>수작업 시간 절감</h3>
+      <p>답글·CS·블로그 초안만 자동화해도 사장님은 검토와 최종 판단에만 집중할 수 있습니다.</p>
     </div>
-    <div class="pain-card reveal">
-      <div class="pain-num">49�?/div>
-      <h3>??�??�팅 ???�구 ?�용</h3>
-      <p>n8n ?�동???�크?�로?�는 ?�팅 ??계속 ?�아가???�구 ?�산?�니??</p>
+    <div class="pain-card reveal reveal-delay-1">
+      <div class="pain-num">0원</div>
+      <h3>광고비 없이 블로그 홍보</h3>
+      <p>광고비 없이 고객 리뷰를 원료로 네이버 블로그 홍보글을 자동 생성합니다.</p>
     </div>
+  </div>
+
+  <!-- 초보자 설명 -->
+  <div class="explain-box reveal" style="margin-top:2rem;">
+    <div class="explain-label">🙋 초보자를 위한 설명</div>
+    <p>
+      <strong>"리뷰 관리"가 왜 중요한가요?</strong><br>
+      네이버 플레이스에서 별점과 리뷰 답글 비율은 검색 노출 순위에 직접적인 영향을 줍니다.
+      부정 리뷰에 아무 답변이 없으면 잠재 고객이 <strong>"이 가게는 고객 불만에 무관심하다"</strong>고 판단합니다.
+      반대로 성실하게 답글을 달면 신뢰도가 높아져 매출로 이어집니다.
+    </p>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<div class="flow-section" id="how">
-  <div class="flow-inner">
-    <div class="section-label">?�동 방식</div>
-    <h2 class="section-title">리뷰 ?�나가<br>5가지 ?�산?�로 바뀝니??/h2>
-    <p class="section-sub">복사 ??AI 분석 ??초안 ?�성 ??검?????�동???�산</p>
+<!-- LoopForge란 무엇인가 -->
+<div class="brand-section" id="what">
+  <div class="brand-inner">
+    <div class="section-label reveal">브랜드 소개</div>
+    <h2 class="section-title reveal">LoopForge AI란<br>무엇인가요?</h2>
+    <p class="section-sub reveal" style="margin-bottom:0;">Loop(반복) + Forge(제작소) — 반복 업무를 자동화 자산으로 만드는 AI 팩토리입니다.</p>
 
-    <!-- Before/After -->
-    <div class="ba-grid">
-      <div class="ba-card reveal">
-        <div class="ba-header">?�� 부??리뷰 ?�???�시</div>
-        <div class="ba-body">
-          <div class="ba-lbl">고객 ?�문</div>
-          <div class="original">"직원 ?��?가 조금 ?�쉬?�어?? ?�식?� 맛있?�는???�비?��? 좀??</div>
-          <div class="ba-lbl">AI ?�성 초안 (?�장??검?????�용)</div>
-          <div class="ai-out">?�중???�견 ?�말 감사?�니?? ?��? 과정?�서 ?�쉬?�???�린 ??진심?�로 ?�과?�립?�다. ???��? ?�비?��? ?�해 ??직원�??�께 개선?�겠?�니?? ?�음 방문 ?�도 맛있???�식?�로 기다리겠?�니??</div>
-        </div>
+    <div class="brand-grid">
+      <div class="brand-card reveal">
+        <div class="brand-card-icon">🔄</div>
+        <h3><span>Loop</span> — 반복 업무</h3>
+        <p>소상공인의 매일 반복되는 루틴 업무 — 리뷰 확인, 답글 작성, 블로그 홍보, 고객 CS — 이 모든 것이 "Loop(루프)"입니다. 반복되는 업무는 자동화할 수 있고, 한 번 만들면 영구적으로 작동합니다.</p>
+        <span class="tag">리뷰 → 답글 → 블로그 → 리포트 → 반복</span>
       </div>
-      <div class="ba-card reveal">
-        <div class="ba-header">?�� 긍정 리뷰 ?��? ?�시</div>
-        <div class="ba-body">
-          <div class="ba-lbl">고객 ?�문</div>
-          <div class="original">"커피 맛이 ?�말 좋았?�요! 분위기도 ?�늑?�고 ?�방�??�사 100%?�니??"</div>
-          <div class="ba-lbl">AI ?�성 초안 (?�장??검?????�용)</div>
-          <div class="ai-out">?�?? ?�중??리뷰 ?�말 감사?�니???�️<br>커피 맛과 분위기�? ?�께 즐겨주셔??기쁩?�다. ?�음 방문 ?�도 최고??커피?� ?�뜻??공간?�로 기다리겠?�니??</div>
-        </div>
+      <div class="brand-card reveal reveal-delay-1">
+        <div class="brand-card-icon">⚒️</div>
+        <h3><span>Forge</span> — AI 제작소</h3>
+        <p>대장간(鍛造)에서 쇠를 두들겨 도구를 만들듯, 고객 리뷰라는 원석을 AI로 가공해 답글·블로그·리포트라는 가치 있는 자산으로 만들어냅니다. 단순 대행이 아니라 한 번 세팅하면 계속 돌아가는 자동화 공장입니다.</p>
+        <span class="tag">원석(리뷰) → 가공(AI) → 자산(답글/블로그)</span>
       </div>
     </div>
 
-    <!-- 5?�계 -->
-    <div class="flow-steps">
-      <div class="flow-step reveal">
-        <div class="step-num">01</div>
-        <h3>리뷰 ?�력</h3>
-        <p>?�이�??�레?�스 리뷰�?복사?�거??CSV�??�로??/p>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">02</div>
-        <h3>AI 분석</h3>
-        <p>감정 분석 + ?�심 ?�워??+ ?�장??말투 반영</p>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">03</div>
-        <h3>초안 ?�성</h3>
-        <p>?��? · CS ?�??· 블로�??�보글 초안 ?�동 ?�성</p>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">04</div>
-        <h3>검?????�용</h3>
-        <p>?�장?�이 직접 검????복사 ??게시 (?�전)</p>
-      </div>
-      <div class="flow-step reveal">
-        <div class="step-num">05</div>
-        <h3>?�동???�팅</h3>
-        <p>n8n + Google Sheets + 카카???�림 ?�성</p>
+    <!-- 초보자 설명 -->
+    <div class="explain-box reveal" style="margin-top:1.5rem;">
+      <div class="explain-label">🙋 쉽게 말하면?</div>
+      <p>
+        사장님이 하루에 리뷰 10개씩 쓰는 답글을, AI가 대신 초안으로 만들어줍니다.
+        사장님은 그 초안을 읽고 <strong>복붙하거나 조금 수정해서 올리면 끝</strong>입니다.
+        블로그 홍보글도 마찬가지입니다. 리뷰에서 키워드를 뽑아 홍보글 초안이 자동으로 나옵니다.
+      </p>
+    </div>
+
+    <!-- 전문가 조언 -->
+    <div class="expert-box reveal">
+      <div class="expert-label">💡 전문가 조언</div>
+      <p>
+        <strong>자동화의 핵심은 "완전 자동"이 아니라 "사람 검토 + AI 초안"입니다.</strong><br>
+        리뷰 답글을 AI가 100% 자동 발송하면 법적·윤리적 리스크가 생깁니다.
+        LoopForge AI는 반드시 사람이 검토 후 발행하는 구조로 설계되어 있습니다.
+        이것이 서비스의 가장 큰 차별점이자 안전장치입니다.
+      </p>
+    </div>
+
+    <!-- 서비스 라인업 -->
+    <div style="margin-top:3rem;">
+      <div class="section-label reveal">서비스 라인업</div>
+      <h3 class="reveal" style="font-size:1.4rem;font-weight:800;margin-bottom:0.5rem;">LoopForge의 6가지 서비스</h3>
+      <p class="reveal" style="font-size:0.9rem;color:var(--muted);margin-bottom:0;">지금은 Review부터 시작합니다. 검증되면 Seller, Edu로 확장합니다.</p>
+      <div class="lineup-grid">
+        <div class="lineup-card active reveal">
+          <div class="lineup-name">LoopForge <span>Review</span></div>
+          <div class="lineup-target">카페 · 음식점 최우선</div>
+          <div class="lineup-desc">네이버 리뷰 AI 분석 → 답글·CS·블로그 초안 자동 생성. 현재 카페·음식점에 최우선 집중하는 핵심 서비스입니다.</div>
+          <span class="lineup-status status-live">✅ 지금 운영 중</span>
+        </div>
+        <div class="lineup-card reveal reveal-delay-1">
+          <div class="lineup-name">LoopForge <span>Seller</span></div>
+          <div class="lineup-target">스마트스토어 · 쿠팡 셀러</div>
+          <div class="lineup-desc">상품 리뷰 분석, CS 자동화, 상품 홍보 콘텐츠 생성. 월 구독 4.9만 원 목표.</div>
+          <span class="lineup-status status-next">🔄 다음 개발</span>
+        </div>
+        <div class="lineup-card reveal reveal-delay-2">
+          <div class="lineup-name">LoopForge <span>Edu</span></div>
+          <div class="lineup-target">학원 · 어학원 · 교육기관</div>
+          <div class="lineup-desc">상담 문의 자동 분류, 학부모 알림 자동화, 수강 등록 전환 최적화.</div>
+          <span class="lineup-status status-next">🔄 다음 개발</span>
+        </div>
+        <div class="lineup-card reveal reveal-delay-3">
+          <div class="lineup-name">LoopForge <span>Service</span></div>
+          <div class="lineup-target">소상공인 · 1인기업 전체</div>
+          <div class="lineup-desc">AI 자동화 대행 서비스. 고객별 맞춤 워크플로우 설계 및 세팅.</div>
+          <span class="lineup-status status-live">✅ 운영 중</span>
+        </div>
+        <div class="lineup-card reveal reveal-delay-1">
+          <div class="lineup-name">LoopForge <span>Templates</span></div>
+          <div class="lineup-target">글로벌 자동화 사용자</div>
+          <div class="lineup-desc">검증된 n8n 워크플로우 템플릿을 Gumroad에서 판매. $29~$199.</div>
+          <span class="lineup-status status-plan">🔮 장기 계획</span>
+        </div>
+        <div class="lineup-card reveal reveal-delay-2">
+          <div class="lineup-name">LoopForge <span>Cloud</span></div>
+          <div class="lineup-target">중소기업 · 프랜차이즈</div>
+          <div class="lineup-desc">멀티 업체 대시보드, 팀 협업, API 연동 SaaS 플랫폼. 월 4.9만~99만 원.</div>
+          <span class="lineup-status status-plan">🔮 장기 계획</span>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ROI 계산�?-->
-<section class="roi-section" id="roi" aria-labelledby="roi-title">
-  <div class="roi-inner">
-    <div class="section-label">ROI 계산�?/div>
-    <h2 class="section-title" id="roi-title">?�리 가�??�감 ?�과�?br>직접 계산??보세??/h2>
+<!-- FLOW -->
+<div class="flow-section" id="how">
+  <div class="flow-inner">
+    <div class="section-label reveal">작동 방식</div>
+    <h2 class="section-title reveal">리뷰 하나가<br>5가지 자산으로</h2>
 
-    <div class="roi-box reveal">
-      <div class="roi-slider-label">??리뷰 ?? <strong id="review-count-label">30</strong>�?/div>
-      <input type="range" id="reviewSlider" min="10" max="200" value="30" step="10"
-             aria-label="??리뷰 ???�라?�더" oninput="calcROI(this.value)">
+    <div class="sample-box reveal" aria-label="리뷰 Before After 샘플">
+      <div class="sample-head">
+        <h3>Before / After 샘플</h3>
+        <span>카페·음식점 답글 초안 예시</span>
+      </div>
+      <div class="sample-grid">
+        <div class="sample-card before">
+          <div class="sample-label">Before · 고객 리뷰 원문</div>
+          <p>“커피 맛은 좋은데 주말에 사람이 많아서 그런지 주문이 늦게 나왔어요. 직원분은 친절했지만 기다림이 조금 아쉬웠습니다.”</p>
+        </div>
+        <div class="sample-card after">
+          <div class="sample-label">After · AI 답글 초안</div>
+          <p>“소중한 방문과 솔직한 의견 감사합니다. 커피 맛과 직원 응대를 좋게 봐주셔서 기쁩니다. 주말 대기 시간이 길어 불편을 드린 점은 정말 죄송합니다. 피크 시간 주문 동선을 다시 점검해 더 빠르고 편안한 이용이 되도록 개선하겠습니다.”</p>
+        </div>
+      </div>
+    </div>
 
-      <div class="roi-result">
-        <div class="roi-metric">
-          <div class="roi-val" id="roi-time">0</div>
-          <div class="roi-key">???�감 ?�간 (?�간)</div>
-        </div>
-        <div class="roi-metric">
-          <div class="roi-val" id="roi-cost">0</div>
-          <div class="roi-key">?�간 ?�간 가�?(만원)</div>
-        </div>
-        <div class="roi-metric">
-          <div class="roi-val" id="roi-month">0</div>
-          <div class="roi-key">?�팅 비용 ?�수 기간</div>
+    <div class="flow-steps">
+
+      <div class="flow-step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>리뷰 입력</h3>
+          <p>네이버 플레이스에서 리뷰를 복사해서 붙여넣기하거나 CSV 파일로 업로드합니다.</p>
+          <span class="step-tag">복사 붙여넣기 또는 CSV</span>
+          <div class="step-extras">
+            <div class="explain-box">
+              <div class="explain-label">🙋 초보자 안내</div>
+              <p>네이버 플레이스에서 리뷰 텍스트를 마우스로 드래그 → Ctrl+C 복사 → 여기에 Ctrl+V 붙여넣기하면 됩니다. 스마트폰에서도 가능합니다.</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <p style="font-size:0.78rem;color:var(--muted);margin-top:1.2rem;text-align:center;">
-        ??리뷰 1개당 ?�균 ?�업 ?�간 10�? 최�??�급 기�? 개략 계산. ?�제 ?�과???�황???�라 ?��? ???�습?�다.
-      </p>
+      <div class="flow-step reveal">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>AI 감정 분석</h3>
+          <p>긍정 / 부정 / 중립을 자동 분류하고 핵심 키워드를 추출합니다.</p>
+          <span class="step-tag">Llama 3.3 70B 모델</span>
+          <div class="step-extras">
+            <div class="explain-box">
+              <div class="explain-label">🙋 초보자 안내</div>
+              <p>AI가 리뷰를 읽고 <strong>"이 리뷰가 기쁜 내용인지, 불만인지"</strong>를 자동으로 판단합니다. 별점만으로는 놓칠 수 있는 세부 감정까지 분석합니다.</p>
+            </div>
+            <div class="expert-box" style="margin-top:0.8rem;">
+              <div class="expert-label">💡 전문가 조언</div>
+              <p>감정 점수 1~5점 중 <strong>2.5점 미만은 부정 리뷰로 분류</strong>되어 즉시 카카오 알림을 받습니다. 골든타임 안에 대응하면 별점 수정 요청 성공률이 높아집니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step reveal">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>맞춤 답글 초안 생성</h3>
+          <p>긍정 리뷰 감사 답글 + 부정 리뷰 CS 대응 문구를 사장님 톤에 맞게 초안 생성합니다.</p>
+          <span class="step-tag">검토 후 사용 · 자동 발송 절대 없음</span>
+          <div class="step-extras">
+            <div class="explain-box">
+              <div class="explain-label">🙋 초보자 안내</div>
+              <p>AI가 만든 답글은 <strong>초안(草案)</strong>입니다. 사장님이 읽어보시고 마음에 들면 그대로, 어색하면 조금 수정해서 네이버에 직접 올리시면 됩니다. AI가 자동으로 올리지 않습니다.</p>
+            </div>
+            <div class="expert-box" style="margin-top:0.8rem;">
+              <div class="expert-label">💡 전문가 조언</div>
+              <p>부정 리뷰 대응 시 <strong>"죄송합니다 + 구체적 개선 약속 + 직접 연락 유도"</strong> 3단 구조가 가장 효과적입니다. AI 초안은 이 구조를 기본으로 생성합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step reveal">
+        <div class="step-num">04</div>
+        <div class="step-body">
+          <h3>블로그 홍보글 자동 초안</h3>
+          <p>고객 리뷰에서 추출한 키워드로 네이버 블로그 포스팅 초안을 즉시 생성합니다.</p>
+          <span class="step-tag">SEO 키워드 자동 추출</span>
+          <div class="step-extras">
+            <div class="explain-box">
+              <div class="explain-label">🙋 초보자 안내</div>
+              <p>블로그 홍보글을 직접 쓰려면 한 시간이 걸립니다. AI는 고객이 실제로 쓴 리뷰 표현을 그대로 활용해 홍보글 초안을 만들어줍니다. <strong>고객의 말이 곧 최고의 카피</strong>입니다.</p>
+            </div>
+            <div class="expert-box" style="margin-top:0.8rem;">
+              <div class="expert-label">💡 전문가 조언</div>
+              <p>네이버 블로그 SEO에서 <strong>고객이 실제 사용하는 단어(키워드)</strong>가 가장 중요합니다. AI가 리뷰에서 추출한 키워드를 블로그에 자연스럽게 녹이면 검색 노출이 높아집니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step reveal">
+        <div class="step-num">05</div>
+        <div class="step-body">
+          <h3>Google Sheets 저장 + 카카오 알림</h3>
+          <p>모든 분석 결과가 자동으로 Google Sheets에 저장되고, 부정 리뷰는 카카오로 즉시 알립니다.</p>
+          <span class="step-tag">Google Sheets · 카카오 알림</span>
+          <div class="step-extras">
+            <div class="explain-box">
+              <div class="explain-label">🙋 초보자 안내</div>
+              <p>Google Sheets는 엑셀과 비슷한 구글의 무료 표 프로그램입니다. 분석 결과가 자동으로 저장되어 언제든지 PC나 스마트폰에서 확인할 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
+</div>
+
+<!-- 전문가 조언 섹션 -->
+<div class="expert-section">
+  <div class="expert-inner">
+    <div class="section-label reveal">전문가 조언</div>
+    <h2 class="section-title reveal">마케팅 전문가들이<br>말하는 리뷰 관리 전략</h2>
+    <p class="section-sub reveal">소상공인 마케팅 전문가들의 실전 조언을 LoopForge AI에 그대로 반영했습니다.</p>
+    <div class="expert-grid">
+      <div class="expert-card reveal">
+        <div class="expert-avatar">📊</div>
+        <h4>네이버 플레이스 알고리즘 전략</h4>
+        <div class="role">로컬 SEO 전문가 조언</div>
+        <blockquote>네이버 플레이스에서는 <strong>리뷰 수, 답글 성실도, 최신성</strong>이 고객 신뢰를 만드는 핵심 신호입니다. 답글이 꾸준히 달린 매장은 방문 전환에 유리한 인상을 줄 수 있습니다.</blockquote>
+      </div>
+      <div class="expert-card reveal reveal-delay-1">
+        <div class="expert-avatar">🔥</div>
+        <h4>부정 리뷰 골든타임 대응</h4>
+        <div class="role">고객 경험(CX) 전문가 조언</div>
+        <blockquote>부정 리뷰는 <strong>빠른 확인과 정중한 대응</strong>이 핵심입니다. AI로 먼저 초안을 받고, 사장님이 사실관계를 확인한 뒤 차분하게 답변하면 불필요한 감정 대응을 줄일 수 있습니다.</blockquote>
+      </div>
+      <div class="expert-card reveal reveal-delay-2">
+        <div class="expert-avatar">✍️</div>
+        <h4>리뷰 기반 콘텐츠 마케팅</h4>
+        <div class="role">콘텐츠 마케팅 전문가 조언</div>
+        <blockquote>고객이 쓴 리뷰는 <strong>최고의 마케팅 카피</strong>입니다. 직접 쓴 홍보글보다 고객의 실제 표현을 반영한 콘텐츠가 더 자연스럽게 읽힙니다. 리뷰 키워드를 블로그에 활용하면 검색 의도에 맞는 소재를 꾸준히 확보할 수 있습니다.</blockquote>
+      </div>
+      <div class="expert-card reveal reveal-delay-3">
+        <div class="expert-avatar">🤖</div>
+        <h4>AI 자동화의 올바른 활용법</h4>
+        <div class="role">AI 자동화 전문가 조언</div>
+        <blockquote><strong>"AI가 다 해준다"는 환상을 버리세요.</strong> AI는 초안 생성 도구입니다. 사람이 검토하고 발행해야 품질이 보장됩니다. AI + 사람의 협업 구조가 가장 안전하고 효과적입니다. LoopForge AI는 이 원칙을 철저히 지킵니다.</blockquote>
+      </div>
+      <div class="expert-card reveal reveal-delay-1">
+        <div class="expert-avatar">💰</div>
+        <h4>소상공인 자동화 ROI 계산법</h4>
+        <div class="role">경영 컨설턴트 조언</div>
+        <blockquote>리뷰 관리에 하루 2시간을 쓴다고 가정하면, 최저시급 기준으로만 계산해도 연간 약 <strong>700만 원 수준의 시간 비용</strong>이 발생할 수 있습니다. 49만 원 자동화 세팅은 반복 시간을 줄이는 운영 자산입니다.</blockquote>
+      </div>
+      <div class="expert-card reveal reveal-delay-2">
+        <div class="expert-avatar">📱</div>
+        <h4>카카오 채널 활용 전략</h4>
+        <div class="role">소셜 마케팅 전문가 조언</div>
+        <blockquote>부정 리뷰 알림을 카카오로 받으면 <strong>스마트폰에서 바로 확인하고 대응</strong>할 수 있습니다. 가게 운영 중에도 놓치는 리뷰가 없어집니다. 알림 → 초안 확인 → 수정·복붙 흐름으로 대응 시간을 줄일 수 있습니다.</blockquote>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- PRICE -->
-<section class="section" id="price" aria-labelledby="price-title">
-  <div class="section-label">?�품 ?�다�?/div>
-  <h2 class="section-title" id="price-title">지�??�작?????�는<br>?�실?�인 4?�계</h2>
-  <p class="section-sub">무료 진단 ??리포?�팩 ???�팅 ?�키지 ?�으�??�계?�으�?진행?�세??</p>
+<section class="section" id="price" aria-labelledby="price-heading">
+  <div class="section-label reveal">가격</div>
+  <h2 id="price-heading" class="section-title reveal">무료 진단부터 자동화 세팅까지<br>부담 없이 올라가는 상품 사다리</h2>
+  <p class="section-sub reveal">처음부터 큰 비용을 결제하지 않아도 됩니다. 무료 진단으로 가능성을 확인하고, 19만 원 리포트팩으로 첫 결과물을 본 뒤, 필요한 경우 49만 원 자동화 세팅과 월 유지관리로 확장하세요.</p>
 
-  <!-- ?�내 박스 -->
-  <div style="background:rgba(0,229,160,0.06);border:1px solid rgba(0,229,160,0.18);border-radius:12px;padding:1.3rem 1.8rem;margin-bottom:1rem;">
-    <strong>?�� 초보 ?�장???�내:</strong> ?�전 결제 ?�이 무료 진단부???�작?�세?? 리포???�인 ???�음 ?�계�?결정?�시�??�니??
+  <div class="roi-box reveal" aria-label="ROI 계산 안내">
+    <div class="roi-label">ROI 계산기 메시지</div>
+    <p>리뷰 관리에 <strong>하루 2시간</strong>을 쓴다고 가정하면, 최저시급 기준으로만 계산해도 연간 약 <strong>700만 원 수준의 시간 비용</strong>이 발생할 수 있습니다. 49만 원 자동화 세팅은 단순 비용이 아니라, 한 번 만들어 계속 활용하는 <strong>운영 자산</strong>입니다.</p>
   </div>
 
   <div class="price-grid">
     <div class="price-card reveal">
-      <h3>무료 진단</h3>
-      <div class="price-tag">0<span>??/span></div>
+      <h3>① 무료 진단</h3>
+      <div class="price-tag">0<span>원</span></div>
       <ul>
-        <li>리뷰 ?�플 3~10�?분석</li>
-        <li>?�동??가???�무 ?�악</li>
-        <li>?�간 ?�감 리포???�공</li>
-        <li>10�??�라??미팅</li>
+        <li>리뷰 10개 샘플 진단</li>
+        <li>답글 초안 예시 제공</li>
+        <li>자동화 가능 업무 확인</li>
+        <li>카페·음식점 맞춤 제안</li>
       </ul>
-      <a href="#contact" class="price-btn" aria-label="무료 진단 ?�청?�기">지�?무료 ?�청?�기</a>
-      <p class="micro">결제 ?�음 · 24?�간 ???�락</p>
-    </div>
-
-    <div class="price-card hot reveal">
-      <div class="hot-badge">?�� �?결제 최�?가</div>
-      <h3>리뷰 리포?�팩</h3>
-      <div class="price-tag">19<span>�???/span></div>
-      <ul>
-        <li>리뷰 30�?AI 분석</li>
-        <li>?��?·CS·블로�?초안 30�?/li>
-        <li>감정·?�워??분석 리포??/li>
-        <li>?�동???�입 ?�안??/li>
-      </ul>
-      <a href="#contact" class="price-btn gold" aria-label="19만원 리포?�팩 ?�청">19�??�으�??�작?�기</a>
-      <p class="micro">가??부???�는 �?결제</p>
+      <a href="#contact" class="price-btn">무료로 시작하기</a>
     </div>
 
     <div class="price-card featured reveal">
-      <div class="feat-badge">�?초기 고객 3�??�정</div>
-      <h3>?�스???�키지</h3>
-      <div class="price-tag">49<span>�???/span></div>
+      <div class="featured-badge">🔥 신규 HOT</div>
+      <h3>② 리뷰 리포트팩</h3>
+      <div class="price-tag">19<span>만 원</span></div>
       <ul>
-        <li>리뷰 50�?AI 분석</li>
-        <li>?��? + 부??리뷰 ?�??초안</li>
-        <li>블로�?초안 5�?/li>
-        <li>n8n ?�동???�팅</li>
-        <li>Google Sheets 리포??/li>
-        <li>카카???�림 ?�동</li>
+        <li>리뷰 30개 AI 분석</li>
+        <li>답글 초안 묶음 제공</li>
+        <li>부정 리뷰 CS 대응 초안</li>
+        <li>블로그 홍보글 초안</li>
+        <li>자동화 도입 제안서</li>
       </ul>
-      <a href="#contact" class="price-btn accent" aria-label="49만원 ?�스???�키지 ?�청">49�????�스???�청</a>
-      <p class="micro">??�??�팅 ???�구 ?�산</p>
+      <a href="#contact" class="price-btn accent">리포트팩 문의하기</a>
+    </div>
+
+    <div class="price-card featured reveal">
+      <div class="featured-badge">⚡ 초기 고객 한정</div>
+      <h3>③ 테스트 패키지</h3>
+      <div class="price-tag">49<span>만 원</span></div>
+      <ul>
+        <li>리뷰 50개 AI 분석</li>
+        <li>핵심 n8n 자동화 세팅</li>
+        <li>Google Sheets 리포트</li>
+        <li>카카오 알림 연동</li>
+        <li>답글·CS·블로그 초안 자동 생성</li>
+      </ul>
+      <a href="#contact" class="price-btn accent">자동화 세팅 신청</a>
     </div>
 
     <div class="price-card reveal">
-      <h3>?�탠?�드 + ???��?관�?/h3>
-      <div class="price-tag" style="font-size:1.5rem;">99�?span> + 30�???</span></div>
+      <h3>④ 스탠다드 / 월 유지관리</h3>
+      <div class="price-tag">99<span>만 원</span><br><span style="font-size:1rem;color:var(--muted);">월 30만 원~</span></div>
       <ul>
-        <li>?�스???�키지 ?�체 ?�함</li>
-        <li>리뷰 무제??처리</li>
-        <li>Notion ?�?�보??/li>
-        <li>?�간 ?�사?�트 리포??/li>
-        <li>?�크?�로??지??개선</li>
+        <li>대시보드 구성</li>
+        <li>월간 리뷰 인사이트 리포트</li>
+        <li>워크플로우 유지·개선</li>
+        <li>문구 피드백 반영</li>
+        <li>MRR형 운영 관리</li>
       </ul>
-      <a href="#contact" class="price-btn" aria-label="?�탠?�드 ?�키지 문의">문의?�기</a>
-      <p class="micro">MRR 기반 ?�정???�영</p>
+      <a href="#contact" class="price-btn">상담 후 결정하기</a>
     </div>
+  </div>
+
+  <div class="expert-box reveal" style="margin-top:2rem;">
+    <div class="expert-label">💡 전문가 조언 — 어떤 순서로 진행하면 좋나요?</div>
+    <p>
+      권장 순서는 <strong>무료 진단 → 리뷰 리포트팩 → 테스트 패키지 → 월 유지관리</strong>입니다.
+      리포트팩은 첫 결제 부담을 낮추면서 실제 결과물을 확인하는 단계이고, 테스트 패키지는 반복 업무를 실제 자동화 자산으로 바꾸는 단계입니다.
+    </p>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
-<section class="section" id="proof" aria-labelledby="proof-title">
-  <div class="section-label">?�입 ?�기</div>
-  <h2 class="section-title" id="proof-title">?�장?�들??직접 말하??br>변??/h2>
-
+<!-- PROOF -->
+<section class="section" aria-labelledby="proof-heading">
+  <div class="section-label reveal">도입 효과</div>
+  <h2 id="proof-heading" class="section-title reveal">카페·음식점 사장님이 기대할 수 있는 변화</h2>
   <div class="proof-grid">
     <div class="proof-card reveal">
-      <div class="stars">?�★?�★??/div>
-      <blockquote>매일 �?리뷰 ?��? ?�느???�근??�??�는?? ?�제 AI 초안??준비돼 ?�으??직접 ?�정?�서 바로 ?�립?�다. ?�말 ?�해졌어??</blockquote>
-      <div class="proof-author">???��? 카페 ?�영??· 무료 진단 ?�기</div>
+      <div class="stars">★★★★★</div>
+      <blockquote>매일 밤 리뷰 답글 쓰느라 퇴근을 못 했는데, 이제 초안이 나와 있으니 10초 만에 복붙합니다. 진짜 신세계예요.</blockquote>
+      <div class="proof-author">— 홍대 카페 운영자 · 무료 진단 후기</div>
     </div>
-    <div class="proof-card reveal">
-      <div class="stars">?�★?�★??/div>
-      <blockquote>부??리뷰가 무서?�서 그냥 ?�?�데, AI가 만들?��? ?�??초안???�연?�러?�서 바로 ?�용?�습?�다. ?�???�도가 ?�씬 빨라졌어??</blockquote>
-      <div class="proof-author">??강남 카페 ?�영??· 리포?�팩 ?�기</div>
+    <div class="proof-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <blockquote>부정 리뷰가 무서워서 그냥 뒀는데, 대응 문구가 자동으로 나오니 바로 올릴 수 있었어요. 별점도 올라갔습니다.</blockquote>
+      <div class="proof-author">— 서면 음식점 운영자 · 샘플 진단 후기</div>
     </div>
-    <div class="proof-card reveal">
-      <div class="stars">?�★?�★??/div>
-      <blockquote>블로�??�보글??직접 ?�려�????�간??걸렸?�데, 고객 리뷰 기반 AI 초안??조금�??�듬?�면 ?�나?? ?�간??많이 ?�약?�니??</blockquote>
-      <div class="proof-author">???�촌 ?�식???�장??· ?�스???�키지 ?�기</div>
+    <div class="proof-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <blockquote>블로그 홍보글을 직접 쓰려면 한 시간이 걸렸는데, AI 초안을 조금만 고치면 되니까 진짜 편합니다.</blockquote>
+      <div class="proof-author">— 해운대 디저트 카페 운영자 · 샘플 진단 후기</div>
     </div>
   </div>
-  <p class="proof-notice">AI ?�성 결과물�? 검?�용 초안?�며 ?�동 게시?��? ?�습?�다. ?�제 ?�과???�종·리뷰 ?�에 ?�라 ?��? ???�습?�다.</p>
+  <p class="proof-notice reveal">위 후기는 무료 샘플 진단 참여자의 소감입니다. AI가 생성하는 모든 답글은 검토용 초안이며 자동 발송되지 않습니다. 실제 효과는 업종·리뷰 수·운영 환경에 따라 다를 수 있습니다.</p>
 </section>
 
 <!-- FAQ -->
 <div class="faq-section" id="faq">
   <div class="faq-inner">
-    <div class="section-label">?�주 묻는 질문</div>
-    <h2 class="section-title">궁금???�이 ?�으?��???</h2>
-
-    <div class="faq-list" role="list">
-      <div class="faq-item" role="listitem">
+    <div class="section-label reveal">자주 묻는 질문</div>
+    <h2 class="section-title reveal">궁금한 점이 있으신가요?</h2>
+    <div class="faq-list reveal">
+      <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          AI ?��????�동?�로 게시?�나??
+          AI가 뭔지 잘 모르는데 사용할 수 있나요?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" role="region">
-          <p>?��? 그렇지 ?�습?�다. 모든 AI ?��??� ?�장?�이 직접 검?�·수????게시?�는 <strong>초안</strong>?�니?? ?�동 게시???�계 ?�계부??배제?�습?�다.</p>
+        <div class="faq-a">
+          <p>네, 완전히 가능합니다. 코딩이나 IT 지식이 전혀 필요 없습니다. 사장님이 할 일은 네이버 리뷰를 복사해서 붙여넣기하는 것뿐입니다. 나머지는 저희가 세팅해드리고 AI가 처리합니다. 스마트폰으로 카카오톡 하실 수 있으면 충분합니다.</p>
         </div>
       </div>
-      <div class="faq-item" role="listitem">
+      <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          카페·?�식?????�른 ?�종??가?�한가??
+          리뷰를 자동으로 수집하나요?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" role="region">
-          <p>?�재??카페·?�식???�장?�을 최우?�으�?최적?�했?�니?? ?�른 ?�종?� 무료 진단 ?�청 ??말�???주시�?검?�해 ?�립?�다.</p>
+        <div class="faq-a">
+          <p>아닙니다. 네이버 약관을 준수하기 위해 사장님이 직접 복사하거나 CSV로 업로드하는 방식입니다. 자동 크롤링은 플랫폼 약관 위반 소지가 있어 사용하지 않습니다.</p>
         </div>
       </div>
-      <div class="faq-item" role="listitem">
+      <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          개인?�보(리뷰 ?�용)???�전?��???
+          AI가 만든 답글이 자동으로 올라가나요?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" role="region">
-          <p>리뷰 분석?� HTTPS ?�호???�신?�로 처리?�니?? ?�집???�이?�는 진단 목적?�로�??�용?�며 ???�에�??�공?��? ?�습?�다.</p>
+        <div class="faq-a">
+          <p>절대 그렇지 않습니다. 모든 AI 생성 답글은 사장님이 직접 검토하고 수정한 후 올리는 '초안' 방식입니다. 특히 부정 리뷰 대응 문구는 반드시 사람이 확인 후 게시하도록 안내하고 있습니다.</p>
         </div>
       </div>
-      <div class="faq-item" role="listitem">
+      <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          무료 진단?� ?�말 무료?��??? ?�후 강매???�나??
+          고객 데이터는 안전한가요?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" role="region">
-          <p>?�전 무료?�니?? 리뷰 ?�플 3~10개만 보내주시�?24?�간 ??리포?��? ?�립?�다. 결제??리포???�인 ???�장?�이 결정?�시�??�니?? 강매???�박?� ?�습?�다.</p>
+        <div class="faq-a">
+          <p>리뷰 작성자 이름 등 개인정보는 마스킹 처리 후 AI에게 전달됩니다. 결과는 사장님 본인의 Google Sheets에만 저장되며 제3자에게 공유되지 않습니다. 전송 구간은 HTTPS로 암호화됩니다.</p>
         </div>
       </div>
-      <div class="faq-item" role="listitem">
+      <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          n8n ?�동?��? 뭔�??? ?�렵지 ?�나??
+          어떤 업종에 맞나요?
           <span class="faq-icon" aria-hidden="true">+</span>
         </button>
-        <div class="faq-a" role="region">
-          <p>n8n?� ?�코???�동???�구?�니?? ?�팅?� ?�?��? ?��? ?�드리며 ?�장?��? 결과�?받아보시�??�니?? 리뷰 ??AI 분석 ??Google Sheets ?�????카카???�림까�? ?�동?�로 ?�결?�니??</p>
+        <div class="faq-a">
+          <p>현재는 카페·음식점에 가장 집중합니다. 네이버 플레이스 리뷰가 있는 다른 업종도 상담은 가능하지만, 초기 30일은 음식점·카페 사례를 우선 구축합니다. 의료 효과나 금융 수익 관련 표현은 AI 생성에서 자동으로 제외됩니다.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          무료 진단은 정말 무료인가요?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>네, 완전 무료입니다. 리뷰 10개를 보내주시면 24시간 내에 샘플 분석 리포트를 드립니다. 유료 전환 여부는 리포트 확인 후 결정하시면 됩니다. 어떠한 사전 결제도 없습니다.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
+          n8n, Google Sheets가 뭔가요? 직접 설정해야 하나요?
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <p>n8n은 자동화를 실행하는 프로그램이고, Google Sheets는 결과를 저장하는 표 프로그램입니다. 둘 다 사장님이 직접 건드리실 필요가 없습니다. 세팅은 저희가 전부 해드립니다. 사장님은 결과만 확인하시면 됩니다.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CTA + FORM -->
-<section class="cta-section" id="contact" aria-labelledby="contact-title">
-  <h2 id="contact-title">리뷰 3개만 보내주시�?br>맞춤 ?�플 리포?��? ?�립?�다</h2>
-  <p>10�?무료 진단 ???�동??가?�한 ?�무?� ?�상 ?�감 ?�간??리포?�로 ?�공?�니??<br>결제??진단 ?�후??결정?�세?? ?�떠??강매???�습?�다.</p>
-
-  <div class="cta-btns">
-    <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-kakao" aria-label="카카??채널�?바로 문의?�기">?�� 카카??채널�?바로 문의</a>
-    <a href="#contact-form" class="btn-ghost">?�으�??�청?�기</a>
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <h2 class="reveal">지금 리뷰 10개만 보내주시면<br>샘플 리포트를 만들어드립니다</h2>
+  <p class="reveal">카페·음식점 리뷰 10개만 보내주시면 답글 초안, 부정 리뷰 대응 방향, 블로그 홍보 가능성을 샘플로 정리해드립니다.<br>결제는 진단 이후에 결정하셔도 됩니다. 부담 없이 문의하세요.</p>
+  <div class="cta-btns reveal">
+    <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-kakao">
+      💬 카카오 채널로 바로 문의
+    </a>
+    <a href="#contact-form" class="btn-ghost">폼으로 신청하기</a>
   </div>
 
-  <div class="contact-form" id="contact-form" role="form" aria-labelledby="form-title">
-    <p class="form-title" id="form-title">?�� 무료 진단 ?�청??<span style="font-weight:400;color:var(--muted);font-size:0.85rem;">(24?�간 ???�락)</span></p>
-
+  <div class="contact-form reveal" id="contact-form">
+    <p class="form-title">📋 무료 진단 신청서 <span>(24시간 내 연락)</span></p>
     <div id="formWrap">
       <div class="form-row">
         <div class="form-group">
-          <label for="f-name">?�체�?*</label>
-          <input type="text" id="f-name" placeholder="?? 블루�?카페" required autocomplete="organization" aria-required="true">
+          <label for="f-name">업체명 *</label>
+          <input type="text" id="f-name" placeholder="예: 블루문 카페" required autocomplete="organization">
         </div>
         <div class="form-group">
-          <label for="f-type">?�종 *</label>
-          <select id="f-type" required aria-required="true">
-            <option value="">?�택?�세??/option>
-            <option value="카페" selected>카페</option>
-            <option value="?�식??>?�식??/option>
-            <option value="베이커리">베이커리 / ?��??�샵</option>
-            <option value="기�?">기�?</option>
+          <label for="f-type">업종 *</label>
+          <select id="f-type" required>
+            <option value="">선택하세요</option>
+            <option>카페</option>
+            <option>음식점</option>
+            <option>베이커리 / 디저트</option>
+            <option>술집 / 포차</option>
+            <option>기타 네이버 플레이스 업종</option>
           </select>
         </div>
       </div>
-
       <div class="form-group">
-        <label for="f-contact">?�락�?(카카?�ID ?�는 ?�화번호) *</label>
-        <input type="text" id="f-contact" placeholder="?? kakao_id ?�는 010-1234-5678" required aria-required="true" autocomplete="tel">
+        <label for="f-contact">연락처 (카카오ID 또는 전화번호) *</label>
+        <input type="text" id="f-contact" placeholder="예: kakao_id 또는 010-1234-5678" required>
       </div>
-
       <div class="form-group">
-        <label for="f-review">리뷰 ?�플 (3�??�상 붙여?�기 권장)</label>
-        <textarea id="f-review" placeholder="?�이�??�레?�스 리뷰�?복사?�서 붙여?�어 주세??" aria-label="리뷰 ?�플 ?�력"></textarea>
+        <label for="f-review">리뷰 샘플 (3개 이상 붙여넣기 권장)</label>
+        <textarea id="f-review" placeholder="네이버 플레이스 리뷰를 복사해서 붙여넣어 주세요.&#10;리뷰가 많을수록 더 정확한 진단이 가능합니다."></textarea>
       </div>
-
-      <!-- HONEYPOT (?�팸 방�?) -->
-      <input type="text" id="hp-website" name="website" style="display:none;" autocomplete="off" tabindex="-1" aria-hidden="true">
-
-      <!-- ?�의 -->
-      <div class="form-agree">
-        <label>
-          <input type="checkbox" id="privacyAgree" required aria-required="true">
-          <span>[?�수] 개인?�보 ?�집·?�용???�의?�니?? <button type="button" onclick="openPrivacy()" style="background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:inherit;font-family:inherit;">개인?�보처리방침 보기</button></span>
+      <div class="hp-field" aria-hidden="true">
+        <label for="hp-website">Website</label>
+        <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="consent-box">
+        <label class="consent-label" for="consent-privacy">
+          <input type="checkbox" id="consent-privacy">
+          <span><strong>[필수]</strong> 개인정보 수집·이용에 동의합니다. 업체명, 연락처, 업종 정보는 무료 진단 및 결과 안내 목적으로 사용됩니다.</span>
         </label>
-        <label>
-          <input type="checkbox" id="reviewAgree">
-          <span>[?�택] 리뷰 ?�플 ?�이?��? AI 분석 목적?�로 처리?�는 것에 ?�의?�니??</span>
+        <label class="consent-label" for="consent-review">
+          <input type="checkbox" id="consent-review">
+          <span><strong>[선택]</strong> 리뷰 샘플 데이터 처리를 허용합니다. 선택하지 않아도 신청은 가능하지만, 샘플 리포트 정확도가 낮아질 수 있습니다.</span>
         </label>
       </div>
-
-      <!-- Turnstile: ?�제 sitekey�?교체 ?�요 -->
-      <div class="form-group">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAADReGXn-318jsskf" data-theme="dark"></div>
-        <p style="font-size:0.76rem;color:var(--muted);margin-top:0.4rem;">?�팸 방�?�??�해 Cloudflare 검증을 ?�용?�니??</p>
+      <button class="form-submit" onclick="submitForm()" id="submitBtn">무료 진단 신청하기 →</button>
+      <div class="form-error" id="formError">
+        전송에 실패했습니다. <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer">카카오 채널</a>로 직접 문의해 주세요.
       </div>
-
-      <button class="form-submit" onclick="submitForm()" id="submitBtn" type="button">
-        무료 진단 ?�청?�기 ??
-      </button>
-      <div class="form-error" id="formError" role="alert"></div>
-      <p class="form-privacy">?�집???�보??진단 목적?�로�??�용?�며 ???�에�??�공?��? ?�습?�다.</p>
+      <p class="form-privacy">
+        수집된 정보는 진단 목적으로만 사용되며 제3자에게 제공되지 않습니다.<br>
+        자세한 내용은 <a onclick="openPrivacy()">개인정보처리방침</a>을 확인해 주세요.
+      </p>
     </div>
-
-    <div class="form-success" id="formSuccess" style="display:none;" role="status">
-      <div class="icon">??/div>
-      <h4>?�청???�료?�었?�니??</h4>
-      <p>24?�간 ?�로 카카??채널 ?�는 ?�력?�신 ?�락처로 ?�락?�리겠습?�다.<br>감사?�니??</p>
-      <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;">카카??채널 바로가�???/a>
+    <div class="form-success" id="formSuccess">
+      <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+      <h4>신청이 완료됐습니다!</h4>
+      <p>24시간 내로 카카오 채널 또는 입력하신<br>연락처로 연락드립니다. 감사합니다!</p>
+      <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display:inline-flex;margin-top:1.5rem;">카카오 채널 바로가기 →</a>
     </div>
-  </div>
-</section>
-</main>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-logo">Loop<span>Forge</span> AI</div>
-      <p>카페·?�식???�장?�의 반복 ?�무�?br>?�구 ?�동???�산?�로 만듭?�다.</p>
-    </div>
-    <div class="footer-links">
-      <a href="#how">?�동 방식</a>
-      <a href="#roi">ROI 계산�?/a>
-      <a href="#price">가�?/a>
-      <a href="#proof">?�기</a>
-      <a href="#faq">FAQ</a>
-      <a href="#contact">무료 진단</a>
-      <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener">카카??문의</a>
-      <button onclick="openPrivacy()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.85rem;font-family:inherit;transition:color .2s;" onmouseover="this.style.color='#f2f4f7'" onmouseout="this.style.color='#8896a8'">개인?�보처리방침</button>
-    </div>
-  </div>
-  <div class="footer-biz">
-    <strong>?�호�?</strong> 주식?�사 ?�국?�면조사 &nbsp;|&nbsp;
-    <strong>?�?�자:</strong> 김?�진 &nbsp;|&nbsp;
-    <strong>?�업?�등록번??</strong> 617-86-24935<br>
-    <strong>카카??채널:</strong> <a href="https://pf.kakao.com/_wLasX" target="_blank" rel="noopener">pf.kakao.com/_wLasX</a>
-  </div>
-  <div class="footer-bottom">
-    © 2026 LoopForge AI. All rights reserved. &nbsp;|&nbsp;
-    AI ?�성 결과물�? 검?�용 초안?�며 ?�동 게시?��? ?�습?�다.
-  </div>
-</footer>
-
-<!-- FLOATING CTA -->
-<button class="float-cta" id="floatCta" onclick="window.location.href='#contact'" aria-label="무료 진단 ?�청?�기">
-  무료 진단 받기 ??
-</button>
-
-<!-- 개인?�보처리방침 모달 -->
-<div id="privacyModal" class="modal-bg" role="dialog" aria-modal="true" aria-labelledby="privacy-title" onclick="if(event.target===this)closePrivacy()">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <button class="modal-close-btn" onclick="closePrivacy()" aria-label="모달 ?�기">??/button>
-    <h3 id="privacy-title">개인?�보처리방침</h3>
-    <p><strong>?�집 ??��:</strong> ?�체�? ?�종, ?�락�? 리뷰 ?�플(?�택)</p>
-    <p><strong>?�집 목적:</strong> 무료 진단 ?�비???�공 �?결과 ?�달</p>
-    <p><strong>보유 기간:</strong> 진단 ?�료 ??6개월 ?�내 ?�기</p>
-    <p><strong>?????�공:</strong> ?�음</p>
-    <p><strong>?�속 ?�보:</strong> ?�팸·보안 방�? 목적?�로 ?�속 IP가 ?�버 로그???�시 기록?????�습?�다.</p>
-    <button onclick="closePrivacy()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.8rem 2rem;font-weight:800;margin-top:1.5rem;cursor:pointer;font-family:var(--font);">?�인</button>
   </div>
 </div>
 
+</main>
+
+<!-- 개인정보처리방침 모달 -->
+<div class="privacy-modal-backdrop" id="privacyModal" role="dialog" aria-modal="true" onclick="closePrivacyOutside(event)">
+  <div class="privacy-modal">
+    <button class="privacy-modal-close" onclick="closePrivacy()" aria-label="닫기">✕</button>
+    <h3>개인정보처리방침</h3>
+    <p>LoopForge AI(운영: 주식회사 한국석면조사)는 이용자의 개인정보를 중요하게 생각하며 아래와 같이 처리합니다.</p>
+    <h4>1. 수집 항목 및 목적</h4>
+    <ul>
+      <li><strong>필수 수집 항목:</strong> 업체명, 업종, 연락처(전화번호 또는 카카오ID)</li>
+      <li><strong>선택 수집 항목:</strong> 리뷰 샘플</li>
+      <li><strong>수집 목적:</strong> 무료 진단 서비스 제공, 결과 전달, 자동화 도입 상담, 스팸·보안 사고 방지</li>
+      <li><strong>수집 근거:</strong> 정보주체의 동의 (개인정보보호법 제15조 제1항 제1호)</li>
+    </ul>
+    <h4>2. 보유 및 이용 기간</h4>
+    <p>무료 진단 및 상담 완료 후 6개월 이내 파기합니다. 단, 관계 법령상 보존이 필요한 기록은 해당 기간 동안 보관할 수 있습니다.</p>
+    <h4>3. 제3자 제공</h4>
+    <p>수집된 개인정보는 이용자의 동의 없이 제3자에게 제공하지 않습니다.</p>
+    <h4>4. 처리 위탁</h4>
+    <ul>
+      <li>수탁자: Google LLC (Google Sheets, Apps Script)</li>
+      <li>위탁 업무: 문의 데이터 저장 및 전달</li>
+    </ul>
+    <h4>5. 이용자의 권리</h4>
+    <p>언제든지 개인정보 열람·정정·삭제·처리정지를 요청하실 수 있습니다. 카카오 채널로 문의해 주세요.</p>
+    <h4>6. 시행일</h4>
+    <p>본 방침은 2026년 5월 17일부터 적용됩니다.</p>
+    <div style="margin-top:1.5rem;text-align:center;">
+      <button onclick="closePrivacy()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.7rem 2rem;font-weight:700;cursor:pointer;font-family:var(--font);">확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Loop<span>Forge</span> AI</div>
+      <p>반복 업무는 비용이 아니라<br>제품화 가능한 자산입니다.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#what">서비스 소개</a>
+      <a href="#how">작동 방식</a>
+      <a href="#price">가격</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">무료 진단</a>
+      <a onclick="openPrivacy()" style="cursor:pointer;">개인정보처리방침</a>
+      <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer">카카오 문의</a>
+    </div>
+  </div>
+  <div class="footer-biz">
+    <strong>상호명:</strong> 주식회사 한국석면조사 &nbsp;|&nbsp;
+    <strong>서비스명:</strong> LoopForge AI (루프포지 AI) &nbsp;|&nbsp;
+    <strong>대표자:</strong> 김영진 &nbsp;|&nbsp;
+    <strong>사업자등록번호:</strong> 617-86-24935<br>
+    <strong>사업장 소재지:</strong> 부산광역시 동래구 충렬대로331번길 50, 2층 &nbsp;|&nbsp;
+    <strong>통신판매업 신고번호:</strong> 신고 준비 중<br>
+    <strong>카카오 채널:</strong> <a href="http://pf.kakao.com/_wLasX" target="_blank" rel="noopener noreferrer">pf.kakao.com/_wLasX</a> &nbsp;|&nbsp;
+    <strong>이메일:</strong> <a href="mailto:wnsrua01@gmail.com">wnsrua01@gmail.com</a>
+  </div>
+  <div class="footer-bottom">
+    © 2026 LoopForge AI. All rights reserved. &nbsp;·&nbsp;
+    AI 생성 결과물은 검토용 초안이며 자동 발송되지 않습니다. &nbsp;·&nbsp;
+    의료·금융·법률 효과를 보장하지 않습니다.
+  </div>
+</footer>
+
 <script>
-/* ============================
-   ?�크�?진행 ?�시�?
-   ============================ */
-window.addEventListener('scroll', function() {
-  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-  var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-  document.getElementById('progress-bar').style.width = pct + '%';
+/* Scroll Reveal */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); ro.unobserve(e.target); } });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
 
-  // ?�로??CTA
-  var floatCta = document.getElementById('floatCta');
-  if (scrollTop > 500) {
-    floatCta.classList.add('visible');
-  } else {
-    floatCta.classList.remove('visible');
-  }
-}, { passive: true });
+/* 모바일 메뉴 */
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu'), b=document.getElementById('hamburgerBtn');
+  const o=m.classList.toggle('open');
+  b.classList.toggle('open',o); b.setAttribute('aria-expanded',o);
+  document.body.style.overflow=o?'hidden':'';
+}
+function closeMenu(){
+  const m=document.getElementById('mobileMenu'), b=document.getElementById('hamburgerBtn');
+  m.classList.remove('open'); b.classList.remove('open');
+  b.setAttribute('aria-expanded','false'); document.body.style.overflow='';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeMenu(); closePrivacy(); } });
 
-/* ============================
-   Scroll Reveal
-   ============================ */
-var ro = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      ro.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(function(el) { ro.observe(el); });
-
-/* ============================
-   ?�자 카운???�니메이??
-   ============================ */
-function animateCounter(el, target, suffix, duration) {
-  var start = 0;
-  var step = target / (duration / 16);
-  var timer = setInterval(function() {
-    start += step;
-    if (start >= target) {
-      start = target;
-      clearInterval(timer);
-    }
-    el.textContent = Math.floor(start) + (suffix || '');
-  }, 16);
+/* FAQ */
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item'), isOpen=item.classList.toggle('open');
+  btn.setAttribute('aria-expanded',isOpen);
 }
 
-var statsObserver = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      animateCounter(document.getElementById('cnt-diag'), 47, '�?', 1200);
-      animateCounter(document.getElementById('cnt-draft'), 380, '�?', 1500);
-      animateCounter(document.getElementById('cnt-save'), 8, '�?, 800);
-      statsObserver.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-var statsBar = document.querySelector('.stats-bar');
-if (statsBar) { statsObserver.observe(statsBar); }
+/* 문의폼 */
+const WORKER_CONTACT_ENDPOINT = 'https://loopforge-contact-proxy.wnsrua01.workers.dev/api/contact';
 
-/* ============================
-   ROI 계산�?
-   ============================ */
-function calcROI(val) {
-  var n = parseInt(val);
-  document.getElementById('review-count-label').textContent = n;
-  var timePerReview = 10; // �?
-  var monthlyMinutes = n * timePerReview;
-  var monthlyHours = (monthlyMinutes / 60).toFixed(1);
-  var hourlyWage = 10030; // 최�??�급 (??
-  var annualSaving = Math.round((monthlyMinutes * 12 * hourlyWage / 60) / 10000);
-  var setupCost = 49; // 만원
-  var paybackMonths = annualSaving > 0 ? (setupCost / (annualSaving / 12)).toFixed(1) : '-';
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const type=document.getElementById('f-type').value;
+  const contact=document.getElementById('f-contact').value.trim();
+  const review=document.getElementById('f-review').value.trim();
+  const website=document.getElementById('hp-website').value.trim();
+  const consentPrivacy=document.getElementById('consent-privacy').checked;
+  const consentReview=document.getElementById('consent-review').checked;
 
-  document.getElementById('roi-time').textContent = monthlyHours + 'h';
-  document.getElementById('roi-cost').textContent = annualSaving + '�?;
-  document.getElementById('roi-month').textContent = paybackMonths + '개월';
-}
-calcROI(30);
+  if(website){return;}
+  if(!name){alert('업체명을 입력해주세요.');document.getElementById('f-name').focus();return;}
+  if(!type){alert('업종을 선택해주세요.');document.getElementById('f-type').focus();return;}
+  if(!contact){alert('연락처를 입력해주세요.');document.getElementById('f-contact').focus();return;}
+  if(!consentPrivacy){alert('개인정보 수집·이용 필수 동의가 필요합니다.');document.getElementById('consent-privacy').focus();return;}
+  if(review && !consentReview){alert('리뷰 샘플을 입력한 경우, 리뷰 샘플 데이터 처리 선택 동의가 필요합니다.');document.getElementById('consent-review').focus();return;}
 
-/* ============================
-   모바??메뉴
-   ============================ */
-function toggleMenu() {
-  var m = document.getElementById('mobileMenu');
-  var btn = document.getElementById('hamburgerBtn');
-  var isOpen = m.classList.toggle('open');
-  btn.classList.toggle('open', isOpen);
-  btn.setAttribute('aria-expanded', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-function closeMenu() {
-  var m = document.getElementById('mobileMenu');
-  var btn = document.getElementById('hamburgerBtn');
-  m.classList.remove('open');
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
+  const btn=document.getElementById('submitBtn'), err=document.getElementById('formError');
+  btn.textContent='전송 중...'; btn.disabled=true; err.style.display='none';
 
-/* ============================
-   FAQ
-   ============================ */
-function toggleFaq(btn) {
-  var item = btn.closest('.faq-item');
-  var isOpen = item.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen);
-}
-
-/* ============================
-   개인?�보 모달
-   ============================ */
-function openPrivacy() {
-  var modal = document.getElementById('privacyModal');
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closePrivacy() {
-  var modal = document.getElementById('privacyModal');
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ============================
-   Exit Intent
-   ============================ */
-var exitShown = false;
-document.addEventListener('mouseleave', function(e) {
-  if (!exitShown && e.clientY < 10) {
-    document.getElementById('exitBanner').classList.add('show');
-    exitShown = true;
-  }
-});
-function closeExit() {
-  document.getElementById('exitBanner').classList.remove('show');
-}
-
-/* ============================
-   ???�출
-   ============================ */
-function submitForm() {
-  var name = document.getElementById('f-name').value.trim();
-  var type = document.getElementById('f-type').value;
-  var contact = document.getElementById('f-contact').value.trim();
-  var review = document.getElementById('f-review').value.trim();
-  var privacyChecked = document.getElementById('privacyAgree').checked;
-  var honeypot = document.getElementById('hp-website').value.trim();
-
-  var errEl = document.getElementById('formError');
-  var btn = document.getElementById('submitBtn');
-
-  errEl.style.display = 'none';
-
-  if (!name || !type || !contact) {
-    errEl.textContent = '?�체�? ?�종, ?�락처는 ?�수?�니??';
-    errEl.style.display = 'block';
-    return;
-  }
-  if (!privacyChecked) {
-    errEl.textContent = '개인?�보 ?�집·?�용 ?�의???�수?�니??';
-    errEl.style.display = 'block';
-    return;
-  }
-  // Honeypot ?�팸 방�?
-  if (honeypot !== '') {
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-    return;
-  }
-
-  btn.textContent = '?�송 �?..';
-  btn.disabled = true;
-
-  var payload = {
-    type: 'contact_form',
-    business_name: name,
-    business_type: type,
-    contact: contact,
-    review_sample: review,
-    privacy_agree: privacyChecked,
-    source: 'loopforge-v6-final',
-    submitted_at: new Date().toISOString()
-  };
-
-  // ?�️ Worker URL???�제 배포 URL�?교체?�세??
-  fetch('https://loopforge-contact-proxy.wnsrua01.workers.dev', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.success) {
-      document.getElementById('formWrap').style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      throw new Error(data.error || '?�송 ?�패');
-    }
-  })
-  .catch(function() {
-    errEl.textContent = '?�송???�패?�습?�다. 카카??채널�?직접 문의??주세??';
-    errEl.style.display = 'block';
-    btn.textContent = '무료 진단 ?�청?�기 ??;
-    btn.disabled = false;
+  fetch(WORKER_CONTACT_ENDPOINT,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      type:'contact_form',
+      business_name:name,
+      business_type:type,
+      contact,
+      review_sample:consentReview?review:'',
+      website,
+      consent_privacy:consentPrivacy,
+      consent_review_sample:consentReview,
+      source:'loopforge-landing-v4-final-security-integrated',
+      page_url:window.location.href,
+      user_agent:navigator.userAgent,
+      submitted_at:new Date().toISOString()
+    })
+  }).then(async res=>{
+    if(!res.ok){throw new Error('전송 실패');}
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  }).catch(()=>{
+    err.style.display='block';
+    btn.textContent='무료 진단 신청하기 →'; btn.disabled=false;
   });
 }
 
-/* ============================
-   ?�보??ESC
-   ============================ */
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeMenu();
-    closePrivacy();
-    closeExit();
-  }
-});
-
-console.log('%c?? LoopForge AI v6-final | 벤치마킹 최적???�료', 'color:#00E5A0;font-weight:900;font-size:14px;');
+/* 개인정보처리방침 모달 */
+function openPrivacy(){document.getElementById('privacyModal').classList.add('open');document.body.style.overflow='hidden';}
+function closePrivacy(){document.getElementById('privacyModal').classList.remove('open');document.body.style.overflow='';}
+function closePrivacyOutside(e){if(e.target===document.getElementById('privacyModal'))closePrivacy();}
 </script>
 </body>
 </html>
