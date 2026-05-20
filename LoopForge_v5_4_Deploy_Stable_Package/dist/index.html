@@ -317,25 +317,9 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
   .sample-grid{grid-template-columns:1fr;}
   .section{padding:3.5rem 1.2rem;}
 }
-
-/* LANG-SWITCHER-START */
-.lang-switcher{position:relative;margin-left:1rem;}
-.lang-btn{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);padding:.38rem .9rem;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;}
-.lang-btn:hover{background:rgba(255,255,255,.1);}
-.lang-btn .chevron{font-size:.6rem;color:var(--muted);transition:transform .2s;margin-left:.2rem;}
-.lang-switcher.open .chevron{transform:rotate(180deg);}
-.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1a1a;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.4rem;min-width:160px;box-shadow:0 16px 40px rgba(0,0,0,.5);z-index:999;}
-.lang-switcher.open .lang-dropdown{display:block;animation:fadeDown .15s ease;}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.lang-option{display:flex;align-items:center;gap:.7rem;padding:.5rem .8rem;border-radius:7px;cursor:pointer;transition:.15s;text-decoration:none;color:var(--text);font-size:.85rem;}
-.lang-option:hover{background:rgba(255,255,255,.07);}
-.lang-option.active{background:rgba(0,229,160,.1);color:var(--accent);}
-.lang-option .lang-native{font-size:.75rem;color:var(--muted);margin-left:auto;}
-@media(max-width:768px){.lang-btn .lang-label{display:none;}}
-/* LANG-SWITCHER-END */
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
+<script src="./assets/app.js" defer></script>
 </head>
 <body>
 <noscript><div class="noscript-alert">JavaScript가 꺼져 있어 문의폼 제출과 메뉴 기능이 제한됩니다. 카카오 채널로 직접 문의해 주세요.</div></noscript>
@@ -360,19 +344,7 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
     <a href="#price">가격</a>
     <a href="#faq">FAQ</a>
     <a href="http://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer">카카오 문의</a>
-    <div class="lang-switcher" id="langSwitcher">
-<button class="lang-btn" id="langBtn" aria-expanded="false">
-<span id="currentFlag" style="font-size:1.1rem"></span>
-<span class="lang-label" id="currentLangLabel"></span>
-<span class="chevron">&#9660;</span>
-</button>
-<div class="lang-dropdown">
-<a href="/" class="lang-option" data-lang="ko"><span class="lf">&#127472;&#127479;</span><span>한국어</span><span class="lang-native">KR</span></a>
-<a href="/id.html" class="lang-option" data-lang="id"><span class="lf">&#127470;&#127465;</span><span>Indonesia</span><span class="lang-native">ID</span></a>
-<a href="/ja.html" class="lang-option" data-lang="ja"><span class="lf">&#127471;&#127477;</span><span>日本語</span><span class="lang-native">JA</span></a>
-<a href="/th.html" class="lang-option" data-lang="th"><span class="lf">&#127481;&#127469;</span><span>ภาษาไทย</span><span class="lang-native">TH</span></a>
-<a href="/vi.html" class="lang-option" data-lang="vi"><span class="lf">&#127483;&#127475;</span><span>Tiếng Việt</span><span class="lang-native">VI</span></a>
-</div></div><a href="#contact" class="nav-cta">무료 진단 신청</a>
+    <a href="#contact" class="nav-cta">무료 진단 신청</a>
   </div>
   <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기/닫기" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1032,265 +1004,14 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
     <strong>사업장 소재지:</strong> 부산광역시 동래구 충렬대로331번길 50, 2층 &nbsp;|&nbsp;
     <strong>통신판매업 신고번호:</strong> 신고 준비 중<br>
     <strong>카카오 채널:</strong> <a href="http://pf.kakao.com/_wLasX" target="_blank" rel="noopener noreferrer">pf.kakao.com/_wLasX</a> &nbsp;|&nbsp;
-    <strong>이메일:</strong> <a href="mailto:wnsrua01@gmail.com">wnsrua01@gmail.com</a> &nbsp;|&nbsp;
-    <strong>전화:</strong> <a href="tel:05155455362">051-554-5362</a>
+    <strong>이메일:</strong> <a href="mailto:wnsrua01@gmail.com">wnsrua01@gmail.com</a>
   </div>
   <div class="footer-bottom">
     © 2026 LoopForge AI. All rights reserved. &nbsp;·&nbsp;
     AI 생성 결과물은 검토용 초안이며 자동 발송되지 않습니다. &nbsp;·&nbsp;
-    의료·금융·법률 효과를 보장하지 않습니다. &nbsp;·&nbsp;
-    <a href="#" data-open-terms style="color:var(--accent);text-decoration:none;">이용약관</a> &nbsp;·&nbsp;
-    <a href="#" data-open-refund style="color:var(--accent);text-decoration:none;">환불정책</a>
+    의료·금융·법률 효과를 보장하지 않습니다.
   </div>
 </footer>
 
-<!-- 이용약관 모달 -->
-<div id="modal-terms" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:2rem;">
-  <div style="max-width:700px;margin:2rem auto;background:#1a1a2e;border-radius:16px;padding:2.5rem;color:#e0e0e0;line-height:1.8;">
-    <h2 style="color:#00ff88;margin-bottom:1.5rem;">이용약관</h2>
-    <p><strong>제1조 (목적)</strong><br>본 약관은 주식회사 한국석면조사(이하 "회사")가 운영하는 LoopForge AI 서비스(이하 "서비스")의 이용 조건 및 절차, 회사와 회원 간의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
-    <p><strong>제2조 (서비스 내용)</strong><br>서비스는 카페·음식점 사장님을 대상으로 AI 기반 리뷰 답글 초안, 부정 리뷰 대응 초안, 블로그 홍보 초안을 제공합니다. AI가 생성한 결과물은 검토용 초안이며 자동 게시되지 않습니다.</p>
-    <p><strong>제3조 (이용요금)</strong><br>서비스 이용요금은 월 구독 방식으로 부과되며, 가격 정책은 서비스 내 가격 페이지에 명시된 바에 따릅니다.</p>
-    <p><strong>제4조 (회원의 의무)</strong><br>회원은 서비스를 통해 생성된 콘텐츠를 검토 후 사용해야 하며, 허위 정보 작성, 타인의 권리 침해, 불법적인 목적으로 서비스를 이용할 수 없습니다.</p>
-    <p><strong>제5조 (책임 제한)</strong><br>회사는 AI가 생성한 콘텐츠의 정확성, 완전성을 보장하지 않으며, 이를 사용함으로써 발생하는 손해에 대해 책임을 지지 않습니다.</p>
-    <p><strong>제6조 (준거법 및 관할)</strong><br>본 약관은 대한민국 법률에 따라 해석되며, 분쟁 발생 시 부산지방법원을 관할 법원으로 합니다.</p>
-    <p style="color:#888;font-size:0.85rem;">시행일: 2026년 5월 19일 &nbsp;|&nbsp; 문의: wnsrua01@gmail.com &nbsp;|&nbsp; 전화: 051-554-5362</p>
-    <button onclick="document.getElementById('modal-terms').style.display='none'" style="margin-top:1.5rem;background:#00ff88;color:#000;border:none;padding:0.8rem 2rem;border-radius:8px;font-weight:700;cursor:pointer;">닫기</button>
-  </div>
-</div>
-
-<!-- 환불정책 모달 -->
-<div id="modal-refund" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9999;overflow-y:auto;padding:2rem;">
-  <div style="max-width:700px;margin:2rem auto;background:#1a1a2e;border-radius:16px;padding:2.5rem;color:#e0e0e0;line-height:1.8;">
-    <h2 style="color:#00ff88;margin-bottom:1.5rem;">환불정책</h2>
-    <p><strong>1. 구독 취소 및 환불 원칙</strong><br>LoopForge AI는 월 구독 서비스입니다. 구독 취소는 언제든지 가능하며, 취소 시 다음 결제일부터 청구되지 않습니다.</p>
-    <p><strong>2. 환불 가능 기간</strong><br>최초 결제일로부터 7일 이내에 환불을 요청하시면 전액 환불해 드립니다. 7일 초과 후에는 해당 월 이용료는 환불되지 않습니다.</p>
-    <p><strong>3. 환불 불가 사유</strong><br>서비스를 실제로 이용한 경우(AI 초안 생성 이력이 있는 경우), 7일 환불 기간이 경과한 경우에는 환불이 제한될 수 있습니다.</p>
-    <p><strong>4. 환불 신청 방법</strong><br>카카오 채널(pf.kakao.com/_wLasX) 또는 이메일(wnsrua01@gmail.com)로 환불 요청 시 3영업일 이내에 처리됩니다.</p>
-    <p><strong>5. 환불 처리 기간</strong><br>환불 승인 후 카드사 정책에 따라 3~5 영업일 내 처리됩니다.</p>
-    <p style="color:#888;font-size:0.85rem;">문의: wnsrua01@gmail.com &nbsp;|&nbsp; 전화: 051-554-5362</p>
-    <button onclick="document.getElementById('modal-refund').style.display='none'" style="margin-top:1.5rem;background:#00ff88;color:#000;border:none;padding:0.8rem 2rem;border-radius:8px;font-weight:700;cursor:pointer;">닫기</button>
-  </div>
-</div>
-
-<script>
-document.querySelectorAll('[data-open-terms]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();document.getElementById('modal-terms').style.display='block';}));
-document.querySelectorAll('[data-open-refund]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();document.getElementById('modal-refund').style.display='block';}));
-</script>
-
-<script>
-"use strict";
-
-const WORKER_CONTACT_ENDPOINT = "https://loopforge-contact-proxy.wnsrua01.workers.dev/api/contact";
-const TURNSTILE_PLACEHOLDER = "REPLACE_WITH_CLOUDFLARE_TURNSTILE_SITE_KEY";
-
-function qs(selector, root = document) { return root.querySelector(selector); }
-function qsa(selector, root = document) { return Array.from(root.querySelectorAll(selector)); }
-
-function showError(message) {
-  const err = qs('#formError');
-  if (!err) return;
-  err.textContent = message;
-  err.style.display = 'block';
-}
-function clearError() {
-  const err = qs('#formError');
-  if (!err) return;
-  err.textContent = '';
-  err.style.display = 'none';
-}
-function focusById(id) { const el = document.getElementById(id); if (el) el.focus(); }
-
-function openMenu(){
-  const menu = qs('#mobileMenu');
-  const btn = qs('#hamburgerBtn');
-  if (!menu || !btn) return;
-  menu.classList.add('open');
-  btn.classList.add('open');
-  btn.setAttribute('aria-expanded','true');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu(){
-  const menu = qs('#mobileMenu');
-  const btn = qs('#hamburgerBtn');
-  if (!menu || !btn) return;
-  menu.classList.remove('open');
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded','false');
-  document.body.style.overflow = '';
-}
-function toggleMenu(){
-  const menu = qs('#mobileMenu');
-  if (!menu) return;
-  menu.classList.contains('open') ? closeMenu() : openMenu();
-}
-function toggleFaq(btn){
-  const item = btn.closest('.faq-item');
-  if (!item) return;
-  const isOpen = item.classList.toggle('open');
-  btn.setAttribute('aria-expanded', String(isOpen));
-}
-function openPrivacy(event){
-  if (event) event.preventDefault();
-  const modal = qs('#privacyModal');
-  if (!modal) return;
-  modal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closePrivacy(){
-  const modal = qs('#privacyModal');
-  if (!modal) return;
-  modal.classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-async function submitForm(){
-  const name = qs('#f-name')?.value.trim() || '';
-  const type = qs('#f-type')?.value || '';
-  const contact = qs('#f-contact')?.value.trim() || '';
-  const review = qs('#f-review')?.value.trim() || '';
-  const website = qs('#hp-website')?.value.trim() || '';
-  const consentPrivacy = !!qs('#consent-privacy')?.checked;
-  const consentReview = !!qs('#consent-review')?.checked;
-  const turnstileEl = qs('.cf-turnstile');
-  const turnstileSiteKey = turnstileEl ? (turnstileEl.getAttribute('data-sitekey') || '') : '';
-  const turnstileToken = qs('[name="cf-turnstile-response"]')?.value || '';
-  const btn = qs('#submitBtn');
-
-  clearError();
-
-  // Honeypot: 봇에게는 성공처럼 보이게 하되 서버로 보내지 않음
-  if (website) {
-    qs('#formWrap').style.display = 'none';
-    qs('#formSuccess').style.display = 'block';
-    return;
-  }
-
-  if (!name) { showError('업체명을 입력해 주세요.'); focusById('f-name'); return; }
-  if (!type) { showError('업종을 선택해 주세요.'); focusById('f-type'); return; }
-  if (!contact) { showError('연락처를 입력해 주세요.'); focusById('f-contact'); return; }
-  if (!consentPrivacy) { showError('개인정보 수집·이용 필수 동의가 필요합니다.'); focusById('consent-privacy'); return; }
-  if (review && !consentReview) { showError('리뷰 샘플을 입력한 경우, 리뷰 샘플 데이터 처리 선택 동의가 필요합니다.'); focusById('consent-review'); return; }
-  if (!turnstileSiteKey || turnstileSiteKey === TURNSTILE_PLACEHOLDER || turnstileSiteKey.includes('REPLACE_WITH')) {
-    showError('운영 배포 전 Cloudflare Turnstile Site Key를 실제 값으로 교체해야 합니다.');
-    return;
-  }
-  if (!turnstileToken) { showError('스팸 방지 검증을 완료해 주세요.'); return; }
-
-  if (btn) { btn.textContent = '전송 중...'; btn.disabled = true; }
-
-  try {
-    const res = await fetch(WORKER_CONTACT_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'contact_form',
-        business_name: name,
-        business_type: type,
-        contact,
-        review_sample: consentReview ? review : '',
-        website,
-        hp_website: website,
-        consent_privacy: consentPrivacy,
-        consent_review_sample: consentReview,
-        cf_turnstile_token: turnstileToken,
-        source: 'loopforge-landing-v5-3-hero-security-final',
-        page_url: window.location.href,
-        user_agent: navigator.userAgent,
-        submitted_at: new Date().toISOString()
-      })
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok || !(data.ok || data.success)) {
-      throw new Error(data.error || '전송 실패');
-    }
-    qs('#formWrap').style.display = 'none';
-    qs('#formSuccess').style.display = 'block';
-  } catch (error) {
-    showError('전송에 실패했습니다. 카카오 채널로 직접 문의해 주세요.');
-    if (window.turnstile) { try { window.turnstile.reset(); } catch (_) {} }
-    if (btn) { btn.textContent = '무료 진단 신청하기 →'; btn.disabled = false; }
-  }
-}
-
-function initReveal(){
-  const targets = qsa('.reveal');
-  if (!('IntersectionObserver' in window)) {
-    targets.forEach(el => el.classList.add('visible'));
-    return;
-  }
-  const ro = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        ro.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  targets.forEach(el => ro.observe(el));
-}
-
-function bindEvents(){
-  qs('#hamburgerBtn')?.addEventListener('click', toggleMenu);
-  qs('.mobile-close')?.addEventListener('click', closeMenu);
-  qsa('.mobile-menu a').forEach(a => a.addEventListener('click', closeMenu));
-  qsa('.faq-q').forEach(btn => btn.addEventListener('click', () => toggleFaq(btn)));
-  qs('#submitBtn')?.addEventListener('click', submitForm);
-  qsa('[data-open-privacy]').forEach(el => el.addEventListener('click', openPrivacy));
-  qsa('[data-close-privacy]').forEach(el => el.addEventListener('click', closePrivacy));
-  qs('#privacyModal')?.addEventListener('click', event => {
-    if (event.target === event.currentTarget) closePrivacy();
-  });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { closeMenu(); closePrivacy(); }
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initReveal();
-  bindEvents();
-  console.info('LoopForge AI v5.4 hero-security-final loaded');
-});
-
-</script>
-<script>
-(function(){
-var C='ko';
-var KR='\uD83C\uDDF0\uD83C\uDDF7';
-var ID='\uD83C\uDDEE\uD83C\uDDE9';
-var JA='\uD83C\uDDEF\uD83C\uDDF5';
-var TH='\uD83C\uDDF9\uD83C\uDDED';
-var VI='\uD83C\uDDFB\uD83C\uDDF3';
-var L={
-  ko:{f:KR,l:'\uD55C\uAD6D\uC5B4',u:'/'},
-  id:{f:ID,l:'Indonesia',u:'/id.html'},
-  ja:{f:JA,l:'\u65E5\u672C\u8A9E',u:'/ja.html'},
-  th:{f:TH,l:'\u0E20\u0E32\u0E29\u0E32\u0E44\u0E17\u0E22',u:'/th.html'},
-  vi:{f:VI,l:'Ti\u1EBFng Vi\u1EC7t',u:'/vi.html'}
-};
-var cf=document.getElementById('currentFlag');
-var cl=document.getElementById('currentLangLabel');
-if(cf&&L[C]){cf.textContent=L[C].f;cl.textContent=L[C].l;}
-document.querySelectorAll('.lang-option').forEach(function(e){
-  e.classList.toggle('active',e.getAttribute('data-lang')===C);
-});
-var sw=document.getElementById('langSwitcher');
-var btn=document.getElementById('langBtn');
-if(btn){btn.addEventListener('click',function(e){
-  e.stopPropagation();
-  var o=sw.classList.toggle('open');
-  btn.setAttribute('aria-expanded',o);
-});}
-document.addEventListener('click',function(){if(sw)sw.classList.remove('open');});
-document.querySelectorAll('.lang-option').forEach(function(e){
-  e.addEventListener('click',function(){localStorage.setItem('lf_lang',e.getAttribute('data-lang'));});
-});
-var s=localStorage.getItem('lf_lang');
-if(!s){
-  var b=(navigator.language||'ko').split('-')[0];
-  var sp=['ko','id','ja','th','vi'];
-  if(sp.indexOf(b)!==-1&&b!==C){localStorage.setItem('lf_lang',b);window.location.href=L[b].u;}
-}
-})();
-</script><!-- v202605200846 --></body>
+</body>
 </html>

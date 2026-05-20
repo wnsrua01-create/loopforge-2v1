@@ -1,20 +1,20 @@
-<!DOCTYPE html>
-<html lang="vi">
+﻿<!DOCTYPE html>
+<html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoopForge AI — Tự động hóa AI đánh giá | Chuyên cho Quán Cà phê & Nhà hàng</title>
-<meta name="description" content="Tự động hóa quản lý đánh giá Google Maps cho chủ quán cà phê và nhà hàng. AI tạo bản nháp trả lời. Bạn kiểm tra trước khi đăng. Không tự động đăng. Chẩn đoán miễn phí 10 phút.">
+<title>LoopForge AI — ระบบ AI ตอบรีวิวอัตโนมัติ | เจ้าของร้านคาเฟ่ & ร้านอาหาร</title>
+<meta name="description" content="AI สร้างแบบร่างตอบรีวิวสำหรับคาเฟ่และร้านอาหาร คุณตรวจสอบก่อนโพสต์ ไม่โพสต์อัตโนมัติ วินิจฉัยฟรี 10 นาที">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="LoopForge AI — Tự động AI Đánh giá | Quán Cà phê & Nhà hàng">
-<meta property="og:description" content="Tự động hóa quản lý đánh giá Google Maps cho chủ quán cà phê và nhà hàng. AI tạo bản nháp trả lời. Bạn kiểm tra trước khi đăng. Không tự động đăng. Chẩn đoán miễn phí 10 phút.">
-<meta property="og:url" content="https://loopforge-2v1-51v.pages.dev/vi">
-<meta property="og:image" content="https://loopforge-2v1-51v.pages.dev/og-vi.png">
-<link rel="canonical" href="https://loopforge-2v1-51v.pages.dev/vi">
+<meta property="og:title" content="LoopForge AI — AI ตอบรีวิวอัตโนมัติ | คาเฟ่ & ร้านอาหาร">
+<meta property="og:description" content="AI สร้างแบบร่างตอบรีวิวสำหรับคาเฟ่และร้านอาหาร คุณตรวจสอบก่อนโพสต์ ไม่โพสต์อัตโนมัติ วินิจฉัยฟรี 10 นาที">
+<meta property="og:url" content="https://loopforge-2v1-51v.pages.dev/th">
+<meta property="og:image" content="https://loopforge-2v1-51v.pages.dev/og-th.png">
+<link rel="canonical" href="https://loopforge-2v1-51v.pages.dev/th">
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
-:root{--font:'Be Vietnam Pro','Segoe UI',sans-serif;}
+:root{--font:'Sarabun','Segoe UI',sans-serif;}
 
 :root{--bg:#080c10;--bg2:#0d1117;--bg3:#0f1420;--card:#111820;--card2:#141c26;--accent:#00E5A0;--accent-d:#00b87a;--accent2:#0066FF;--accent3:#FFB300;--text:#f2f4f7;--muted:#8896a8;--muted2:#4a5568;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--r:12px;--r-lg:18px;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.8;overflow-x:hidden;}a{color:inherit;text-decoration:none;}
@@ -113,71 +113,43 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{display:none;}.hamburger{display:flex;}.hero{padding:5.5rem 1.5rem 3rem;}.stats-inner{grid-template-columns:repeat(2,1fr);}.ba-grid{grid-template-columns:1fr;}.flow-steps{grid-template-columns:1fr;}.price-grid{grid-template-columns:1fr;}.proof-grid{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}.footer-top{grid-template-columns:1fr;}}
 
-
-/* LANG-SWITCHER-START */
-.lang-switcher{position:relative;margin-left:1rem;}
-.lang-btn{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text);padding:.38rem .9rem;border-radius:6px;font-size:.82rem;font-weight:600;cursor:pointer;transition:.2s;white-space:nowrap;}
-.lang-btn:hover{background:rgba(255,255,255,.1);}
-.lang-btn .chevron{font-size:.6rem;color:var(--muted);transition:transform .2s;margin-left:.2rem;}
-.lang-switcher.open .chevron{transform:rotate(180deg);}
-.lang-dropdown{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1a1a;border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.4rem;min-width:160px;box-shadow:0 16px 40px rgba(0,0,0,.5);z-index:999;}
-.lang-switcher.open .lang-dropdown{display:block;animation:fadeDown .15s ease;}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.lang-option{display:flex;align-items:center;gap:.7rem;padding:.5rem .8rem;border-radius:7px;cursor:pointer;transition:.15s;text-decoration:none;color:var(--text);font-size:.85rem;}
-.lang-option:hover{background:rgba(255,255,255,.07);}
-.lang-option.active{background:rgba(0,229,160,.1);color:var(--accent);}
-.lang-option .lang-native{font-size:.75rem;color:var(--muted);margin-left:auto;}
-@media(max-width:768px){.lang-btn .lang-label{display:none;}}
-/* LANG-SWITCHER-END */
 </style>
 </head>
 <body>
 <div id="progress-bar"></div>
 <nav>
-  <a href="/vi" class="logo">Loop<span>Forge</span> AI</a>
-  <div class="nav-links"><a href="#how">Cách hoạt động</a><a href="#price">Bảng giá</a><a href="#proof">Đánh giá</a><a href="#faq">FAQ</a></div>
+  <a href="/th" class="logo">Loop<span>Forge</span> AI</a>
+  <div class="nav-links"><a href="#how">วิธีทำงาน</a><a href="#price">ราคา</a><a href="#proof">รีวิว</a><a href="#faq">FAQ</a></div>
   <div style="display:flex;align-items:center;gap:0.7rem;">
-    <div class="lang-row"><a href="/" class="lb">KR</a><a href="/en" class="lb">EN</a><a href="/ja" class="lb">JA</a><a href="/vi" class="lb active">VI</a><a href="/th" class="lb">TH</a><a href="/id" class="lb">ID</a></div>
-    <div class="lang-switcher" id="langSwitcher">
-<button class="lang-btn" id="langBtn" aria-expanded="false">
-<span id="currentFlag" style="font-size:1.1rem"></span>
-<span class="lang-label" id="currentLangLabel"></span>
-<span class="chevron">&#9660;</span>
-</button>
-<div class="lang-dropdown">
-<a href="/" class="lang-option" data-lang="ko"><span class="lf">&#127472;&#127479;</span><span>한국어</span><span class="lang-native">KR</span></a>
-<a href="/id.html" class="lang-option" data-lang="id"><span class="lf">&#127470;&#127465;</span><span>Indonesia</span><span class="lang-native">ID</span></a>
-<a href="/ja.html" class="lang-option" data-lang="ja"><span class="lf">&#127471;&#127477;</span><span>日本語</span><span class="lang-native">JA</span></a>
-<a href="/th.html" class="lang-option" data-lang="th"><span class="lf">&#127481;&#127469;</span><span>ภาษาไทย</span><span class="lang-native">TH</span></a>
-<a href="/vi.html" class="lang-option" data-lang="vi"><span class="lf">&#127483;&#127475;</span><span>Tiếng Việt</span><span class="lang-native">VI</span></a>
-</div></div><a href="#contact" class="nav-cta">Chẩn đoán Miễn phí</a>
+    <div class="lang-row"><a href="/" class="lb">KR</a><a href="/en" class="lb">EN</a><a href="/ja" class="lb">JA</a><a href="/vi" class="lb">VI</a><a href="/th" class="lb active">TH</a><a href="/id" class="lb">ID</a></div>
+    <a href="#contact" class="nav-cta">วินิจฉัยฟรี</a>
   </div>
   <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="#how" onclick="closeMenu()">Cách hoạt động</a>
-<a href="#price" onclick="closeMenu()">Bảng giá</a>
-<a href="#proof" onclick="closeMenu()">Đánh giá</a>
+  <a href="#how" onclick="closeMenu()">วิธีทำงาน</a>
+<a href="#price" onclick="closeMenu()">ราคา</a>
+<a href="#proof" onclick="closeMenu()">รีวิว</a>
 <a href="#faq" onclick="closeMenu()">FAQ</a>
-<a href="#contact" onclick="closeMenu()" class="accent">Chẩn đoán Miễn phí</a>
+<a href="#contact" onclick="closeMenu()" class="accent">วินิจฉัยฟรี</a>
 
 </div>
-<div class="ticker"><div class="ticker-inner">⚡ Chuyên cho Chủ Quán Cà phê & Nhà hàng — AI Tự động Đánh giá &nbsp;·&nbsp; Không tự động đăng · Chỉ bản nháp an toàn &nbsp;·&nbsp; Cài đặt n8n 7.000.000₫ &nbsp;·&nbsp; Giới hạn 3 quán đầu tiên &nbsp;·&nbsp; ⚡ Chuyên cho Chủ Quán Cà phê & Nhà hàng — AI Tự động Đánh giá &nbsp;·&nbsp; Không tự động đăng · Chỉ bản nháp an toàn &nbsp;·&nbsp; Cài đặt n8n 7.000.000₫ &nbsp;·&nbsp; Giới hạn 3 quán đầu tiên &nbsp;·&nbsp;</div></div>
+<div class="ticker"><div class="ticker-inner">⚡ เจ้าของร้านคาเฟ่ & ร้านอาหาร — AI จัดการรีวิวอัตโนมัติ &nbsp;·&nbsp; ไม่โพสต์อัตโนมัติ · ปลอดภัย 100% &nbsp;·&nbsp; ตั้งค่า n8n 17,500฿ &nbsp;·&nbsp; รับเพียง 3 ร้านแรก &nbsp;·&nbsp; ⚡ เจ้าของร้านคาเฟ่ & ร้านอาหาร — AI จัดการรีวิวอัตโนมัติ &nbsp;·&nbsp; ไม่โพสต์อัตโนมัติ · ปลอดภัย 100% &nbsp;·&nbsp; ตั้งค่า n8n 17,500฿ &nbsp;·&nbsp; รับเพียง 3 ร้านแรก &nbsp;·&nbsp;</div></div>
 <main>
 <div class="hero-wrap">
   <section class="hero">
-    <div class="badge">🎯 Chuyên cho Chủ Quán &nbsp;·&nbsp; 🤖 Bản nháp AI · An toàn tuyệt đối</div>
-    <h1>Bạn có đang viết phản hồi<br>đánh giá <em>đến khuya không?</em></h1>
-    <p class="hero-sub">AI tạo bản nháp trả lời cho quán cà phê & nhà hàng của bạn.<br>Trả lời · Xử lý đánh giá tiêu cực · Bản nháp blog — bạn chỉ cần kiểm tra & đăng.</p>
-    <div class="diff-box">Google Maps AI chỉ cung cấp <strong>gợi ý trả lời.</strong><br><strong>LoopForge</strong> cung cấp trả lời + xử lý khiếu nại + bản nháp blog + báo cáo từ khóa + <strong>tài sản tự động hóa n8n.</strong></div>
+    <div class="badge">🎯 เฉพาะเจ้าของร้าน &nbsp;·&nbsp; 🤖 แบบร่าง AI · ปลอดภัยสูงสุด</div>
+    <h1>คุณต้องเขียนตอบรีวิว<br><em>จนดึกทุกคืนหรือไม่?</em></h1>
+    <p class="hero-sub">AI สร้างแบบร่างตอบรีวิวสำหรับคาเฟ่และร้านอาหารของคุณ<br>ตอบ · จัดการรีวิวเชิงลบ · แบบร่างบทความ — คุณแค่ตรวจสอบและโพสต์</p>
+    <div class="diff-box">Google Maps AI ให้แค่<strong>คำแนะนำตอบ</strong><br><strong>LoopForge</strong> ให้คำตอบ + จัดการข้อร้องเรียน + แบบร่างบล็อก + รายงานคีย์เวิร์ด + <strong>ระบบอัตโนมัติ n8n</strong></div>
     <div class="hero-btns">
-      <a href="#contact" class="btn-primary">Nhận Chẩn đoán Miễn phí →</a>
-      <a href="#how" class="btn-ghost">Xem Cách hoạt động</a>
+      <a href="#contact" class="btn-primary">รับการวินิจฉัยฟรี →</a>
+      <a href="#how" class="btn-ghost">ดูวิธีการทำงาน</a>
     </div>
     <div class="safe-box">
-      <h3>✅ An toàn theo thiết kế — Bạn kiểm tra trước khi đăng</h3>
-      <p><strong>AI không bao giờ tự động đăng.</strong><br>Mọi bản nháp đều được bạn kiểm tra, chỉnh sửa và đăng thủ công.<br>Phản hồi đánh giá tiêu cực phải được con người kiểm tra trước.</p>
+      <h3>✅ ปลอดภัยโดยการออกแบบ — คุณตรวจสอบก่อนโพสต์</h3>
+      <p><strong>AI ไม่โพสต์อัตโนมัติเด็ดขาด</strong><br>แบบร่างทุกอันถูกตรวจสอบ แก้ไข และโพสต์ด้วยตนเองโดยคุณ<br>การตอบรีวิวเชิงลบต้องได้รับการตรวจสอบจากมนุษย์ก่อนเสมอ</p>
     </div>
   </section>
 </div>
@@ -190,86 +162,86 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2
   </div>
 </div>
 <section class="section reveal" id="pain">
-  <div class="section-label">Thực tế của chủ quán mỗi ngày</div>
-  <h2 class="section-title">Hàng giờ mất cho quản lý đánh giá.<br>Mỗi. Ngày. Đơn.</h2>
-  <p class="section-sub">Thời gian bạn dành cho đánh giá là chi phí ẩn lớn nhất.</p>
-  <div class="pain-grid"><div class="pain-card reveal"><div class="pain-num">1-2 giờ</div><h3>Quản lý đánh giá mỗi ngày</h3><p>Viết trả lời + xử lý khiếu nại + soạn bài blog. Hàng trăm giờ mỗi năm.</p></div><div class="pain-card reveal"><div class="pain-num">60%+</div><h3>Đánh giá tiêu cực bị bỏ qua</h3><p>Hầu hết đánh giá tiêu cực không được trả lời — hiển thị cho mọi khách hàng tiềm năng.</p></div><div class="pain-card reveal"><div class="pain-num">0₫</div><h3>Marketing miễn phí</h3><p>Đánh giá khách hàng trở thành bản nháp bài đăng blog. Không cần chi phí quảng cáo.</p></div><div class="pain-card reveal"><div class="pain-num">1 lần</div><h3>Cài đặt một lần → Dùng mãi</h3><p>Quy trình tự động hóa n8n là tài sản vĩnh viễn sau khi cài đặt.</p></div></div>
+  <div class="section-label">ความจริงของเจ้าของร้านทุกวัน</div>
+  <h2 class="section-title">เวลาหลายชั่วโมงหายไปกับการจัดการรีวิว<br>ทุก. วัน. เดียว.</h2>
+  <p class="section-sub">เวลาที่คุณใช้กับรีวิวคือต้นทุนซ่อนเร้นที่ใหญ่ที่สุดของคุณ</p>
+  <div class="pain-grid"><div class="pain-card reveal"><div class="pain-num">1-2 ชม.</div><h3>การจัดการรีวิวต่อวัน</h3><p>เขียนตอบ + จัดการข้อร้องเรียน + เขียนบล็อก หลายร้อยชั่วโมงต่อปี</p></div><div class="pain-card reveal"><div class="pain-num">60%+</div><h3>รีวิวเชิงลบถูกละเลย</h3><p>รีวิวเชิงลบส่วนใหญ่ไม่มีการตอบ — ลูกค้าที่มีศักยภาพเห็นทุกอัน</p></div><div class="pain-card reveal"><div class="pain-num">0฿</div><h3>การตลาดฟรี</h3><p>รีวิวลูกค้ากลายเป็นแบบร่างบล็อก ไม่ต้องจ่ายค่าโฆษณา</p></div><div class="pain-card reveal"><div class="pain-num">1 ครั้ง</div><h3>ตั้งค่าครั้งเดียว → ใช้ตลอด</h3><p>ระบบอัตโนมัติ n8n เป็นสินทรัพย์ถาวรหลังตั้งค่า</p></div></div>
 </section>
 <div class="flow-section" id="how">
   <div class="flow-inner">
-    <div class="section-label">Cách hoạt động</div>
-    <h2 class="section-title">Một đánh giá trở thành<br>5 tài sản kinh doanh</h2>
-    <p class="section-sub">Dán vào → AI phân tích → Tạo bản nháp → Bạn kiểm tra → Tự động hóa chạy</p>
+    <div class="section-label">วิธีการทำงาน</div>
+    <h2 class="section-title">รีวิวหนึ่งอันกลายเป็น<br>5 สินทรัพย์ทางธุรกิจ</h2>
+    <p class="section-sub">วาง → AI วิเคราะห์ → สร้างแบบร่าง → คุณตรวจสอบ → ระบบอัตโนมัติทำงาน</p>
     <div class="ba-grid">
       <div class="ba-card reveal">
-        <div class="ba-header">📝 Ví dụ xử lý đánh giá tiêu cực</div>
+        <div class="ba-header">📝 ตัวอย่างการจัดการรีวิวเชิงลบ</div>
         <div class="ba-body">
           <div class="ba-lbl">Original</div>
-          <div class="original">"Nhân viên hơi không thân thiện. Đồ ăn ngon nhưng dịch vụ hơi..."</div>
+          <div class="original">"พนักงานไม่ค่อยเป็นมิตร อาหารอร่อยแต่บริการยังต้องปรับปรุง..."</div>
           <div class="ba-lbl">AI Draft</div>
-          <div class="ai-out">Cảm ơn bạn đã đóng góp ý kiến quý báu. Chúng tôi rất xin lỗi vì sự bất tiện này và sẽ nỗ lực cải thiện ngay lập tức. Mong được phục vụ bạn lần sau!</div>
+          <div class="ai-out">ขอบคุณสำหรับความคิดเห็นอันมีค่าของคุณ เราขออภัยเป็นอย่างยิ่งสำหรับความไม่สะดวก และจะปรับปรุงให้ดีขึ้นโดยเร็ว หวังว่าจะได้ต้อนรับคุณอีกครั้ง!</div>
         </div>
       </div>
       <div class="ba-card reveal">
-        <div class="ba-header">📝 Ví dụ trả lời đánh giá tích cực</div>
+        <div class="ba-header">📝 ตัวอย่างการตอบรีวิวเชิงบวก</div>
         <div class="ba-body">
           <div class="ba-lbl">Original</div>
-          <div class="original">"Cà phê rất ngon! Không gian thoải mái và chắc chắn sẽ quay lại!"</div>
+          <div class="original">"กาแฟอร่อยมาก! บรรยากาศดีมากและจะกลับมาแน่นอน!"</div>
           <div class="ba-lbl">AI Draft</div>
-          <div class="ai-out">Cảm ơn bạn rất nhiều vì đánh giá tuyệt vời! ☕<br>Chúng tôi rất vui khi bạn thích cà phê và không gian của chúng tôi. Hẹn gặp lại bạn sớm!</div>
+          <div class="ai-out">ขอบคุณมากสำหรับรีวิวที่ยอดเยี่ยม! ☕<br>ดีใจที่คุณชอบกาแฟและบรรยากาศของเรา หวังว่าจะได้ต้อนรับคุณอีกเร็วๆ นี้!</div>
         </div>
       </div>
     </div>
-    <div class="flow-steps"><div class="flow-step reveal"><div class="step-num">01</div><h3>Nhập đánh giá</h3><p>Dán đánh giá Google Maps vào</p></div><div class="flow-step reveal"><div class="step-num">02</div><h3>AI phân tích</h3><p>Phân tích cảm xúc + từ khóa</p></div><div class="flow-step reveal"><div class="step-num">03</div><h3>Tạo bản nháp</h3><p>Trả lời · Khiếu nại · Blog</p></div><div class="flow-step reveal"><div class="step-num">04</div><h3>Bạn kiểm tra</h3><p>Kiểm tra → Chỉnh sửa → Đăng</p></div><div class="flow-step reveal"><div class="step-num">05</div><h3>Tự động hóa</h3><p>n8n + Sheets + Thông báo</p></div></div>
+    <div class="flow-steps"><div class="flow-step reveal"><div class="step-num">01</div><h3>ป้อนรีวิว</h3><p>วางรีวิว Google Maps</p></div><div class="flow-step reveal"><div class="step-num">02</div><h3>AI วิเคราะห์</h3><p>วิเคราะห์ความรู้สึก + คีย์เวิร์ด</p></div><div class="flow-step reveal"><div class="step-num">03</div><h3>สร้างแบบร่าง</h3><p>ตอบ · ข้อร้องเรียน · บล็อก</p></div><div class="flow-step reveal"><div class="step-num">04</div><h3>คุณตรวจสอบ</h3><p>ตรวจ → แก้ไข → โพสต์</p></div><div class="flow-step reveal"><div class="step-num">05</div><h3>ระบบอัตโนมัติ</h3><p>n8n + Sheets + การแจ้งเตือน</p></div></div>
   </div>
 </div>
 <section class="section" id="price">
-  <div class="section-label">Bảng giá</div>
-  <h2 class="section-title">Bắt đầu miễn phí.<br>Mở rộng khi bạn phát triển.</h2>
-  <p class="section-sub">Chẩn đoán miễn phí → Báo cáo → Cài đặt → Hỗ trợ vận hành</p>
-  <div class="price-grid"><div class="price-card reveal"><h3>Chẩn đoán Miễn phí</h3><div class="price-tag">0₫</div><ul><li>Phân tích 3-10 mẫu đánh giá</li><li>Báo cáo cơ hội tự động hóa</li><li>Ước tính tiết kiệm thời gian</li><li>Tư vấn 10 phút</li></ul><a href="#contact" class="price-btn">Đăng ký Miễn phí Ngay</a><p class="micro">Không thanh toán · Báo cáo trong 24h</p></div><div class="price-card hot reveal"><div class="hot-badge">🔥 Bước đầu tốt nhất</div><h3>Gói Báo cáo Đánh giá</h3><div class="price-tag">2.800.000₫</div><ul><li>AI phân tích 30 đánh giá</li><li>30 bản nháp trả lời + khiếu nại + blog</li><li>Báo cáo cảm xúc & từ khóa</li><li>Đề xuất tự động hóa</li></ul><a href="#contact" class="price-btn gold">Đặt mua Gói Báo cáo</a><p class="micro">Điểm khởi đầu dễ nhất</p></div><div class="price-card featured reveal"><div class="feat-badge">⭐ Giới hạn 3 quán</div><h3>Cài đặt Tự động hóa</h3><div class="price-tag">7.000.000₫</div><ul><li>AI phân tích 50 đánh giá</li><li>Bản nháp trả lời + xử lý khiếu nại</li><li>5 bản nháp bài blog</li><li>Cài đặt quy trình n8n</li><li>Tích hợp Google Sheets</li><li>Tích hợp thông báo</li></ul><a href="#contact" class="price-btn accent">Đăng ký Cài đặt</a><p class="micro">Cài đặt một lần → Tài sản vĩnh viễn</p></div><div class="price-card reveal"><h3>Tiêu chuẩn + Hàng tháng</h3><div class="price-tag">14.000.000₫</div><ul><li>Bao gồm toàn bộ gói Cài đặt</li><li>Xử lý đánh giá không giới hạn</li><li>Bảng điều khiển Notion</li><li>Báo cáo insight hàng tháng</li><li>Cải tiến liên tục</li></ul><a href="#contact" class="price-btn">Liên hệ chúng tôi</a><p class="micro">Tăng trưởng ổn định MRR</p></div></div>
+  <div class="section-label">ราคา</div>
+  <h2 class="section-title">เริ่มฟรี<br>ขยายตามการเติบโตของคุณ</h2>
+  <p class="section-sub">วินิจฉัยฟรี → รายงาน → ตั้งค่า → สนับสนุนการดำเนินงาน</p>
+  <div class="price-grid"><div class="price-card reveal"><h3>วินิจฉัยฟรี</h3><div class="price-tag">0฿</div><ul><li>วิเคราะห์ตัวอย่างรีวิว 3-10 อัน</li><li>รายงานโอกาสระบบอัตโนมัติ</li><li>ประมาณการประหยัดเวลา</li><li>ปรึกษา 10 นาที</li></ul><a href="#contact" class="price-btn">สมัครฟรีตอนนี้</a><p class="micro">ไม่มีการชำระเงิน · รายงานใน 24 ชม.</p></div><div class="price-card hot reveal"><div class="hot-badge">🔥 ก้าวแรกที่ดีที่สุด</div><h3>แพ็กเกจรายงานรีวิว</h3><div class="price-tag">3,500฿</div><ul><li>AI วิเคราะห์ 30 รีวิว</li><li>30 แบบร่างตอบ + ข้อร้องเรียน + บล็อก</li><li>รายงานความรู้สึกและคีย์เวิร์ด</li><li>ข้อเสนอระบบอัตโนมัติ</li></ul><a href="#contact" class="price-btn gold">สั่งซื้อแพ็กเกจรายงาน</a><p class="micro">จุดเริ่มต้นที่ง่ายที่สุด</p></div><div class="price-card featured reveal"><div class="feat-badge">⭐ จำกัด 3 ร้าน</div><h3>ตั้งค่าระบบอัตโนมัติ</h3><div class="price-tag">17,500฿</div><ul><li>AI วิเคราะห์ 50 รีวิว</li><li>แบบร่างตอบ + จัดการข้อร้องเรียน</li><li>5 แบบร่างบทความบล็อก</li><li>ตั้งค่าระบบ n8n</li><li>เชื่อมต่อ Google Sheets</li><li>เชื่อมต่อการแจ้งเตือน</li></ul><a href="#contact" class="price-btn accent">สมัครตั้งค่า</a><p class="micro">ตั้งค่าครั้งเดียว → สินทรัพย์ถาวร</p></div><div class="price-card reveal"><h3>มาตรฐาน + รายเดือน</h3><div class="price-tag">35,000฿</div><ul><li>รวมทุกอย่างในแพ็กเกจตั้งค่า</li><li>ประมวลผลรีวิวไม่จำกัด</li><li>แดชบอร์ด Notion</li><li>รายงาน insight รายเดือน</li><li>ปรับปรุงต่อเนื่อง</li></ul><a href="#contact" class="price-btn">ติดต่อเรา</a><p class="micro">การเติบโตที่มั่นคง MRR</p></div></div>
 </section>
 <section class="section" id="proof">
-  <div class="section-label">Đánh giá từ chủ quán</div>
-  <h2 class="section-title">Chủ quán nói gì<br>sau khi sử dụng LoopForge</h2>
-  <div class="proof-grid"><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Tôi từng ở lại muộn mỗi đêm để viết trả lời đánh giá. Bây giờ bản nháp AI đã sẵn sàng và tôi chỉ cần kiểm tra rồi đăng. Thay đổi hoàn toàn!"</blockquote><div class="proof-author">— Chủ quán cà phê, Hà Nội · Chẩn đoán Miễn phí</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Tôi sợ đánh giá tiêu cực nên thường bỏ qua. Bản nháp trả lời của AI rất tự nhiên và tôi có thể đăng ngay. Tốc độ phản hồi tăng vọt."</blockquote><div class="proof-author">— Chủ nhà hàng, TP.HCM · Gói Báo cáo</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"Viết bài blog mất một tiếng. Bây giờ tôi chỉ cần chỉnh sửa nhẹ bản nháp AI từ đánh giá khách hàng là xong. Tiết kiệm rất nhiều thời gian."</blockquote><div class="proof-author">— Chủ quán cà phê, Đà Nẵng · Gói Cài đặt</div></div></div>
+  <div class="section-label">รีวิวจากเจ้าของร้าน</div>
+  <h2 class="section-title">เจ้าของร้านพูดถึง<br>การเปลี่ยนแปลงหลังใช้ LoopForge</h2>
+  <div class="proof-grid"><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"ฉันเคยอยู่ดึกทุกคืนเพื่อเขียนตอบรีวิว ตอนนี้แบบร่าง AI พร้อมแล้ว ฉันแค่ตรวจและโพสต์ในไม่กี่วินาที เปลี่ยนชีวิตมาก!"</blockquote><div class="proof-author">— เจ้าของคาเฟ่, กรุงเทพฯ · วินิจฉัยฟรี</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"กลัวรีวิวเชิงลบจนมักเพิกเฉย แบบร่างตอบของ AI เป็นธรรมชาติมากจนโพสต์ได้เลย ความเร็วในการตอบเพิ่มขึ้นมาก"</blockquote><div class="proof-author">— เจ้าของร้านอาหาร, เชียงใหม่ · แพ็กเกจรายงาน</div></div><div class="proof-card reveal"><div class="stars">★★★★★</div><blockquote>"เขียนบทความบล็อกใช้เวลาหนึ่งชั่วโมง ตอนนี้แค่แก้ไขแบบร่าง AI จากรีวิวลูกค้าก็เสร็จแล้ว ประหยัดเวลามาก"</blockquote><div class="proof-author">— เจ้าของคาเฟ่, ภูเก็ต · แพ็กเกจตั้งค่า</div></div></div>
   <p style="font-size:0.75rem;color:var(--muted2);margin-top:1.5rem;text-align:center;">AI-generated content is for review purposes only and is never auto-posted.</p>
 </section>
 <div class="faq-section" id="faq">
   <div class="faq-inner">
-    <div class="section-label">Câu hỏi thường gặp</div>
-    <h2 class="section-title">Bạn có câu hỏi không?</h2>
-    <div class="faq-list"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">AI có tự động đăng trả lời không?<span class="faq-icon">+</span></button><div class="faq-a"><p>Hoàn toàn không. Tất cả trả lời AI chỉ là bản nháp. Bạn kiểm tra, chỉnh sửa và đăng thủ công mỗi lần. Không tự động đăng theo thiết kế.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Những nền tảng nào được hỗ trợ?<span class="faq-icon">+</span></button><div class="faq-a"><p>Hiện tại được tối ưu hóa cho Google Maps. Hỗ trợ Foody và Zomato đang được thêm vào.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Dữ liệu khách hàng có an toàn không?<span class="faq-icon">+</span></button><div class="faq-a"><p>Tất cả dữ liệu được truyền qua mã hóa HTTPS. Mẫu đánh giá chỉ được sử dụng cho mục đích chẩn đoán và không bao giờ được chia sẻ với bên thứ ba.</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Chẩn đoán miễn phí có thực sự miễn phí không?<span class="faq-icon">+</span></button><div class="faq-a"><p>Có, hoàn toàn miễn phí. Gửi cho chúng tôi 3-10 mẫu đánh giá và chúng tôi sẽ gửi báo cáo trong vòng 24 giờ. Không cần thẻ tín dụng.</p></div></div></div>
+    <div class="section-label">คำถามที่พบบ่อย</div>
+    <h2 class="section-title">มีคำถามไหม?</h2>
+    <div class="faq-list"><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">AI โพสต์ตอบรีวิวอัตโนมัติไหม?<span class="faq-icon">+</span></button><div class="faq-a"><p>ไม่เลย ทุกการตอบของ AI เป็นแค่แบบร่าง คุณตรวจสอบ แก้ไข และโพสต์ด้วยตนเองทุกครั้ง ไม่มีการโพสต์อัตโนมัติตามการออกแบบ</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">รองรับแพลตฟอร์มอะไรบ้าง?<span class="faq-icon">+</span></button><div class="faq-a"><p>ปัจจุบันปรับให้เหมาะสำหรับ Google Maps กำลังเพิ่มรองรับ Wongnai และแพลตฟอร์มอื่นๆ</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">ข้อมูลลูกค้าปลอดภัยไหม?<span class="faq-icon">+</span></button><div class="faq-a"><p>ข้อมูลทั้งหมดส่งผ่านการเข้ารหัส HTTPS ตัวอย่างรีวิวใช้เพื่อวัตถุประสงค์การวินิจฉัยเท่านั้นและไม่เคยแบ่งปันกับบุคคลที่สาม</p></div></div><div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">วินิจฉัยฟรีจริงหรือ?<span class="faq-icon">+</span></button><div class="faq-a"><p>ใช่ ฟรี 100% ส่งตัวอย่างรีวิว 3-10 อันและเราจะส่งรายงานให้ภายใน 24 ชั่วโมง ไม่ต้องใช้บัตรเครดิต</p></div></div></div>
   </div>
 </div>
 <section class="cta-section" id="contact">
-  <h2>Gửi cho chúng tôi 3 đánh giá.<br>Nhận báo cáo mẫu tùy chỉnh.</h2>
-  <p>Chẩn đoán 10 phút miễn phí. Chúng tôi xác định cơ hội tự động hóa và ước tính tiết kiệm thời gian.<br>Quyết định thanh toán sau khi xem báo cáo. Không áp lực.</p>
+  <h2>ส่งรีวิว 3 อันให้เรา<br>รับรายงานตัวอย่างที่ปรับแต่ง</h2>
+  <p>วินิจฉัยฟรี 10 นาที เราระบุโอกาสระบบอัตโนมัติและประมาณการประหยัดเวลา<br>ตัดสินใจชำระเงินหลังดูรายงาน ไม่มีแรงกดดัน</p>
   <div class="cta-btns">
-    <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 WhatsApp / Zalo Liên hệ</a>
-    <a href="#contact-form" class="btn-ghost">📋 Đăng ký Chẩn đoán Miễn phí</a>
+    <a href="https://pf.kakao.com/_wLasX/chat" target="_blank" rel="noopener noreferrer" class="btn-wa">💬 WhatsApp / LINE ติดต่อ</a>
+    <a href="#contact-form" class="btn-ghost">📋 สมัครวินิจฉัยฟรี</a>
   </div>
   <div class="contact-form" id="contact-form">
-    <p class="form-title">📋 Đăng ký Chẩn đoán Miễn phí</p>
+    <p class="form-title">📋 สมัครวินิจฉัยฟรี</p>
     <div id="formWrap">
       <div class="form-row">
-        <div class="form-group"><label for="f-name">Tên quán *</label><input type="text" id="f-name" placeholder="Ví dụ: Cà phê Ánh Sao" required></div>
-        <div class="form-group"><label for="f-type">Loại hình *</label><select id="f-type" required><option value="">Chọn...</option><option value="Quán cà phê">Quán cà phê</option><option value="Nhà hàng">Nhà hàng</option><option value="Tiệm bánh">Tiệm bánh / Đồ tráng miệng</option><option value="Khác">Khác</option></select></div>
+        <div class="form-group"><label for="f-name">ชื่อร้าน *</label><input type="text" id="f-name" placeholder="เช่น: คาเฟ่ดาวทอง" required></div>
+        <div class="form-group"><label for="f-type">ประเภทธุรกิจ *</label><select id="f-type" required><option value="">เลือก...</option><option value="คาเฟ่">คาเฟ่</option><option value="ร้านอาหาร">ร้านอาหาร</option><option value="เบเกอรี่">เบเกอรี่ / ขนมหวาน</option><option value="อื่นๆ">อื่นๆ</option></select></div>
       </div>
-      <div class="form-group"><label for="f-contact">Liên hệ (Email hoặc Zalo) *</label><input type="text" id="f-contact" placeholder="Ví dụ: ten@email.com" required></div>
-      <div class="form-group"><label for="f-review">Mẫu đánh giá (khuyến nghị 3+)</label><textarea id="f-review" placeholder="Dán đánh giá Google Maps của bạn vào đây..."></textarea></div>
+      <div class="form-group"><label for="f-contact">ติดต่อ (Email หรือ LINE ID) *</label><input type="text" id="f-contact" placeholder="เช่น: your@email.com" required></div>
+      <div class="form-group"><label for="f-review">ตัวอย่างรีวิว (แนะนำ 3+ อัน)</label><textarea id="f-review" placeholder="วางรีวิว Google Maps ของคุณที่นี่..."></textarea></div>
       <input type="text" id="hp-website" name="website" style="display:none;" autocomplete="off" tabindex="-1">
       <div class="form-agree">
-        <label><input type="checkbox" id="privacyAgree" required><span>[Bắt buộc] Tôi đồng ý với việc thu thập và sử dụng thông tin cá nhân. <button type="button" onclick="openPrivacy()" style="background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:inherit;font-family:inherit;">Privacy</button></span></label>
-        <label><input type="checkbox" id="reviewAgree"><span>[Tùy chọn] Tôi đồng ý để AI phân tích mẫu đánh giá của tôi cho mục đích chẩn đoán.</span></label>
+        <label><input type="checkbox" id="privacyAgree" required><span>[จำเป็น] ฉันยินยอมการเก็บรวบรวมและใช้ข้อมูลส่วนบุคคล <button type="button" onclick="openPrivacy()" style="background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;font-size:inherit;font-family:inherit;">Privacy</button></span></label>
+        <label><input type="checkbox" id="reviewAgree"><span>[ไม่บังคับ] ฉันยินยอมให้ AI วิเคราะห์ตัวอย่างรีวิวของฉันเพื่อวัตถุประสงค์การวินิจฉัย</span></label>
       </div>
       <div class="form-group"><div class="cf-turnstile" data-sitekey="0x4AAAAAADReGXn-318jsskf" data-theme="dark"></div></div>
-      <button class="form-submit" onclick="submitForm('vi')" id="submitBtn" type="button">Nhận Chẩn đoán Miễn phí →</button>
+      <button class="form-submit" onclick="submitForm('th')" id="submitBtn" type="button">รับการวินิจฉัยฟรี →</button>
       <div class="form-error" id="formError" role="alert"></div>
-      <p class="form-privacy">Thông tin được thu thập chỉ dùng cho mục đích chẩn đoán và không bao giờ được chia sẻ với bên thứ ba.</p>
+      <p class="form-privacy">ข้อมูลที่เก็บรวบรวมใช้เพื่อวัตถุประสงค์การวินิจฉัยเท่านั้นและไม่เคยแบ่งปันกับบุคคลที่สาม</p>
     </div>
     <div class="form-success" id="formSuccess" style="display:none;">
-      <div class="icon">✅</div><h4>Đăng ký thành công!</h4><p>Chúng tôi sẽ liên hệ với bạn qua Zalo hoặc thông tin liên lạc đã cung cấp trong vòng 24 giờ. Cảm ơn bạn!</p>
+      <div class="icon">✅</div><h4>สมัครสำเร็จ!</h4><p>เราจะติดต่อคุณทาง LINE หรือข้อมูลติดต่อที่ให้ไว้ภายใน 24 ชั่วโมง ขอบคุณ!</p>
     </div>
   </div>
 </section>
@@ -277,32 +249,32 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:3.5rem 2
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="footer-brand"><div class="footer-logo">Loop<span>Forge</span> AI</div><p>Biến công việc lặp lại thành<br>tài sản tự động hóa vĩnh viễn.</p></div>
+      <div class="footer-brand"><div class="footer-logo">Loop<span>Forge</span> AI</div><p>เปลี่ยนงานซ้ำซากเป็น<br>สินทรัพย์อัตโนมัติถาวร</p></div>
       <div class="footer-links">
-        <a href="#how">Cách hoạt động</a><a href="#price">Bảng giá</a><a href="#proof">Đánh giá</a><a href="#faq">FAQ</a>
-        <a href="#contact">Chẩn đoán Miễn phí</a>
+        <a href="#how">วิธีทำงาน</a><a href="#price">ราคา</a><a href="#proof">รีวิว</a><a href="#faq">FAQ</a>
+        <a href="#contact">วินิจฉัยฟรี</a>
         <a href="/">🇰🇷 한국어</a><a href="/en">🇺🇸 English</a><a href="/ja">🇯🇵 日本語</a>
         <button onclick="openPrivacy()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.84rem;font-family:inherit;">Privacy</button>
       </div>
     </div>
-    <div class="footer-biz">© 2026 LoopForge AI. Đã đăng ký bản quyền. AI tạo nội dung chỉ để xem xét và không tự động đăng.</div>
+    <div class="footer-biz">© 2026 LoopForge AI. สงวนลิขสิทธิ์ เนื้อหาที่ AI สร้างเป็นเพียงแบบร่างสำหรับตรวจสอบและไม่โพสต์อัตโนมัติ</div>
   </div>
 </footer>
-<button class="float-cta" id="floatCta" onclick="window.location.href='#contact'">Chẩn đoán Miễn phí →</button>
+<button class="float-cta" id="floatCta" onclick="window.location.href='#contact'">วินิจฉัยฟรี →</button>
 <div id="privacyModal" class="modal-bg" onclick="if(event.target===this)closePrivacy()">
   <div class="modal-box" onclick="event.stopPropagation()">
     <button class="modal-close-btn" onclick="closePrivacy()">✕</button>
-    <h3>Chính sách Bảo mật</h3>
-    <p><strong>Dữ liệu thu thập:</strong> Tên quán, loại hình, liên hệ, mẫu đánh giá (tùy chọn)</p><p><strong>Mục đích:</strong> Cung cấp dịch vụ chẩn đoán miễn phí</p><p><strong>Thời gian lưu:</strong> Xóa trong vòng 6 tháng sau chẩn đoán</p><p><strong>Bên thứ ba:</strong> Không bao giờ chia sẻ</p>
-    <button onclick="closePrivacy()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.8rem 2rem;font-weight:800;margin-top:1.5rem;cursor:pointer;font-family:var(--font);">OK</button>
+    <h3>นโยบายความเป็นส่วนตัว</h3>
+    <p><strong>ข้อมูลที่เก็บ:</strong> ชื่อร้าน ประเภท ติดต่อ ตัวอย่างรีวิว (ไม่บังคับ)</p><p><strong>วัตถุประสงค์:</strong> ให้บริการวินิจฉัยฟรี</p><p><strong>ระยะเวลา:</strong> ลบภายใน 6 เดือนหลังวินิจฉัย</p><p><strong>บุคคลที่สาม:</strong> ไม่แบ่งปันเลย</p>
+    <button onclick="closePrivacy()" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:0.8rem 2rem;font-weight:800;margin-top:1.5rem;cursor:pointer;font-family:var(--font);">ตกลง</button>
   </div>
 </div>
 <script>
-window.ERR_REQUIRED="Tên quán, loại hình và liên hệ là bắt buộc.";
-window.ERR_PRIVACY="Cần đồng ý với chính sách bảo mật.";
-window.ERR_FAIL="Gửi thất bại. Vui lòng liên hệ qua WhatsApp/Zalo.";
-window.BTN_SENDING="Đang gửi...";
-window.BTN_SUBMIT="Nhận Chẩn đoán Miễn phí →";
+window.ERR_REQUIRED="ชื่อร้าน ประเภทธุรกิจ และติดต่อเป็นสิ่งจำเป็น";
+window.ERR_PRIVACY="ต้องยินยอมนโยบายความเป็นส่วนตัว";
+window.ERR_FAIL="ส่งไม่สำเร็จ กรุณาติดต่อทาง WhatsApp/LINE";
+window.BTN_SENDING="กำลังส่ง...";
+window.BTN_SUBMIT="รับการวินิจฉัยฟรี →";
 
 window.addEventListener('scroll',function(){var s=document.documentElement.scrollTop||document.body.scrollTop,h=document.documentElement.scrollHeight-document.documentElement.clientHeight;document.getElementById('progress-bar').style.width=(h>0?(s/h)*100:0)+'%';var f=document.getElementById('floatCta');s>500?f.classList.add('visible'):f.classList.remove('visible');},{passive:true});
 var ro=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');ro.unobserve(x.target);}});},{threshold:0.1});
@@ -327,44 +299,5 @@ function submitForm(lang){
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu();closePrivacy();}});
 
 </script>
-<script>
-(function(){
-var C='vi';
-var KR='\uD83C\uDDF0\uD83C\uDDF7';
-var ID='\uD83C\uDDEE\uD83C\uDDE9';
-var JA='\uD83C\uDDEF\uD83C\uDDF5';
-var TH='\uD83C\uDDF9\uD83C\uDDED';
-var VI='\uD83C\uDDFB\uD83C\uDDF3';
-var L={
-  ko:{f:KR,l:'\uD55C\uAD6D\uC5B4',u:'/'},
-  id:{f:ID,l:'Indonesia',u:'/id.html'},
-  ja:{f:JA,l:'\u65E5\u672C\u8A9E',u:'/ja.html'},
-  th:{f:TH,l:'\u0E20\u0E32\u0E29\u0E32\u0E44\u0E17\u0E22',u:'/th.html'},
-  vi:{f:VI,l:'Ti\u1EBFng Vi\u1EC7t',u:'/vi.html'}
-};
-var cf=document.getElementById('currentFlag');
-var cl=document.getElementById('currentLangLabel');
-if(cf&&L[C]){cf.textContent=L[C].f;cl.textContent=L[C].l;}
-document.querySelectorAll('.lang-option').forEach(function(e){
-  e.classList.toggle('active',e.getAttribute('data-lang')===C);
-});
-var sw=document.getElementById('langSwitcher');
-var btn=document.getElementById('langBtn');
-if(btn){btn.addEventListener('click',function(e){
-  e.stopPropagation();
-  var o=sw.classList.toggle('open');
-  btn.setAttribute('aria-expanded',o);
-});}
-document.addEventListener('click',function(){if(sw)sw.classList.remove('open');});
-document.querySelectorAll('.lang-option').forEach(function(e){
-  e.addEventListener('click',function(){localStorage.setItem('lf_lang',e.getAttribute('data-lang'));});
-});
-var s=localStorage.getItem('lf_lang');
-if(!s){
-  var b=(navigator.language||'ko').split('-')[0];
-  var sp=['ko','id','ja','th','vi'];
-  if(sp.indexOf(b)!==-1&&b!==C){localStorage.setItem('lf_lang',b);window.location.href=L[b].u;}
-}
-})();
-</script><!-- v202605200846 --></body>
+</body>
 </html>

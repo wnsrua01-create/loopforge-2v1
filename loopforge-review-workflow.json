@@ -1,0 +1,434 @@
+{
+  "name": "LoopForge Review-to-Marketing Auto-Loop v1.0",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "loopforge-review",
+        "responseMode": "responseNode",
+        "options": {
+          "rawBody": false
+        }
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "loopforge-review-v1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// LoopForge: 입력 데이터 파싱 및 정제\nconst body = $input.first().json.body || $input.first().json;\n\n// 필수 필드 검증\nif (!body.reviews || !Array.isArray(body.reviews)) {\n  throw new Error('reviews 배열이 필요합니다.');\n}\nif (!body.business_name) {\n  throw new Error('business_name이 필요합니다.');\n}\n\n// 개인정보 마스킹 (이름, 전화번호)\nconst maskName = (name) => {\n  if (!name || name.length < 2) return name;\n  return name[0] + '*'.repeat(name.length - 2) + name[name.length - 1];\n};\n\nconst maskPhone = (text) => {\n  return text.replace(/(\\d{3})[\\-]?(\\d{3,4})[\\-]?(\\d{4})/g, '$1-****-$3');\n};\n\n// 리뷰 데이터 정제\nconst cleanedReviews = body.reviews.map(review => ({\n  id: review.id || `r_${Date.now()}_${Math.random().toString(36).substr(2,6)}`,\n  text: maskPhone(review.text || ''),\n  rating: Math.min(5, Math.max(1, Number(review.rating) || 3)),\n  author: maskName(review.author || '고객님'),\n  date: review.date || new Date().toISOString().split('T')[0],\n  platform: review.platform || body.platform || 'naver_place'\n}));\n\nreturn [{\n  json: {\n    business_name: body.business_name,\n    platform: body.platform || 'naver_place',\n    reviews: cleanedReviews,\n    total_count: cleanedReviews.length,\n    processed_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "parse-reviews",
+      "name": "Parse & Clean Reviews",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 필수값 검증\nconst data = $input.first().json;\n\nconst errors = [];\nif (!data.business_name) errors.push('business_name 누락');\nif (!data.reviews || data.reviews.length === 0) errors.push('리뷰 데이터 없음');\nif (data.reviews && data.reviews.length > 100) errors.push('리뷰 최대 100개 제한');\n\nif (errors.length > 0) {\n  throw new Error(`검증 실패: ${errors.join(', ')}`);\n}\n\nreturn [$input.first()];"
+      },
+      "id": "validate-input",
+      "name": "Validate Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 리뷰를 개별 아이템으로 분리 (병렬 처리)\nconst data = $input.first().json;\nconst results = [];\n\nfor (const review of data.reviews) {\n  results.push({\n    json: {\n      business_name: data.business_name,\n      platform: data.platform,\n      review: review\n    }\n  });\n}\n\nreturn results;"
+      },
+      "id": "split-reviews",
+      "name": "Split Reviews",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer {{ $env.OPENAI_API_KEY }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "model": "gpt-4o-mini",
+          "max_tokens": 1500,
+          "temperature": 0.7,
+          "messages": [
+            {
+              "role": "system",
+              "content": "너는 한국 소상공인, 스마트스토어, 학원, 병원, 피부샵, 음식점의 리뷰와 고객 문의를 분석하는 AI 마케팅 전문가다.\n\n입력된 리뷰를 분석해서 반드시 아래 JSON 형식으로만 출력한다. 다른 텍스트 없이 JSON만 출력할 것.\n\n{\n  \"sentiment_score\": 1~5 사이 숫자 (소수점 1자리),\n  \"sentiment_label\": \"positive\" 또는 \"negative\" 또는 \"neutral\",\n  \"keywords\": [\"키워드1\", \"키워드2\", \"키워드3\"],\n  \"personal_thanks\": \"긍정/중립 리뷰일 경우 개인화된 감사 답글 초안 (2~3문장). 부정 리뷰면 null\",\n  \"cs_defense\": \"부정 리뷰일 경우 사과와 확인 안내 중심의 CS 대응 초안 (2~3문장). 긍정이면 null\",\n  \"blog_draft\": \"리뷰 내용을 바탕으로 만든 네이버 블로그 홍보글 초안 (150~200자)\",\n  \"risk_note\": \"주의해야 할 표현이나 민감한 문구가 있으면 작성. 없으면 null\"\n}\n\n주의사항:\n- 실제 사실이 아닌 내용은 만들지 않는다.\n- 의료 효과, 금융 수익, 법률 보장 표현은 사용하지 않는다.\n- 고객 개인정보는 노출하지 않는다.\n- 답글은 자동 발송용이 아니라 사장님 검토용 초안으로 작성한다.\n- 과장 광고 표현을 피한다."
+            },
+            {
+              "role": "user",
+              "content": "=업체명: {{ $json.business_name }}\n플랫폼: {{ $json.platform }}\n작성자: {{ $json.review.author }}\n별점: {{ $json.review.rating }}점\n날짜: {{ $json.review.date }}\n리뷰 내용: {{ $json.review.text }}"
+            }
+          ]
+        }
+      },
+      "id": "llm-analyze",
+      "name": "LLM: Analyze Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1160, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// LLM 응답 파싱 및 정규화\nconst item = $input.first().json;\nconst reviewData = $input.first().json;\n\n// 실제 워크플로우에서는 이전 노드에서 review 데이터를 가져와야 함\n// 여기서는 LLM 응답 파싱에 집중\n\nlet llmResult;\ntry {\n  const rawContent = item.choices?.[0]?.message?.content || '{}';\n  // JSON 펜스 제거\n  const cleaned = rawContent.replace(/```json\\n?/g, '').replace(/```\\n?/g, '').trim();\n  llmResult = JSON.parse(cleaned);\n} catch (e) {\n  // 파싱 실패 시 기본값\n  llmResult = {\n    sentiment_score: 3.0,\n    sentiment_label: 'neutral',\n    keywords: [],\n    personal_thanks: null,\n    cs_defense: null,\n    blog_draft: '리뷰 분석 중 오류가 발생했습니다. 다시 시도해주세요.',\n    risk_note: 'LLM 파싱 오류 발생'\n  };\n}\n\n// 점수 범위 클램핑\nllmResult.sentiment_score = Math.min(5, Math.max(1, Number(llmResult.sentiment_score) || 3));\n\n// 부정 여부 판단\nconst isNegative = llmResult.sentiment_label === 'negative' || llmResult.sentiment_score < 2.5;\n\nreturn [{\n  json: {\n    ...llmResult,\n    is_negative: isNegative,\n    processed_at: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "normalize-response",
+      "name": "Normalize LLM Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1400, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-negative",
+              "leftValue": "={{ $json.is_negative }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-negative",
+      "name": "IF: Negative Review?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1640, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $env.GOOGLE_SHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "negative_reviews",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "처리일시": "={{ $json.processed_at }}",
+            "감정점수": "={{ $json.sentiment_score }}",
+            "키워드": "={{ $json.keywords.join(', ') }}",
+            "CS_대응_초안": "={{ $json.cs_defense }}",
+            "리스크_메모": "={{ $json.risk_note }}",
+            "상태": "검토필요"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-negative",
+      "name": "Save Negative Review",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1880, 180]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.solapi.com/messages/v4/send",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "HMAC-SHA256 ApiKey={{ $env.SOLAPI_API_KEY }}, Date={{ $now }}, Salt={{ $env.SOLAPI_SALT }}, Signature={{ $env.SOLAPI_SIGNATURE }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "json",
+        "body": {
+          "message": {
+            "to": "={{ $env.OWNER_PHONE }}",
+            "from": "={{ $env.SENDER_PHONE }}",
+            "text": "=⚠️ [LoopForge] 부정 리뷰 감지\n\n별점: {{ $json.sentiment_score }}점\n키워드: {{ $json.keywords.join(', ') }}\n\nCS 대응 초안이 Google Sheets에 저장되었습니다.\n바로 확인하고 답글을 달아주세요!"
+          }
+        }
+      },
+      "id": "kakao-alert",
+      "name": "Kakao/SMS Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [2120, 180]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $env.GOOGLE_SHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "positive_reviews",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "처리일시": "={{ $json.processed_at }}",
+            "감정점수": "={{ $json.sentiment_score }}",
+            "키워드": "={{ $json.keywords.join(', ') }}",
+            "감사답글_초안": "={{ $json.personal_thanks }}",
+            "블로그_초안": "={{ $json.blog_draft }}",
+            "리스크_메모": "={{ $json.risk_note }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "sheets-positive",
+      "name": "Save Positive Review",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1880, 420]
+    },
+    {
+      "parameters": {
+        "channel": "={{ $env.SLACK_CHANNEL_ID }}",
+        "text": "=✅ [LoopForge] 긍정 리뷰 처리 완료\n\n별점: {{ $json.sentiment_score }}점\n키워드: {{ $json.keywords.join(', ') }}\n블로그 초안: 저장 완료",
+        "otherOptions": {}
+      },
+      "id": "slack-notify",
+      "name": "Slack Notify",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2,
+      "position": [2120, 420]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"review_id\": \"{{ $json.review_id }}\",\n  \"sentiment_score\": {{ $json.sentiment_score }},\n  \"sentiment_label\": \"{{ $json.sentiment_label }}\",\n  \"keywords\": {{ JSON.stringify($json.keywords) }},\n  \"is_negative\": {{ $json.is_negative }},\n  \"personal_thanks\": {{ $json.personal_thanks ? JSON.stringify($json.personal_thanks) : 'null' }},\n  \"cs_defense\": {{ $json.cs_defense ? JSON.stringify($json.cs_defense) : 'null' }},\n  \"blog_draft\": {{ $json.blog_draft ? JSON.stringify($json.blog_draft) : 'null' }},\n  \"processed_at\": \"{{ $json.processed_at }}\"\n}",
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2360, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse & Clean Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse & Clean Reviews": {
+      "main": [
+        [
+          {
+            "node": "Validate Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Input": {
+      "main": [
+        [
+          {
+            "node": "Split Reviews",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Reviews": {
+      "main": [
+        [
+          {
+            "node": "LLM: Analyze Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM: Analyze Review": {
+      "main": [
+        [
+          {
+            "node": "Normalize LLM Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize LLM Response": {
+      "main": [
+        [
+          {
+            "node": "IF: Negative Review?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF: Negative Review?": {
+      "main": [
+        [
+          {
+            "node": "Save Negative Review",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save Positive Review",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Negative Review": {
+      "main": [
+        [
+          {
+            "node": "Kakao/SMS Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Kakao/SMS Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Positive Review": {
+      "main": [
+        [
+          {
+            "node": "Slack Notify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack Notify": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "loopforge-error-handler"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "loopforge-review-v1"
+  },
+  "tags": ["loopforge", "review", "automation", "소상공인"],
+  "_loopforge_notes": {
+    "version": "1.0.0",
+    "created": "2026-05-17",
+    "description": "Review-to-Marketing Auto-Loop: 리뷰 수집 → AI 분석 → 답글/블로그 초안 생성 → 저장 → 알림",
+    "required_env_vars": [
+      "OPENAI_API_KEY",
+      "GOOGLE_SHEET_ID",
+      "SOLAPI_API_KEY",
+      "SOLAPI_SALT",
+      "SOLAPI_SIGNATURE",
+      "OWNER_PHONE",
+      "SENDER_PHONE",
+      "SLACK_CHANNEL_ID"
+    ],
+    "test_payload": {
+      "business_name": "피부관리실 라떼",
+      "platform": "naver_place",
+      "reviews": [
+        {
+          "id": "r12345",
+          "text": "피부가 정말 좋아졌어요! 하지만 가격이 조금 비싸요.",
+          "rating": 4,
+          "author": "김수진",
+          "date": "2026-05-16"
+        },
+        {
+          "id": "r12346",
+          "text": "직원이 너무 불친절했어요. 다시는 안 올 것 같습니다.",
+          "rating": 1,
+          "author": "박민수",
+          "date": "2026-05-15"
+        }
+      ]
+    }
+  }
+}
