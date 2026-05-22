@@ -336,6 +336,25 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
+<script src="https://js.tosspayments.com/v2/standard"></script>
+<script>
+const TOSS_CLIENT_KEY = "test_ck_d46qopOB89d7OyWP0O7LrZmM75y0";
+function payToss(productName, amount, orderId) {
+  const tossPayments = TossPayments(TOSS_CLIENT_KEY);
+  const payment = tossPayments.payment({ customerKey: "loopforge-" + Date.now() });
+  payment.requestBillingAuth({
+    method: "CARD",
+    successUrl: window.location.origin + "/payment-success.html",
+    failUrl: window.location.origin + "/payment-fail.html",
+    customerEmail: "",
+    customerName: "",
+  }).catch(function(err) {
+    if (err.code !== "USER_CANCEL") {
+      alert("결제 오류: " + err.message);
+    }
+  });
+}
+</script>
 </head>
 <body>
 <noscript><div class="noscript-alert">JavaScript가 꺼져 있어 문의폼 제출과 메뉴 기능이 제한됩니다. 카카오 채널로 직접 문의해 주세요.</div></noscript>
@@ -761,7 +780,7 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
         <li>블로그 홍보글 초안</li>
         <li>자동화 도입 제안서</li>
       </ul>
-      <a href="#contact" class="price-btn accent">리포트팩 문의하기</a>
+      <a href="javascript:payToss('리뷰 리포트팩', 90000, 'report-'+Date.now())" class="price-btn accent">리포트팩 결제하기</a>
     </div>
 
     <div class="price-card featured reveal">
@@ -775,7 +794,7 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
         <li>카카오 알림 연동</li>
         <li>답글·CS·블로그 초안 자동 생성</li>
       </ul>
-      <a href="#contact" class="price-btn accent">자동화 세팅 신청</a>
+      <a href="javascript:payToss('자동화 세팅', 490000, 'setup-'+Date.now())" class="price-btn accent">자동화 세팅 결제하기</a>
     </div>
 
     <div class="price-card reveal">
