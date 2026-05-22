@@ -1,0 +1,141 @@
+# LoopForge AI — Claude Code 작업 지시서
+
+## 📁 프로젝트 경로
+```
+D:\1인기업\LoopForge AI\
+```
+
+## 🎯 사업 개요
+- **서비스명:** LoopForge AI
+- **목적:** 소상공인 리뷰 AI 자동화 서비스
+- **사업자:** 주식회사 한국석면조사 / 대표 김영진
+- **배포 URL:** https://loopforge-2v1.pages.dev (Cloudflare Pages)
+- **카카오채널:** http://pf.kakao.com/_wLasX
+- **GitHub:** 연동 완료
+
+## ✅ 현재 구축 완료된 것
+1. **랜딩페이지** `index-v6-final.html` — 디자인 완성본 (v1→v6 진화)
+2. **문의폼** — Cloudflare Worker `loopforge-contact-proxy.wnsrua01.workers.dev` 연동
+3. **구글시트** 연동 — 폼 제출 데이터 수집
+4. **GitHub** 배포 — Cloudflare Pages 자동 배포
+5. **GA4** 분석 추가 완료
+6. **Stripe** 테스트 링크 설정
+7. **카카오 알림톡** — 카카오 비즈니스 심사 신청 중 (2026.5.18, 3~7영업일 소요)
+8. **Google Places API** — 설정 완료 (키: ${GOOGLE_MAPS_API_KEY})
+9. **n8n 워크플로우** — places_workflow import 완료
+
+## ⚠️ 남은 작업 / 부족한 부분
+
+### 1순위 — 결제 연동
+- Stripe 한국 결제 (포트원 대체 방식 검토 필요)
+- 현재 Stripe 테스트 링크만 있고 실제 결제 플로우 미완성
+
+### 2순위 — 알림톡 연동
+- 카카오 비즈니스 심사 완료 후 실제 알림톡 발송 코드 연결 필요
+- 폼 제출 → 구글시트 기록 → 카카오 알림톡 발송 자동화
+
+### 3순위 — n8n 워크플로우 추가 import
+- 나머지 워크플로우들 import 미완료
+
+### 4순위 — Google Maps API 도메인 제한
+- 현재 API 키 도메인 제한 설정 안 됨 (보안 위험)
+
+## 🔧 병렬 작업 요청 사항
+
+아래 작업들을 동시에 분석하고 실행해줘:
+
+### Task A — index-v6-final.html 전체 검토 및 수정
+```
+1. 파일 열어서 전체 코드 분석
+2. 보안 취약점 확인 (XSS, 개인정보 노출 등)
+3. 성능 최적화 (이미지 lazy load, CSS 최소화)
+4. 모바일 반응형 완성도 체크
+5. SEO 메타태그 완성도 체크
+6. 폼 제출 → Worker → 구글시트 연동 흐름 검증
+7. 부족한 부분 직접 수정
+```
+
+### Task B — 카카오 알림톡 연동 코드 준비
+```
+1. 카카오 비즈메시지 API 연동 모듈 작성
+   - 파일: D:\1인기업\LoopForge AI\kakao_alimtalk.js (또는 .py)
+2. 폼 제출 시 자동 알림톡 발송 로직
+   - 트리거: Cloudflare Worker 폼 수신
+   - 발송: 사업주(해피진)에게 신규 문의 알림
+   - 발송: 신청자에게 접수 확인 알림
+3. n8n 웹훅 연동 방식도 함께 설계
+```
+
+### Task C — 구글시트 연동 상태 점검
+```
+1. cf-worker-review-api.js 분석
+2. cf-worker-webhook-proxy.js 분석
+3. 구글시트 연동 흐름 전체 추적
+4. 데이터가 실제로 기록되는지 검증 코드 작성
+5. 오류 있으면 수정
+```
+
+### Task D — GitHub 배포 및 Cloudflare Pages 최적화
+```
+1. 현재 배포 상태 확인
+2. _headers 파일 — CSP, CORS 헤더 최적화
+3. _redirects 파일 — 라우팅 정리
+4. Cloudflare Pages 빌드 설정 최적화
+5. loopforge-2v1.pages.dev 라이브 점검
+```
+
+### Task E — 전체 비교평가 리포트
+```
+1. 현재 버전(v6) vs 이상적인 프로덕션 수준 비교
+2. 항목별 점수 (디자인/기능/보안/성능/전환율)
+3. 즉시 수정 가능한 것 vs 추후 작업 분류
+4. D:\1인기업\LoopForge AI\LoopForge_비교평가_벤치마킹_리포트_v7.md 로 저장
+```
+
+## 📋 파일 구조 (현재 알려진 것)
+```
+D:\1인기업\LoopForge AI\
+├── index-v6-final.html          ← 메인 랜딩페이지 (최신)
+├── cf-worker-review-api.js      ← Cloudflare Worker API
+├── cf-worker-webhook-proxy.js   ← 웹훅 프록시
+├── id.html                      ← ?
+├── ja.html                      ← ?
+├── loopforge-landing-v*.html    ← 이전 버전들
+├── loopforge-contact-proxy-final.js
+├── loopforge-contact-proxy.js
+├── loopforge-dm-scripts.md
+├── loopforge-proposal.md
+├── LoopForge_비교평가_벤치마킹_리포트_v6.md
+├── LoopForge_새창_마스터컨텍스트.md
+├── LoopForge_오늘작업_2026-05-17.md
+├── LoopForge_헤르메스_에이전트_컨텍스트.md
+├── LoopForge_헤르메스_엔지니어링.md
+├── LoopForge_AI_작업일지_20260517.md
+├── LoopForge_AI_Project_Name_Goal_Topic.md
+└── gaon_wiki\
+```
+
+## 🚀 시작 명령
+```
+먼저 아래 순서로 실행해줘:
+
+1. ls "D:\1인기업\LoopForge AI" 로 전체 파일 목록 확인
+2. index-v6-final.html 전체 읽기
+3. cf-worker-review-api.js 읽기
+4. cf-worker-webhook-proxy.js 읽기
+5. LoopForge_비교평가_벤치마킹_리포트_v6.md 읽기
+6. Task A~E 병렬 실행
+```
+
+## ⚙️ 환경 정보
+- **Google Maps API Key:** ${GOOGLE_MAPS_API_KEY} (도메인 제한 필요)
+- **Cloudflare Worker:** loopforge-contact-proxy.wnsrua01.workers.dev
+- **Cloudflare Pages URL:** loopforge-2v1.pages.dev
+- **카카오채널 ID:** _wLasX
+- **n8n:** localhost:5678
+
+## 📌 주의사항
+- 한글 경로 처리 주의 (UTF-8 명시)
+- BAT/PowerShell 파일은 CP949 인코딩
+- Python 파일은 UTF-8 + PYTHONUTF8=1
+- 모든 작업 결과는 해당 폴더에 저장

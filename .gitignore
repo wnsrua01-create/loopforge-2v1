@@ -1,4 +1,4 @@
-﻿.wrangler/
+.wrangler/
 *.md
 *.pdf
 *.txt
@@ -14,3 +14,15 @@ index(2).html
 LoopForge_*.html
 LoopForge AI*.html
 og-*.png
+
+# ==========================================
+# Security & Credentials Hardening Patterns
+# ==========================================
+.env
+.env.*
+secrets/
+*.key
+*.pem
+credentials.json
+token.json
+*.bak

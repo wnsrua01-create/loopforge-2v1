@@ -1,0 +1,16 @@
+﻿.wrangler/
+*.md
+*.pdf
+*.txt
+*.zip
+*.js
+*.toml
+deploy_temp/
+gaon_wiki/
+loopforge-landing/
+loopforge-landing*.html
+index-v*.html
+index(2).html
+LoopForge_*.html
+LoopForge AI*.html
+og-*.png
