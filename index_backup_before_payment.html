@@ -336,55 +336,6 @@ footer{border-top:1px solid var(--border);padding:3rem 4rem;font-size:0.82rem;co
 </style>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
-  <!-- PortOne SDK -->
-  <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-  <script>
-    // 포트원 초기화 (승인 후 실제 merchant ID로 교체)
-    const MERCHANT_ID = "imp00000000"; // TODO: 실제 가맹점 ID로 교체
-    IMP.init(MERCHANT_ID);
-
-    // 일반결제 함수
-    function payOnce(productName, amount, orderId) {
-      IMP.request_pay({
-        pg: "kcp",
-        pay_method: "card",
-        merchant_uid: orderId || "order_" + new Date().getTime(),
-        name: productName,
-        amount: amount,
-        buyer_name: "",
-        buyer_tel: "",
-        buyer_email: ""
-      }, function(rsp) {
-        if (rsp.success) {
-          alert("결제가 완료되었습니다!\n주문번호: " + rsp.merchant_uid);
-          // TODO: 서버 검증 추가
-        } else {
-          alert("결제 실패: " + rsp.error_msg);
-        }
-      });
-    }
-
-    // 정기결제 빌링키 발급 함수
-    function paySubscribe(productName, orderId) {
-      IMP.request_pay({
-        pg: "kcp_billing",
-        pay_method: "card",
-        merchant_uid: orderId || "sub_" + new Date().getTime(),
-        name: productName,
-        amount: 0,
-        customer_uid: "customer_" + new Date().getTime(),
-        buyer_name: "",
-        buyer_tel: "",
-        buyer_email: ""
-      }, function(rsp) {
-        if (rsp.success) {
-          alert("구독 등록이 완료되었습니다!\n첫 결제가 진행됩니다.");
-        } else {
-          alert("구독 등록 실패: " + rsp.error_msg);
-        }
-      });
-    }
-  </script>
 </head>
 <body>
 <noscript><div class="noscript-alert">JavaScript가 꺼져 있어 문의폼 제출과 메뉴 기능이 제한됩니다. 카카오 채널로 직접 문의해 주세요.</div></noscript>
